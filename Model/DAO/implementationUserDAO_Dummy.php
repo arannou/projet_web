@@ -31,7 +31,7 @@ class implementationUserDAO_Dummy implements interfaceUserDAO
        foreach($users->children() as $xmlUser)
        {
          $user = new UserVO;
-         $user->setEnssatPrimaryKey((float) $xmlUser->enssatPrimaryKey);
+         $user->setEnssatPrimaryKey((int) $xmlUser->enssatPrimaryKey);
          $user->setUr1Identifier((int)$xmlUser->ur1identifier);
          $user->setUsername((string)$xmlUser->username);
          $user->setName((string)$xmlUser->name);
