@@ -4,7 +4,9 @@
 interface interfaceBorrowService
 {
   //on emprunte toujours un trousseau
-    public function borrowKeychain($userId,$keychainId,DateTime $dueDate);
+
+    public function borrowKeychain($user,$keychain,DateTime $dueDate);
+
 
     public function returnKeychain($borrowingId,$comment);
 
