@@ -73,9 +73,8 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
       }
 
 
-
     //on emprunte toujours un trousseau
-    public function borrowKeychain(int $userId,int $keychainId,DateTime $dueDate)
+    public function borrowKeychain($userId,$keychainId,DateTime $dueDate)
     {
       $tDate = new DateTime;
       $tDate->setTimestamp(time());
