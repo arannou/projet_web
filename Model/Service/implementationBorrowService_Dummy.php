@@ -26,8 +26,6 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
    private $_userDAO;
    private $_keychainDAO;
 
-
-
    /**
    * Constructeur de la classe
    *
