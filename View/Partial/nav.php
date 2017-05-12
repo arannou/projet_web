@@ -18,9 +18,14 @@
               <li><a href="index3.html">Dashboard3</a></li>
             </ul>
           </li>
-          <li><a><i class="fa fa-edit"></i> Users <span class="fa fa-chevron-down"></span></a>
+          <li><a><i class="fa fa-user"></i> Users <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="?/users">Utilisateurs</a></li>
+            </ul>
+          </li>
+          <li><a><i class="fa fa-key"></i> Clés <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="?/BorrowKeychainForm">Emprunter une clé</a></li>
             </ul>
           </li>
         </ul>
