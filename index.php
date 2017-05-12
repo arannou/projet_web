@@ -48,7 +48,10 @@ function borrowKeychainForm(){
 
   $controller = new BorrowKeyChainFormController("Emprunt");
 
+  require 'View/Partial/head.php';
+  require 'View/Partial/nav.php';
   require 'View/borrowKeychainForm.php';
+  require 'View/Partial/footer.php';
 }
 
 //Demarrage de Limonade
