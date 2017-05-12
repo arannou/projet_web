@@ -38,6 +38,19 @@ function users(){
     require 'View/Partial/footer.php';
 }
 
+dispatch('/borrowKeychainForm', 'borrowKeychainForm');
+function borrowKeychainForm(){
+  require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+  require_once 'Model/DAO/implementationUserDAO_Dummy.php';
+  require_once 'Model/VO/KeychainVO.php';
+  require_once 'Model/Service/implementationBorrowService_Dummy.php';
+  require_once 'Controller/BorrowKeyChainFormController.php';
+
+  $controller = new BorrowKeyChainFormController("Emprunt");
+
+  require 'View/borrowKeychainForm.php';
+}
+
 //Demarrage de Limonade
 run();
 
