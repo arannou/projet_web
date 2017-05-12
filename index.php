@@ -17,7 +17,10 @@ function home(){
     $controller = new HomeController("Home");
 
     //Appel de la vue
+    require 'View/Partial/head.php';
+    require 'View/Partial/nav.php';
     require 'View/home.php';
+    require 'View/Partial/footer.php';
 }
 
 dispatch('/users', 'users');
@@ -29,7 +32,10 @@ function users(){
     //Appel du controlleur
     $controller = new UsersController("Users");
     //Appel de la vue
+    require 'View/Partial/head.php';
+    require 'View/Partial/nav.php';
     require 'View/users.php';
+    require 'View/Partial/footer.php';
 }
 
 //Demarrage de Limonade

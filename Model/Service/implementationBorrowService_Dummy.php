@@ -150,10 +150,10 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
     private function _cancelBorrowing($borrowingId,$type,$comment)
     {
         $status = $this->getBorrowingStatus($borrowingId);
-        echo "status of borrowingId ".$borrowingId." : ".$status."\n";
+        #echo "status of borrowingId ".$borrowingId." : ".$status."\n";
         if(strcmp($status,"DoesNotExists")!==0  && strcmp($status,"Returned")!==0 )
         {
-            echo "\tprocessing\n";
+            #echo "\tprocessing\n";
           switch($type)
           {
             case "return" :
