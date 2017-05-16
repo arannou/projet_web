@@ -1,5 +1,5 @@
 <?php
-class UserVO
+class ProviderVO
 {
     protected $id;
     protected $username;

@@ -4,10 +4,21 @@ require_once 'Libs/limonade/limonade.php';
 
 //dispatch_post('/', 'home'); POUR LE POST
 
+<<<<<<< Updated upstream
+=======
+if(!isset($_SESSION['borrowings'])){
+    $_SESSION['borrowings'] = [];
+}
+
+>>>>>>> Stashed changes
 dispatch('/', 'home');
 function home(){
     //Import des classes
     require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+<<<<<<< Updated upstream
+=======
+    require_once 'Model/DAO/implementationBorrowingsDAO_Session.php';
+>>>>>>> Stashed changes
     require_once 'Model/DAO/implementationUserDAO_Dummy.php';
     require_once 'Model/VO/KeychainVO.php';
     require_once 'Model/Service/implementationBorrowService_Dummy.php';
@@ -48,10 +59,26 @@ function borrowKeychainForm(){
 
   $controller = new BorrowKeyChainFormController("Emprunt");
 
+<<<<<<< Updated upstream
   require 'View/Partial/head.php';
   require 'View/Partial/nav.php';
   require 'View/borrowKeychainForm.php';
   require 'View/Partial/footer.php';
+=======
+  require 'View/borrowKeychainForm.php';
+}
+
+dispatch_post('/borrowKeychain', 'borrowKeychain');
+function borrowKeychain(){
+    require_once 'Controller/BorrowKeychainController.php';
+    require_once 'Model/DAO/implementationUserDAO_Dummy.php';
+    require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+    require_once 'Model/Service/implementationBorrowService_Dummy.php';
+
+    $controller = new BorrowKeychainController();
+
+    //header('location:?/borrowKeychainForm');
+>>>>>>> Stashed changes
 }
 
 //Demarrage de Limonade
