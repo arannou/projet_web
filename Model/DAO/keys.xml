@@ -1,0 +1,12 @@
+<?xml version='1.0' standalone='yes'?>
+<keys>
+  <key>
+    <id>1</id>
+    <type>simple</type>
+  </key>
+
+  <key>
+    <id>2</id>
+    <type>passe partiel</type>
+  </key>
+</keys>

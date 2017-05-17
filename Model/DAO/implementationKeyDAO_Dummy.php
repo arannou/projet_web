@@ -23,19 +23,13 @@ class implementationKeyDAO_Dummy implements interfaceKeyDAO
     * @return void
     */
    private function __construct() {
-     if (file_exists(dirname(__FILE__).'/keys.xml')) {
+    if (file_exists(dirname(__FILE__).'/keys.xml')) {
        $keys = simplexml_load_file(dirname(__FILE__).'/keys.xml');
-       foreach($keys->children() as $xmlkey)
+       foreach($keys as $xmlkey)
        {
          $key = new keyVO;
-         $key->setEnssatPrimaryKey((float) $xmlkey->enssatPrimaryKey);
-         $key->setUr1Identifier((int)$xmlkey->ur1identifier);
-         $key->setkeyname((string)$xmlkey->keyname);
-         $key->setName((string)$xmlkey->name);
-         $key->setSurname((string)$xmlkey->surname);
-         $key->setPhone((int)$xmlkey->phone);
-         $key->setStatus((string)$xmlkey->status);
-         $key->setEmail((string)$xmlkey->email);
+         $key->setId( intval($xmlkey->id));
+         $key->setType($xmlkey->type);
 
          array_push($this->_keys,$key);
        }
@@ -61,7 +55,7 @@ class implementationKeyDAO_Dummy implements interfaceKeyDAO
      return self::$_instance;
    }
 
-   public function getkeys()
+   public function getKeys()
    {
      return $this->_keys;
      /*

@@ -7,10 +7,7 @@ class KeyVO
     protected $id;
     protected $type; //Clef ou Passe Partiel ou Passe Total
 
-    public __construct($type)
-    {
-      $this->type=$type;
-    }
+
 
     public function setId($id) {
         $this->id = $id;
@@ -20,7 +17,7 @@ class KeyVO
         return $this->id;
     }
 
-    public function setType($type) {
+/*    public function setType($type) {
       if(array_key_exists($type,$this->keyType)){
         $this->type = $type;
       }
@@ -28,6 +25,10 @@ class KeyVO
       {
         throw new RuntimeException('Le type de clef <strong>' . $type . '</strong> n\'existe pas !');
       }
+    }*/
+
+    public function setType($type) {
+        $this->type = $type;
     }
 
     public function getType() {

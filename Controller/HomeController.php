@@ -6,6 +6,8 @@ class HomeController {
     public $keychains;
     public $borrowings;
 
+    public $keys;
+
     public function __construct($pageName){
         $this->pageName = $pageName;
         $DAO = implementationKeychainDAO_Dummy::getInstance();
@@ -18,6 +20,10 @@ class HomeController {
             $this->borrowings[$key]['status'] = $borrowService->getBorrowingStatus($borrowing['borrowingId']);
         }
 
+
+      /*  $keysDAO= implementationKeyDAO_Dummy::getInstance();
+        $this->keys=$keysDAO->getKeys();
+*/
     }
 
     /**
