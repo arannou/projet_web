@@ -189,6 +189,9 @@
 .fa-search:before {
   content: "\f002";
 }
+.fa-door:before {
+  content: "\f002";
+}
 .fa-envelope-o:before {
   content: "\f003";
 }

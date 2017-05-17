@@ -12,6 +12,7 @@ class implementationDoorDAO_Dummy implements interfaceDoorDAO
 	private $idRoom;
 	private $id;
 	private $idLock;
+	private $lastId = 2;
 
   /**
    * @access private
@@ -27,20 +28,12 @@ class implementationDoorDAO_Dummy implements interfaceDoorDAO
     * @return void
     */
    private function __construct() {
+	 $_SESSION['doors'] = array();
      if (file_exists(dirname(__FILE__).'/doors.xml')) {
-       $users = simplexml_load_file(dirname(__FILE__).'/doors.xml');
+       $doors = simplexml_load_file(dirname(__FILE__).'/doors.xml');
        foreach($doors->children() as $xmlDoor)
        {
-         $door = new DoorVO;
-         $door->setId((int) $xmlDoor->id);
-		 $door->setIdRoom((int) $xmlDoor->idRoom);
-		 $door->setIdLock((int) $xmlDoor->idLock);
-
-
-         array_push($this->_doors,$door);
-		 array_push($_SESSION['doors'],toString($xmlDoor->id) => array(
-			 "room"=>(int) $xmlDoor->idRoom),
-			 "lock"=>(int) $xmlDoor->idLock));
+		 $this->add((int) $xmlDoor->idroom,(int) $xmlDoor->idlock,$xmlDoor->id);
        }
      } else {
          throw new RuntimeException('Echec lors de l\'ouverture du fichier doors.xml.');
@@ -64,47 +57,42 @@ class implementationDoorDAO_Dummy implements interfaceDoorDAO
      return self::$_instance;
    }
 
-    public function getIdRoom() {
-		return $this->idRoom;
+    public function getIdRoom($id) {
+		return $_SESSION["doors"][$id]["room"];;
 	}
     public function getId() {
 		return $this->id;
 	}
-	public function getIdLock() {
-		return $this->idLock;
+	public function getIdLock($id) {
+		return $_SESSION["doors"][$id]["lock"];;
 	}
 	
-	public function setIdRoom(id) {
-		$this->idRoom = id;
+	public function setIdRoom($id) {
+		$this->idRoom = $id;
 	}
-	public function setId(id) {
-		$this->id = id;
+	public function setId($id) {
+		$this->id = $id;
 	}
-	public function setIdLock(id) {
-		$this->idLock = id;
+	public function setIdLock($id) {
+		$this->idLock = $id;
 	}
 
-	public function add(idRoom, idLock) {
-		$newDoor = new DoorVO;
-	    $newDoor->setId();
-		$newDoor->setIdRoom(idRoom);
-		$newDoor->setIdLock(idLock);
-		array_push($this->_doors,$newDoor);
-		
-		array_push($_SESSION['doors'],toString(getLastId()) => array(
-			 "room"=>idRoom),
-			 "lock"=>idLock));
-       
+	public function add($idRoom, $idLock, $id=null) {
+		if ($id == null) $id= getLastId();
+		$_SESSION['doors']["$id"] = array(
+			 "room"=>$idRoom,
+			 "lock"=>$idLock);
 	}
 
 	public function getDoors() {
-		return $this->_doors;
+		return $_SESSION["doors"];
 	}
 	public function getLastDoorId() {
-		return 1;
+		$this->$lastId = $this->$lastId+1;
+		return $this->$lastId;
 	}
-	public function delete(id) {
-		unset($_SESSION['doors'][id]);
+	public function delete($id) {
+		unset($_SESSION['doors'][$id]);
 	}
 
 }

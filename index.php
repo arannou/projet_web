@@ -6,18 +6,17 @@ if(!isset($_SESSION['borrowings'])){
   $_SESSION['borrowings'] = [];
 }
 
-<<<<<<< Updated upstream
+
 if(!isset($_SESSION['locks'])){
     $_SESSION['locks'] = [];
 }
 
-=======
 if(!isset($_SESSION['rooms'])){
   $_SESSION['rooms'] = [];
 }
 
 //Page home
->>>>>>> Stashed changes
+
 dispatch('/', 'home');
 function home(){
   //Import des classes
@@ -54,7 +53,7 @@ function users(){
   require 'View/Partial/footer.php';
 }
 
-<<<<<<< Updated upstream
+
 dispatch('/keys', 'keys');
 function keys(){
     //Import des classes
@@ -70,9 +69,9 @@ function keys(){
     require 'View/Partial/footer.php';
 }
 
-=======
+
 //Emprunt
->>>>>>> Stashed changes
+
 dispatch('/borrowKeychainForm', 'borrowKeychainForm');
 function borrowKeychainForm(){
   require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
@@ -101,7 +100,23 @@ function borrowKeychain(){
   header('location:?/borrowKeychainForm');
 }
 
-<<<<<<< Updated upstream
+
+dispatch('/doors', 'doors');
+function doors(){
+    //Import des classes
+    require_once 'Model/DAO/implementationDoorDAO_Dummy.php';
+    require_once 'Model/VO/DoorVO.php';
+    require_once 'Controller/DoorsController.php';
+    //Appel du controlleur
+    $controller = new DoorsController("Doors");
+    //Appel de la vue
+    require 'View/Partial/head.php';
+    require 'View/Partial/nav.php';
+    require 'View/doors.php';
+    require 'View/Partial/footer.php';
+}
+
+
 dispatch('/locks', 'locks');
 function locks(){
   require_once 'Model/DAO/implementationLockDAO_Session.php';
@@ -114,7 +129,7 @@ function locks(){
   require 'View/Partial/head.php';
   require 'View/Partial/nav.php';
   require 'View/locks.php';
-=======
+
 //Salles
 dispatch('/rooms', 'rooms');
 function rooms(){
@@ -126,10 +141,9 @@ function rooms(){
   require 'View/Partial/head.php';
   require 'View/Partial/nav.php';
   require 'View/rooms.php';
->>>>>>> Stashed changes
+
   require 'View/Partial/footer.php';
 }
-
 
 
 //Demarrage de Limonade

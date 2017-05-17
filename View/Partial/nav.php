@@ -35,6 +35,11 @@
               <li><a href="?/rooms">Salles</a></li>
             </ul>
           </li>
+          <li><a><i class=" fa flaticon-construction"></i> Portes <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="?/doors">Liste des portes</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
