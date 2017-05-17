@@ -9,21 +9,9 @@ class HomeController {
     public $keys;
 
     public function __construct($pageName){
-        $this->pageName = $pageName;
-        $DAO = implementationKeychainDAO_Dummy::getInstance();
-        $this->keychains = $DAO->getKeychains();
-
+        $this->pageName   = $pageName;
         $borrowService    = implementationBorrowService_Dummy::getInstance();
-        $this->borrowings = $borrowService->getBorrowings();
-
-        foreach ($this->borrowings as $key => $borrowing) {
-            $this->borrowings[$key]['status'] = $borrowService->getBorrowingStatus($borrowing['borrowingId']);
-        }
-
-
-      /*  $keysDAO= implementationKeyDAO_Dummy::getInstance();
-        $this->keys=$keysDAO->getKeys();
-*/
+        $this->borrowings = $borrowService->getBorrowingsWithStatus();
     }
 
     /**

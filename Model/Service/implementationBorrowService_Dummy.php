@@ -79,7 +79,7 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
     public function getBorrowingById($borrowingId)
     {
       $borrowing=null;
-      $borrowings = $this->getBorrowings();
+      $borrowings = $this->_borrowingsDAO->getBorrowings();
       if(count($borrowings)+1 > $borrowingId)
       {
         $borrowing = $borrowings[$borrowingId-1];
@@ -169,9 +169,14 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
 
 
     //@todo : Remplacer l'utilisation de cette fonction par celle en DAO
-    public function getBorrowings()
+    public function getBorrowingsWithStatus()
     {
-      return $this->_borrowingsDAO->getBorrowings();
+      $borrowings = $this->_borrowingsDAO->getBorrowings();
+      foreach ($borrowings as $key => $borrowing) {
+          $borrowings[$key]['status'] = $this->getBorrowingStatus($borrowing['borrowingId']);
+      }
+
+      return $borrowings;
     }
 
 }
