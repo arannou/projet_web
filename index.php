@@ -129,7 +129,7 @@ function locks(){
   require 'View/Partial/head.php';
   require 'View/Partial/nav.php';
   require 'View/locks.php';
-
+}
 //Salles
 dispatch('/rooms', 'rooms');
 function rooms(){
