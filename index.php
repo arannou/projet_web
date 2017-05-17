@@ -3,48 +3,58 @@ session_start();
 require_once 'Libs/limonade/limonade.php';
 
 if(!isset($_SESSION['borrowings'])){
-    $_SESSION['borrowings'] = [];
+  $_SESSION['borrowings'] = [];
 }
 
+<<<<<<< Updated upstream
 if(!isset($_SESSION['locks'])){
     $_SESSION['locks'] = [];
 }
 
+=======
+if(!isset($_SESSION['rooms'])){
+  $_SESSION['rooms'] = [];
+}
+
+//Page home
+>>>>>>> Stashed changes
 dispatch('/', 'home');
 function home(){
-    //Import des classes
-    require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
-    require_once 'Model/DAO/implementationBorrowingsDAO_Session.php';
-    require_once 'Model/DAO/implementationUserDAO_Dummy.php';
-    require_once 'Model/VO/KeychainVO.php';
-    require_once 'Model/Service/implementationBorrowService_Dummy.php';
-    require_once 'Controller/HomeController.php';
+  //Import des classes
+  require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+  require_once 'Model/DAO/implementationBorrowingsDAO_Session.php';
+  require_once 'Model/DAO/implementationUserDAO_Dummy.php';
+  require_once 'Model/VO/KeychainVO.php';
+  require_once 'Model/Service/implementationBorrowService_Dummy.php';
+  require_once 'Controller/HomeController.php';
 
-    //Appel du controlleur
-    $controller = new HomeController("Home");
+  //Appel du controlleur
+  $controller = new HomeController("Home");
 
-    //Appel de la vue
-    require 'View/Partial/head.php';
-    require 'View/Partial/nav.php';
-    require 'View/home.php';
-    require 'View/Partial/footer.php';
+  //Appel de la vue
+  require 'View/Partial/head.php';
+  require 'View/Partial/nav.php';
+  require 'View/home.php';
+  require 'View/Partial/footer.php';
 }
 
+//Utilisateurs
 dispatch('/users', 'users');
 function users(){
-    //Import des classes
-    require_once 'Model/DAO/implementationUserDAO_Dummy.php';
-    require_once 'Model/VO/UserVO.php';
-    require_once 'Controller/UsersController.php';
-    //Appel du controlleur
-    $controller = new UsersController("Users");
-    //Appel de la vue
-    require 'View/Partial/head.php';
-    require 'View/Partial/nav.php';
-    require 'View/users.php';
-    require 'View/Partial/footer.php';
+  //Import des classes
+  require_once 'Model/DAO/implementationUserDAO_Dummy.php';
+  require_once 'Model/VO/UserVO.php';
+  require_once 'Controller/UsersController.php';
+  //Appel du controlleur
+  $controller = new UsersController("Users");
+  //Appel de la vue
+  require 'View/Partial/head.php';
+  require 'View/Partial/nav.php';
+  require 'View/users.php';
+  require 'View/Partial/footer.php';
 }
 
+<<<<<<< Updated upstream
 dispatch('/keys', 'keys');
 function keys(){
     //Import des classes
@@ -60,6 +70,9 @@ function keys(){
     require 'View/Partial/footer.php';
 }
 
+=======
+//Emprunt
+>>>>>>> Stashed changes
 dispatch('/borrowKeychainForm', 'borrowKeychainForm');
 function borrowKeychainForm(){
   require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
@@ -75,18 +88,20 @@ function borrowKeychainForm(){
   require 'View/Partial/footer.php';
 }
 
+//Emprunts - Formulaire (dispatch_post)
 dispatch_post('/borrowKeychain', 'borrowKeychain');
 function borrowKeychain(){
-    require_once 'Controller/BorrowKeychainController.php';
-    require_once 'Model/DAO/implementationUserDAO_Dummy.php';
-    require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
-    require_once 'Model/Service/implementationBorrowService_Dummy.php';
+  require_once 'Controller/BorrowKeychainController.php';
+  require_once 'Model/DAO/implementationUserDAO_Dummy.php';
+  require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+  require_once 'Model/Service/implementationBorrowService_Dummy.php';
 
-    $controller = new BorrowKeychainController();
+  $controller = new BorrowKeychainController();
 
-    header('location:?/borrowKeychainForm');
+  header('location:?/borrowKeychainForm');
 }
 
+<<<<<<< Updated upstream
 dispatch('/locks', 'locks');
 function locks(){
   require_once 'Model/DAO/implementationLockDAO_Session.php';
@@ -99,6 +114,19 @@ function locks(){
   require 'View/Partial/head.php';
   require 'View/Partial/nav.php';
   require 'View/locks.php';
+=======
+//Salles
+dispatch('/rooms', 'rooms');
+function rooms(){
+  require_once 'Model/DAO/implementationRoomDAO_Session.php';
+  require_once 'Model/Service/implementationRoomService.php';
+  require_once 'Controller/RoomController.php';
+
+  $controller = new RoomController("Salles");
+  require 'View/Partial/head.php';
+  require 'View/Partial/nav.php';
+  require 'View/rooms.php';
+>>>>>>> Stashed changes
   require 'View/Partial/footer.php';
 }
 

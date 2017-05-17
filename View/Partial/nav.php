@@ -30,6 +30,11 @@
 
             </ul>
           </li>
+          <li><a><i class="fa fa-map-marker"></i> Salles <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="?/rooms">Salles</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
