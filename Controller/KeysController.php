@@ -1,20 +1,14 @@
 <?php
 
-class BorrowKeyChainFormController {
+class KeysController {
 
     public $pageName;
-    public $keychains;
-    public $borrowings;
+    public $keys;
 
     public function __construct($pageName){
         $this->pageName = $pageName;
-
-        $keychainDAO = implementationKeychainDAO_Dummy::getInstance();
-        $this->keychains = $keychainDAO->getKeychains();
-
-        $DAO = implementationUserDAO_Dummy::getInstance();
-        $this->users = $DAO->getUsers();
-
+        $DAO = implementationKeyDAO_Dummy::getInstance();
+        $this->keys = $DAO->getKeys();
     }
 
     /**

@@ -1,18 +1,10 @@
 <?php
 
-require_once 'Model/Service/interfaceBorrowService.php';
-require_once 'Model/DAO/implementationBorrowingsDAO_Session.php';
 
-class implementationBorrowService_Dummy implements interfaceBorrowService
+require_once 'Model/DAO/implementationKeyDAO_Dummy';
+
+class implementationKeyService_Dummy
 {
-
-  public static $borrowingStatus = array(
-    "DoesNotExists"=>"n\'existe pas",
-    "Borrowed"=>"en cours",
-    "Late"=>"en retard",
-    "Returned"=>"rendu",
-    "Lost"=>"perdu",
-  );
 
   /**
    * @var Singleton
@@ -21,10 +13,8 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
    */
    private static $_instance = null;
 
-   private $_borrowings = array(); // userId, keychainId, dateBorrowed, dateReturned, dateLost, comment
-   private $_userDAO;
-   private $_keychainDAO;
-   private $_borrowingsDAO;
+   private $_keyDAO;
+
 
    /**
    * Constructeur de la classe
@@ -34,7 +24,7 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
    */
    private function __construct()
    {
-     $this->_userDAO       = implementationUserDAO_Dummy::getInstance();
+     $this->_keyDAO  = implementationUserDAO_Dummy::getInstance();
      $this->_keychainDAO   = implementationKeychainDAO_Dummy::getInstance();
      $this->_borrowingsDAO = implementationBorrowingsDAO_Session::getInstance();
    }
@@ -49,13 +39,13 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
       public static function getInstance() {
 
         if(is_null(self::$_instance)) {
-          self::$_instance = new implementationBorrowService_Dummy();
+          self::$_instance = new implementationKeyervice_Dummy();
       }
 
         return self::$_instance;
       }
 
-
+/*
     //on emprunte toujours un trousseau
     public function borrowKeychain($userId,$keychainId,DateTime $dueDate)
     {
@@ -79,7 +69,7 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
     public function getBorrowingById($borrowingId)
     {
       $borrowing=null;
-      $borrowings = $this->_borrowingsDAO->getBorrowings();
+      $borrowings = $this->getBorrowings();
       if(count($borrowings)+1 > $borrowingId)
       {
         $borrowing = $borrowings[$borrowingId-1];
@@ -169,16 +159,11 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
 
 
     //@todo : Remplacer l'utilisation de cette fonction par celle en DAO
-    public function getBorrowingsWithStatus()
+    public function getBorrowings()
     {
-      $borrowings = $this->_borrowingsDAO->getBorrowings();
-      foreach ($borrowings as $key => $borrowing) {
-          $borrowings[$key]['status'] = $this->getBorrowingStatus($borrowing['borrowingId']);
-      }
-
-      return $borrowings;
+      return $this->_borrowingsDAO->getBorrowings();
     }
 
-}
+}*/
 
 ?>
