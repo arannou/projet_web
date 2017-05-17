@@ -6,6 +6,10 @@ if(!isset($_SESSION['borrowings'])){
     $_SESSION['borrowings'] = [];
 }
 
+if(!isset($_SESSION['locks'])){
+    $_SESSION['locks'] = [];
+}
+
 dispatch('/', 'home');
 function home(){
     //Import des classes
@@ -67,6 +71,22 @@ function borrowKeychain(){
 
     header('location:?/borrowKeychainForm');
 }
+
+dispatch('/locks', 'locks');
+function locks(){
+  require_once 'Model/DAO/implementationLockDAO_Session.php';
+  require_once 'Model/VO/LockVO.php';
+  require_once 'Model/Service/implementationLockService.php';
+  require_once 'Controller/LocksController.php';
+
+  $controller = new LocksController("Locks");
+
+  require 'View/Partial/head.php';
+  require 'View/Partial/nav.php';
+  require 'View/locks.php';
+  require 'View/Partial/footer.php';
+}
+
 
 //Demarrage de Limonade
 run();
