@@ -17,11 +17,11 @@
         <th>Canon</th>
     </thead>
 <?php
-    foreach ($controller->doors as $door) {
+    foreach ($controller->doors as $id=>$door) {
         echo '<tr>';
-            echo '<td>'.$door->getId().'</td>';
-            echo '<td>'.$door->getIdRoom().'</td>';
-            echo '<td>'.$door->getIdLock().'</td>';
+            echo '<td>'.$id.'</td>';
+            echo '<td>'.$controller->doors[$id]["room"].'</td>';
+            echo '<td>'.$controller->doors[$id]["lock"].'</td>';
         echo '</tr>';
     }
 ?>

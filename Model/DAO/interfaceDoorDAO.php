@@ -5,9 +5,9 @@ interface interfaceDoorDAO
 
     public static function getInstance();
 
-    public function getIdRoom();
+    public function getIdRoom($id);
     public function getId();
-	public function getIdLock();
+	public function getIdLock($id);
 	
 	public function setIdRoom($id);
 	public function setId($id);
@@ -17,7 +17,7 @@ interface interfaceDoorDAO
 	public function getDoors();
 	public function getLastDoorId();
 	
-	public function add($idRoomm, $idLock);
+	public function add($idRoomm, $idLock, $id=null);
 }
 
 ?>
