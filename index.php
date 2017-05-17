@@ -45,6 +45,21 @@ function users(){
     require 'View/Partial/footer.php';
 }
 
+dispatch('/keys', 'keys');
+function keys(){
+    //Import des classes
+    require_once 'Model/DAO/implementationKeyDAO_Dummy.php';
+    require_once 'Model/VO/KeyVO.php';
+    require_once 'Controller/KeysController.php';
+    //Appel du controlleur
+    $controller = new KeysController("Keys");
+    //Appel de la vue
+    require 'View/Partial/head.php';
+    require 'View/Partial/nav.php';
+    require 'View/keys.php';
+    require 'View/Partial/footer.php';
+}
+
 dispatch('/borrowKeychainForm', 'borrowKeychainForm');
 function borrowKeychainForm(){
   require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
@@ -86,6 +101,7 @@ function locks(){
   require 'View/locks.php';
   require 'View/Partial/footer.php';
 }
+
 
 
 //Demarrage de Limonade

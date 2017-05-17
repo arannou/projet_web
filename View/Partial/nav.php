@@ -26,6 +26,8 @@
           <li><a><i class="fa fa-key"></i> Clés <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="?/BorrowKeychainForm">Emprunter une clé</a></li>
+              <li><a href="?/keys">Les clés</a></li>
+
             </ul>
           </li>
         </ul>
