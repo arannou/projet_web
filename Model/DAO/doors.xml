@@ -2,27 +2,27 @@
 <doors>
   <door>
     <id>1</id>
-    <idroom>1</idroom>
+    <idroom>001H</idroom>
     <idlock>2</idlock>
   </door>
   <door>
     <id>2</id>
-    <idroom>1</idroom>
+    <idroom>001H</idroom>
     <idlock>2</idlock>
   </door>
   <door>
     <id>3</id>
-    <idroom>2</idroom>
+    <idroom>005V</idroom>
     <idlock>2</idlock>
   </door>
   <door>
     <id>4</id>
-    <idroom>2</idroom>
+    <idroom>005V</idroom>
     <idlock>2</idlock>
   </door>
   <door>
     <id>5</id>
-    <idroom>3</idroom>
+    <idroom>037C</idroom>
     <idlock>1</idlock>
   </door>
 

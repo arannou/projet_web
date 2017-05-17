@@ -33,7 +33,7 @@ class implementationDoorDAO_Dummy implements interfaceDoorDAO
        $doors = simplexml_load_file(dirname(__FILE__).'/doors.xml');
        foreach($doors->children() as $xmlDoor)
        {
-		 $this->add((int) $xmlDoor->idroom,(int) $xmlDoor->idlock,$xmlDoor->id);
+		 $this->add($xmlDoor->idroom,(int) $xmlDoor->idlock,$xmlDoor->id);
        }
      } else {
          throw new RuntimeException('Echec lors de l\'ouverture du fichier doors.xml.');
@@ -80,7 +80,7 @@ class implementationDoorDAO_Dummy implements interfaceDoorDAO
 	public function add($idRoom, $idLock, $id=null) {
 		if ($id == null) $id= getLastId();
 		$_SESSION['doors']["$id"] = array(
-			 "room"=>$idRoom,
+			 "room"=>"$idRoom",
 			 "lock"=>$idLock);
 	}
 
