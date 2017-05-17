@@ -8,15 +8,9 @@ class BorrowKeyChainFormController {
 
     public function __construct($pageName){
         $this->pageName = $pageName;
-        $DAO = implementationKeychainDAO_Dummy::getInstance();
-        $this->keychains = $DAO->getKeychains();
 
-        $borrowService    = implementationBorrowService_Dummy::getInstance();
-        $this->borrowings = $borrowService->getBorrowings();
-
-        foreach ($this->borrowings as $key => $borrowing) {
-            $this->borrowings[$key]['status'] = $borrowService->getBorrowingStatus($borrowing['borrowingId']);
-        }
+        $keychainDAO = implementationKeychainDAO_Dummy::getInstance();
+        $this->keychains = $keychainDAO->getKeychains();
 
         $DAO = implementationUserDAO_Dummy::getInstance();
         $this->users = $DAO->getUsers();
