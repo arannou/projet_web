@@ -28,21 +28,9 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date d'emprunt :</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type = "date" name = "borrowDate">
-                </div>
-              </div>
-              <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Date de retour :</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <input type = "date" name = "dueDate">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12">Commentaire :</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" placeholder="Commentaire" name = "comment" />
                 </div>
               </div>
               <p><input type="submit" value="Envoyer" class="btn btn-warning" /></p>
