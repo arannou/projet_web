@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Model/Service/interfaceBorrowService.php';
-
+require_once 'Model/DAO/implementationBorrowingsDAO_Session.php';
 
 class implementationBorrowService_Dummy implements interfaceBorrowService
 {
@@ -14,7 +14,6 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
     "Lost"=>"perdu",
   );
 
-
   /**
    * @var Singleton
    * @access private
@@ -25,6 +24,7 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
    private $_borrowings = array(); // userId, keychainId, dateBorrowed, dateReturned, dateLost, comment
    private $_userDAO;
    private $_keychainDAO;
+   private $_borrowingsDAO;
 
    /**
    * Constructeur de la classe
@@ -34,24 +34,9 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
    */
    private function __construct()
    {
-     $this->_userDAO = implementationUserDAO_Dummy::getInstance();
-     $this->_keychainDAO = implementationKeychainDAO_Dummy::getInstance();
-
-     foreach($this->_userDAO->getUsers() as $user)
-     {
-       $randKeychain = $this->_keychainDAO->getRandomKeychain();
-       $this->_borrowings[]=[
-         'borrowingId'=>count($this->_borrowings)+1,
-         'userEnssatPrimaryKey'=>$user->getEnssatPrimaryKey(),
-         'keychainId'=>$randKeychain->getId(),
-         'borrowDate'=>$randKeychain->getCreationDate()->modify('+1 day'),
-         'dueDate'=>$randKeychain->getCreationDate()->modify('+20 day'),
-         'returnDate'=>null,
-         'lostDate'=>null,
-         'comment'=>""
-       ];
-     }
-
+     $this->_userDAO       = implementationUserDAO_Dummy::getInstance();
+     $this->_keychainDAO   = implementationKeychainDAO_Dummy::getInstance();
+     $this->_borrowingsDAO = implementationBorrowingsDAO_Session::getInstance();
    }
 
       /**
@@ -65,7 +50,7 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
 
         if(is_null(self::$_instance)) {
           self::$_instance = new implementationBorrowService_Dummy();
-        }
+      }
 
         return self::$_instance;
       }
@@ -77,8 +62,9 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
       $tDate = new DateTime;
       $tDate->setTimestamp(time());
 
-      $this->_borrowings[]=[
-        'borrowingId'=>count($this->_borrowings)+1,
+      //@todo : Faire les verifications de sécurité avant de valider l'emprunt
+      $this->_borrowingsDAO->addBorrow([
+        'borrowingId'=>count($this->_borrowingsDAO->getBorrowings())+1,
         'userEnssatPrimaryKey'=>$userId,
         'keychainId'=>$keychainId,
         'borrowDate'=>$tDate,
@@ -86,15 +72,17 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
         'returnDate'=>null,
         'lostDate'=>null,
         'comment'=>""
-      ];
+      ]);
     }
 
+    //@todo : Remplacer l'utilisation de cette fonction par celle présente en DAO
     public function getBorrowingById($borrowingId)
     {
       $borrowing=null;
-      if(count($this->_borrowings)+1 > $borrowingId)
+      $borrowings = $this->getBorrowings();
+      if(count($borrowings)+1 > $borrowingId)
       {
-        $borrowing = $this->_borrowings[$borrowingId-1];
+        $borrowing = $borrowings[$borrowingId-1];
 
       }
       return $borrowing;
@@ -111,10 +99,10 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
         switch($status)
         {
           case "Returned":
-            $this->_borrowings[$borrowingId-1]['returnDate'] = $tDate;
+            $this->_borrowings[$borrowingId-1]['returnDate'] = $tDate; //@todo : Mettre a jour $_SESSION
           break;
           case "Lost":
-            $this->_borrowings[$borrowingId-1]['lostDate'] = $tDate;
+            $this->_borrowings[$borrowingId-1]['lostDate'] = $tDate; //@todo : Mettre a jour $_SESSION
           break;
         default :
            throw new RuntimeException('borrowing does not exists.');
@@ -179,9 +167,11 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
       $this->_cancelBorrowing($borrowingId,"lost",$comment);
     }
 
+
+    //@todo : Remplacer l'utilisation de cette fonction par celle en DAO
     public function getBorrowings()
     {
-      return $this->_borrowings;
+      return $this->_borrowingsDAO->getBorrowings();
     }
 
 }

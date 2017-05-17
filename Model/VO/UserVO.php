@@ -10,7 +10,6 @@ class UserVO
         return $this->ur1identifier;
     }
 
-
     protected $enssatPrimaryKey; //32 bits
     public function setEnssatPrimaryKey($id) {
         $this->enssatPrimaryKey = $id;
