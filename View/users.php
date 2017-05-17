@@ -1,6 +1,16 @@
-<h1><?php echo $controller->getPageName(); ?></h1>
-<hr>
-<table>
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Utilisateurs</h3>
+      </div>
+      <hr>
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            Liste des utilisateurs
+          </div>
+<table class="table">
     <thead>
         <th>Username</th>
         <th>EnssatPrimaryKey</th>
@@ -25,4 +35,9 @@
         echo '</tr>';
     }
 ?>
-<table>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
