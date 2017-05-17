@@ -62,6 +62,7 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
       $tDate = new DateTime;
       $tDate->setTimestamp(time());
 
+      //@todo : Faire les verifications de sécurité avant de valider l'emprunt
       $this->_borrowingsDAO->addBorrow([
         'borrowingId'=>count($this->_borrowingsDAO->getBorrowings())+1,
         'userEnssatPrimaryKey'=>$userId,
@@ -74,6 +75,7 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
       ]);
     }
 
+    //@todo : Remplacer l'utilisation de cette fonction par celle présente en DAO
     public function getBorrowingById($borrowingId)
     {
       $borrowing=null;
@@ -165,6 +167,8 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
       $this->_cancelBorrowing($borrowingId,"lost",$comment);
     }
 
+
+    //@todo : Remplacer l'utilisation de cette fonction par celle en DAO
     public function getBorrowings()
     {
       return $this->_borrowingsDAO->getBorrowings();
