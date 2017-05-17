@@ -68,6 +68,21 @@ function borrowKeychain(){
     header('location:?/borrowKeychainForm');
 }
 
+dispatch('/doors', 'doors');
+function doors(){
+    //Import des classes
+    require_once 'Model/DAO/implementationDoorDAO_Dummy.php';
+    require_once 'Model/VO/DoorVO.php';
+    require_once 'Controller/DoorsController.php';
+    //Appel du controlleur
+    $controller = new DoorsController("Doors");
+    //Appel de la vue
+    require 'View/Partial/head.php';
+    require 'View/Partial/nav.php';
+    require 'View/doors.php';
+    require 'View/Partial/footer.php';
+}
+
 //Demarrage de Limonade
 run();
 
