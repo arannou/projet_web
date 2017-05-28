@@ -207,6 +207,20 @@ function rooms(){
 
   require 'View/Partial/footer.php';
 }
+//Salles - Formulaire (dispatch_post)
+dispatch_post('/rooms', 'rooms');
+function roomsForm(){
+  require_once 'Model/DAO/implementationRoomDAO_Session.php';
+  require_once 'Model/Service/implementationRoomService.php';
+  require_once 'Controller/RoomController.php';
+
+  $controller = new RoomController("Salles");
+  require 'View/Partial/head.php';
+  require 'View/Partial/nav.php';
+  require 'View/rooms.php';
+
+  require 'View/Partial/footer.php';
+}
 
 
 //Demarrage de Limonade
