@@ -42,6 +42,12 @@ class implementationRoomService implements interfaceRoomService
      return self::$_instance;
    }
 
+   public function createRoom($id) {
+     $room = new RoomVO();
+     $room->setId($id);
+     $this->_roomDAO->addRoom($room);
+   }
+
    public function addDoorToRoom() {
 
    }
