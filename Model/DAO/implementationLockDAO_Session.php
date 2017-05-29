@@ -1,4 +1,5 @@
 <?php
+require_once 'Model/VO/LockVO.php';
 require_once 'Model/DAO/interfaceLockDAO.php';
 
 class implementationLockDAO_Session implements interfaceLockDAO
@@ -21,18 +22,22 @@ class implementationLockDAO_Session implements interfaceLockDAO
     * @return void
     */
    private function __construct() {
-     if (file_exists(dirname(__FILE__).'/locks.xml')) {
-       $locks = simplexml_load_file(dirname(__FILE__).'/locks.xml');
-       foreach($locks->children() as $xmlLock)
-       {
-         $lock = new LockVO();
-         $lock->setId($xmlLock->id);
-         $lock->setLength($xmlLock->length);
-         $this->addLock($lock);
+     /**/
+   }
+
+   public function populate() {
+       if (file_exists(dirname(__FILE__).'/locks.xml')) {
+         $locks = simplexml_load_file(dirname(__FILE__).'/locks.xml');
+         foreach($locks->children() as $xmlLock)
+         {
+           $lock = new LockVO();
+           $lock->setId(intval($xmlLock->id));
+           $lock->setLength(intval($xmlLock->length));
+           $this->addLock($lock);
+         }
+       } else {
+           throw new RuntimeException('Echec lors de l\'ouverture du fichier locks.xml.');
        }
-     } else {
-         throw new RuntimeException('Echec lors de l\'ouverture du fichier locks.xml.');
-     }
    }
 
    /**
@@ -76,7 +81,7 @@ class implementationLockDAO_Session implements interfaceLockDAO
    }
 
    public function addLock($lock){
-       $_SESSION['locks'][] = $lock;
+       array_push($_SESSION['locks'], $lock);
    }
 
    public function removeLockById($id){

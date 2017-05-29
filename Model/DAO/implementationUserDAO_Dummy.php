@@ -8,9 +8,6 @@ require_once 'Model/DAO/interfaceUserDAO.php';
 // Ceci va fonctionner
 class implementationUserDAO_Dummy implements interfaceUserDAO
 {
-
-  private $_users = array();
-
   /**
    * @var Singleton
    * @access private
@@ -26,26 +23,30 @@ class implementationUserDAO_Dummy implements interfaceUserDAO
     * @return void
     */
    private function __construct() {
-     if (file_exists(dirname(__FILE__).'/users.xml')) {
-       $users = simplexml_load_file(dirname(__FILE__).'/users.xml');
-       foreach($users->children() as $xmlUser)
-       {
-         $user = new UserVO;
-         $user->setEnssatPrimaryKey((int) $xmlUser->enssatPrimaryKey);
-         $user->setUr1Identifier((int)$xmlUser->ur1identifier);
-         $user->setUsername((string)$xmlUser->username);
-         $user->setName((string)$xmlUser->name);
-         $user->setSurname((string)$xmlUser->surname);
-         $user->setPhone((int)$xmlUser->phone);
-         $user->setStatus((string)$xmlUser->status);
-         $user->setEmail((string)$xmlUser->email);
+     /**/
 
-         array_push($this->_users,$user);
+   }
+
+   public function populate(){
+       if (file_exists(dirname(__FILE__).'/users.xml')) {
+         $users = simplexml_load_file(dirname(__FILE__).'/users.xml');
+         foreach($users->children() as $xmlUser)
+         {
+           $user = new UserVO;
+           $user->setEnssatPrimaryKey((int) $xmlUser->enssatPrimaryKey);
+           $user->setUr1Identifier((int)$xmlUser->ur1identifier);
+           $user->setUsername((string)$xmlUser->username);
+           $user->setName((string)$xmlUser->name);
+           $user->setSurname((string)$xmlUser->surname);
+           $user->setPhone((int)$xmlUser->phone);
+           $user->setStatus((string)$xmlUser->status);
+           $user->setEmail((string)$xmlUser->email);
+
+           array_push($_SESSION['users'], $user);
+         }
+       } else {
+           throw new RuntimeException('Echec lors de l\'ouverture du fichier users.xml.');
        }
-     } else {
-         throw new RuntimeException('Echec lors de l\'ouverture du fichier users.xml.');
-     }
-
    }
 
    /**
@@ -66,13 +67,7 @@ class implementationUserDAO_Dummy implements interfaceUserDAO
 
    public function getUsers()
    {
-     return $this->_users;
-     /*
-     foreach($this->_users as $clef=>$user)
-     {
-       echo $user->getEnssatPrimaryKey()." ".$user->getUsername()." ".$user->getPhone()."\n";
-     }
-     */
+     return $_SESSION['users'];
    }
 
    public function getUserByEnssatPrimaryKey($enssatPrimaryKey)

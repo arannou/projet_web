@@ -23,8 +23,6 @@
         echo '</tr>';
     }
 
-    var_dump($_SESSION);
-
 ?>
 </table>
 </div>

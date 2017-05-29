@@ -22,20 +22,24 @@ class implementationKeyDAO_Dummy implements interfaceKeyDAO
     * @return void
     */
    private function __construct() {
-    if (file_exists(dirname(__FILE__).'/keys.xml')) {
-       $keys = simplexml_load_file(dirname(__FILE__).'/keys.xml');
-       foreach($keys as $xmlkey)
-       {
-         $key = new keyVO;
-         $key->setId( intval($xmlkey->id));
-         $key->setType($xmlkey->type);
+    /**/
 
-         array_push($this->_keys,$key);
-       }
-     } else {
-         throw new RuntimeException('Echec lors de l\'ouverture du fichier keys.xml.');
-     }
+   }
 
+   public function populate() {
+       if (file_exists(dirname(__FILE__).'/keys.xml')) {
+          $keys = simplexml_load_file(dirname(__FILE__).'/keys.xml');
+          foreach($keys as $xmlkey)
+          {
+            $key = new keyVO;
+            $key->setId(intval($xmlkey->id));
+            $key->setType((string)$xmlkey->type);
+
+            array_push($_SESSION['keys'],$key);
+          }
+        } else {
+            throw new RuntimeException('Echec lors de l\'ouverture du fichier keys.xml.');
+        }
    }
 
    /**
