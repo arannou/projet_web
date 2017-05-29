@@ -208,18 +208,14 @@ function rooms(){
   require 'View/Partial/footer.php';
 }
 //Salles - Formulaire (dispatch_post)
-dispatch_post('/rooms', 'rooms');
+dispatch_post('/rooms', 'roomsForm');
 function roomsForm(){
   require_once 'Model/DAO/implementationRoomDAO_Session.php';
   require_once 'Model/Service/implementationRoomService.php';
-  require_once 'Controller/RoomController.php';
+  require_once 'Controller/CreateRoomController.php';
 
-  $controller = new RoomController("Salles");
-  require 'View/Partial/head.php';
-  require 'View/Partial/nav.php';
-  require 'View/rooms.php';
-
-  require 'View/Partial/footer.php';
+  $controller = new CreateRoomController("Salles");
+  //header('location:?/rooms');
 }
 
 
