@@ -22,18 +22,22 @@ class implementationRoomDAO_Session implements interfaceRoomDAO
     * @return void
     */
    private function __construct() {
-     if (file_exists(dirname(__FILE__).'/rooms.xml')) {
-       $rooms = simplexml_load_file(dirname(__FILE__).'/rooms.xml');
-       foreach($rooms->children() as $xmlroom)
-       {
-         $room = new roomVO();
-         $room->setId($xmlroom->roomId);
-         $this->addRoom($room);
-       }
-     } else {
-         throw new RuntimeException('Echec lors de l\'ouverture du fichier rooms.xml.');
-     }
+     /**/
 
+   }
+
+   public function populate() {
+       if (file_exists(dirname(__FILE__).'/rooms.xml')) {
+         $rooms = simplexml_load_file(dirname(__FILE__).'/rooms.xml');
+         foreach($rooms->children() as $xmlroom)
+         {
+           $room = new roomVO();
+           $room->setId((string)$xmlroom->roomId);
+           $this->addRoom($room);
+         }
+       } else {
+           throw new RuntimeException('Echec lors de l\'ouverture du fichier rooms.xml.');
+       }
    }
 
    /**
@@ -69,7 +73,7 @@ class implementationRoomDAO_Session implements interfaceRoomDAO
    public function addRoom($room)
    {
      # créer un tableau dans lequel on met toutes les infos de la room
-     $_SESSION['rooms'][] = $room;
+     array_push($_SESSION['rooms'], $room);
    }
 }
 

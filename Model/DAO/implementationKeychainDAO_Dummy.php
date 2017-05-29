@@ -22,25 +22,28 @@ class implementationKeychainDAO_Dummy implements interfaceKeyChainDAO
     * @return void
     */
    private function __construct() {
-     if (file_exists(dirname(__FILE__).'/keychains.xml')) {
-       $keychains = simplexml_load_file(dirname(__FILE__).'/keychains.xml');
-       foreach($keychains->children() as $xmlKeychain)
-       {
-         $keychain = new KeychainVO;
 
-         $keychain->setId((float) $xmlKeychain->id);
-         $tDate = new DateTime;
-         $tDate->setTimestamp((int)$xmlKeychain->creationDate);
-         $keychain->setCreationDate($tDate);
-         $tDate->setTimestamp((int)$xmlKeychain->destructionDate);
-         $keychain->setDestructionDate($tDate);
+   }
 
-         array_push($this->_keychains,$keychain);
-       }
-     } else {
-       exit('Echec lors de l\'ouverture du fichier keychains.xml.');
+   public function populate(){
+       if (file_exists(dirname(__FILE__).'/keychains.xml')) {
+         $keychains = simplexml_load_file(dirname(__FILE__).'/keychains.xml');
+         foreach($keychains->children() as $xmlKeychain)
+         {
+           $keychain = new KeychainVO;
+
+           $keychain->setId((float) $xmlKeychain->id);
+           $tDate = new DateTime;
+           $tDate->setTimestamp((int)$xmlKeychain->creationDate);
+           $keychain->setCreationDate($tDate);
+           $tDate->setTimestamp((int)$xmlKeychain->destructionDate);
+           $keychain->setDestructionDate($tDate);
+
+           array_push($_SESSION['keychains'],$keychain);
+         }
+       } else {
+         exit('Echec lors de l\'ouverture du fichier keychains.xml.');
      }
-
    }
 
    /**

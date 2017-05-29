@@ -28,7 +28,7 @@ class implementationDoorDAO_Dummy implements interfaceDoorDAO
     * @return void
     */
    private function __construct() {
-	 $_SESSION['doors'] = array();
+	 /*$_SESSION['doors'] = array();
      if (file_exists(dirname(__FILE__).'/doors.xml')) {
        $doors = simplexml_load_file(dirname(__FILE__).'/doors.xml');
        foreach($doors->children() as $xmlDoor)
@@ -37,8 +37,21 @@ class implementationDoorDAO_Dummy implements interfaceDoorDAO
        }
      } else {
          throw new RuntimeException('Echec lors de l\'ouverture du fichier doors.xml.');
-     }
+     }*/
 
+   }
+
+   public function populate(){
+	   $_SESSION['doors'] = array();
+       if (file_exists(dirname(__FILE__).'/doors.xml')) {
+         $doors = simplexml_load_file(dirname(__FILE__).'/doors.xml');
+         foreach($doors->children() as $xmlDoor)
+         {
+  		 $this->add((int) $xmlDoor->idroom,(int) $xmlDoor->idlock,(string)$xmlDoor->id);
+         }
+       } else {
+           throw new RuntimeException('Echec lors de l\'ouverture du fichier doors.xml.');
+       }
    }
 
    /**
@@ -66,7 +79,7 @@ class implementationDoorDAO_Dummy implements interfaceDoorDAO
 	public function getIdLock($id) {
 		return $_SESSION["doors"][$id]["lock"];;
 	}
-	
+
 	public function setIdRoom($id) {
 		$this->idRoom = $id;
 	}
