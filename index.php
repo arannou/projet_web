@@ -86,6 +86,7 @@ function dumpDatabase(){
     var_dump($_SESSION);
 }
 
+//Page home
 dispatch('/', 'home');
 function home(){
   //Import des classes
@@ -120,7 +121,6 @@ function users(){
   require 'View/Partial/footer.php';
 }
 
-
 dispatch('/keys', 'keys');
 function keys(){
     //Import des classes
@@ -135,9 +135,7 @@ function keys(){
     require 'View/Partial/footer.php';
 }
 
-
 //Emprunt
-
 dispatch('/borrowKeychainForm', 'borrowKeychainForm');
 function borrowKeychainForm(){
   require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
@@ -165,7 +163,6 @@ function borrowKeychain(){
   header('location:?/borrowKeychainForm');
 }
 
-
 dispatch('/doors', 'doors');
 function doors(){
     //Import des classes
@@ -179,7 +176,6 @@ function doors(){
     require 'View/doors.php';
     require 'View/Partial/footer.php';
 }
-
 
 dispatch('/locks', 'locks');
 function locks(){
@@ -204,7 +200,6 @@ function rooms(){
   require 'View/Partial/head.php';
   require 'View/Partial/nav.php';
   require 'View/rooms.php';
-
   require 'View/Partial/footer.php';
 }
 //Salles - Formulaire (dispatch_post)
