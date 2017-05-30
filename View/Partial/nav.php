@@ -30,12 +30,12 @@
 
             </ul>
           </li>
-          <li><a><i class="fa fa-map-marker"></i> Salles <span class="fa fa-chevron-down"></span></a>
+          <li><a><i class="fa flaticon-construction"></i> Salles <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="?/rooms">Salles</a></li>
             </ul>
           </li>
-          <li><a><i class=" fa flaticon-construction"></i> Portes <span class="fa fa-chevron-down"></span></a>
+          <li><a><i class="fa flaticon-education"></i> Portes <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="?/doors">Liste des portes</a></li>
             </ul>
