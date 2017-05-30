@@ -38,6 +38,10 @@ if(!isset($_SESSION['users'])){
   $_SESSION['users'] = array();
 }
 
+if(!isset($_SESSION['providers'])){
+    $_SESSION['providers'] = [];
+}
+
 dispatch('/clearsession', 'clearsession');
 function clearsession() {
     session_destroy();
@@ -83,7 +87,16 @@ function populateDatabase(){
 
 dispatch('/dumpDatabase', 'dumpDatabase');
 function dumpDatabase(){
-    var_dump($_SESSION);
+    require_once 'Model/VO/KeychainVO.php';
+    require_once 'Model/Service/implementationBorrowService_Dummy.php';
+    require_once 'Controller/HomeController.php';
+    //Appel du controlleur
+    $controller = new HomeController("Home");
+    //Appel de la vue
+    require 'View/Partial/head.php';
+    require 'View/Partial/nav.php';
+    require 'View/home.php';
+    require 'View/Partial/footer.php';
 }
 
 dispatch('/', 'home');
@@ -140,12 +153,14 @@ function keys(){
 
 dispatch('/borrowKeychainForm', 'borrowKeychainForm');
 function borrowKeychainForm(){
+  //Import des classes
   require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
   require_once 'Model/DAO/implementationUserDAO_Dummy.php';
   require_once 'Model/Service/implementationBorrowService_Dummy.php';
   require_once 'Controller/BorrowKeyChainFormController.php';
-
+  //Appel du controller
   $controller = new BorrowKeyChainFormController("Emprunt");
+  //Appel de la vue
   require 'View/Partial/head.php';
   require 'View/Partial/nav.php';
   require 'View/borrowKeychainForm.php';
@@ -208,7 +223,21 @@ function rooms(){
   require 'View/Partial/footer.php';
 }
 
-
+dispatch('/providers', 'providers');
+function providers(){
+    //Import des classes
+    require_once 'Model/DAO/implementationFournisseurDAO_Session.php';
+    require_once 'Model/VO/ProviderVO.php';
+    require_once 'Model/Service/implementationFournisseurService_Dummy.php';
+    require_once 'Controller/FournisseurController.php';
+    //Appel du controlleur
+    $controller = new FournisseurController("Providers");
+    //Appel de la vue
+    require 'View/Partial/head.php';
+    require 'View/Partial/nav.php';
+    require 'View/providers.php';
+    require 'View/Partial/footer.php';
+}
 //Demarrage de Limonade
 run();
 
