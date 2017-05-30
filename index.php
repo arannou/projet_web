@@ -87,16 +87,7 @@ function populateDatabase(){
 
 dispatch('/dumpDatabase', 'dumpDatabase');
 function dumpDatabase(){
-    require_once 'Model/VO/KeychainVO.php';
-    require_once 'Model/Service/implementationBorrowService_Dummy.php';
-    require_once 'Controller/HomeController.php';
-    //Appel du controlleur
-    $controller = new HomeController("Home");
-    //Appel de la vue
-    require 'View/Partial/head.php';
-    require 'View/Partial/nav.php';
-    require 'View/home.php';
-    require 'View/Partial/footer.php';
+    var_dump($_SESSION);
 }
 
 //Page home
@@ -217,6 +208,7 @@ function rooms(){
   require 'View/rooms.php';
   require 'View/Partial/footer.php';
 }
+
 //Salles - Formulaire (dispatch_post)
 dispatch_post('/rooms', 'roomsForm');
 function roomsForm(){
@@ -243,6 +235,7 @@ function providers(){
     require 'View/providers.php';
     require 'View/Partial/footer.php';
 }
+
 //Demarrage de Limonade
 run();
 

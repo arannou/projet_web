@@ -75,7 +75,6 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
       ]);
     }
 
-    //@todo : Remplacer l'utilisation de cette fonction par celle présente en DAO
     public function getBorrowingById($borrowingId)
     {
       $borrowing=null;
@@ -86,6 +85,19 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
 
       }
       return $borrowing;
+    }
+
+    public function getBorrowingByKeychainId($keychainId){
+        $borrowing  = null;
+        $borrowings = $this->_borrowingsDAO->getBorrowings();
+        foreach ($borrowings as $key => $borrowing) {
+            if($borrowing['keychainId']  == $keychainId)
+            {
+                return $borrowing;
+            }
+        }
+
+        return null;
     }
 
     public function setBorrowingStatus($borrowingId,$status)
