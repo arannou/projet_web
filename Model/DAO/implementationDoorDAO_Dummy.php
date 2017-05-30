@@ -49,7 +49,7 @@ class implementationDoorDAO_Dummy implements interfaceDoorDAO
          $doors = simplexml_load_file(dirname(__FILE__).'/doors.xml');
          foreach($doors->children() as $xmlDoor)
          {
-  		 $this->add((int) $xmlDoor->idroom,(int) $xmlDoor->idlock,(string)$xmlDoor->id);
+  		 $this->add($xmlDoor->idroom,(int) $xmlDoor->idlock,(string)$xmlDoor->id);
          }
        } else {
            throw new RuntimeException('Echec lors de l\'ouverture du fichier doors.xml.');
