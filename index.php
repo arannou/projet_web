@@ -225,7 +225,7 @@ function roomsForm(){
   require_once 'Controller/CreateRoomController.php';
 
   $controller = new CreateRoomController("Salles");
-  //header('location:?/rooms');
+  header('location:?/rooms');
 }
 
 dispatch('/providers', 'providers');
