@@ -25,7 +25,6 @@
             <ul class="nav child_menu">
               <li><a href="?/BorrowKeychainForm">Emprunter une clé</a></li>
               <li><a href="?/keys">Les clés</a></li>
-
             </ul>
           </li>
           <li><a><i class="fa flaticon-construction"></i> Salles <span class="fa fa-chevron-down"></span></a>
@@ -37,6 +36,13 @@
             <ul class="nav child_menu">
               <li><a href="?/doors">Liste des portes</a></li>
               <li><a href="?/create_door_form">Ajouter une porte</a></li>
+            </ul>
+          </li>
+          <li><a><i class="glyphicon glyphicon-cog"></i> Debug <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="?/populateDatabase">Remplir BDD</a></li>
+              <li><a href="?/dumpDatabase">Afficher BDD</a></li>
+              <li><a href="?/clearsession">Vider session</a></li>
             </ul>
           </li>
           <li><a><i class="glyphicon glyphicon-cog"></i> Debug <span class="fa fa-chevron-down"></span></a>

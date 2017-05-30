@@ -60,7 +60,7 @@ class implementationKeyDAO_Dummy implements interfaceKeyDAO
 
    public function getKeys()
    {
-     return $this->_keys;
+     return $_SESSION['keys'];
      /*
      foreach($this->_keys as $clef=>$key)
      {
@@ -72,6 +72,11 @@ class implementationKeyDAO_Dummy implements interfaceKeyDAO
    public function getkeyByEnssatPrimaryKey($enssatPrimaryKey)
    {
 
+   }
+
+   public function addKey($key) {
+     array_push($_SESSION['keys'], $key);
+     var_dump($_SESSION['keys']);
    }
 
 
