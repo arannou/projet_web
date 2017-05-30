@@ -87,16 +87,7 @@ function populateDatabase(){
 
 dispatch('/dumpDatabase', 'dumpDatabase');
 function dumpDatabase(){
-    require_once 'Model/VO/KeychainVO.php';
-    require_once 'Model/Service/implementationBorrowService_Dummy.php';
-    require_once 'Controller/HomeController.php';
-    //Appel du controlleur
-    $controller = new HomeController("Home");
-    //Appel de la vue
-    require 'View/Partial/head.php';
-    require 'View/Partial/nav.php';
-    require 'View/home.php';
-    require 'View/Partial/footer.php';
+    var_dump($_SESSION);
 }
 
 //Page home
@@ -187,10 +178,8 @@ function uploadKeyCSV(){
 
   $controller = new UploadKeyCSVController();
 
-  //header('location:?/keys');
+  header('location:?/keys');
 }
-
-//Ajout de clé
 
 dispatch('/doors', 'doors');
 function doors(){
@@ -204,6 +193,37 @@ function doors(){
     require 'View/Partial/nav.php';
     require 'View/doors.php';
     require 'View/Partial/footer.php';
+}
+
+dispatch('/create_door_form', 'create_door_form');
+function create_door_form(){
+    //Import des classes
+    require_once 'Model/DAO/implementationDoorDAO_Dummy.php';
+    require_once 'Model/VO/DoorVO.php';
+    require_once 'Controller/CreateDoorFormController.php';
+	require_once 'Model/DAO/implementationRoomDAO_Session.php';
+	
+    //Appel du controlleur
+    $controller = new CreateDoorFormController("Doors");
+    //Appel de la vue
+    require 'View/Partial/head.php';
+    require 'View/Partial/nav.php';
+    require 'View/createDoorForm.php';
+    require 'View/Partial/footer.php';
+}
+
+
+dispatch_post('/create_door', 'create_door');
+function create_door(){
+    //Import des classes
+	require_once 'Model/Service/implementationDoorService.php';
+    require_once 'Model/DAO/implementationDoorDAO_Dummy.php';
+    require_once 'Model/VO/DoorVO.php';
+    require_once 'Controller/CreateDoorController.php';
+    //Appel du controlleur
+    $controller = new CreateDoorController("Doors");
+    
+	header('location:?/doors');
 }
 
 dispatch('/locks', 'locks');
@@ -242,6 +262,17 @@ function roomsForm(){
   header('location:?/rooms');
 }
 
+//Salles - Formulaire (dispatch_post)
+dispatch_post('/rooms', 'roomsForm');
+function roomsForm(){
+  require_once 'Model/DAO/implementationRoomDAO_Session.php';
+  require_once 'Model/Service/implementationRoomService.php';
+  require_once 'Controller/CreateRoomController.php';
+
+  $controller = new CreateRoomController("Salles");
+  header('location:?/rooms');
+}
+
 dispatch('/providers', 'providers');
 function providers(){
     //Import des classes
@@ -257,6 +288,7 @@ function providers(){
     require 'View/providers.php';
     require 'View/Partial/footer.php';
 }
+
 //Demarrage de Limonade
 run();
 

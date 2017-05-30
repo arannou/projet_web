@@ -5,6 +5,7 @@ class BorrowKeyChainFormController {
     public $pageName;
     public $keychains;
     public $borrowings;
+    public $error;
 
     public function __construct($pageName){
         $this->pageName = $pageName;
@@ -15,6 +16,10 @@ class BorrowKeyChainFormController {
         $DAO = implementationUserDAO_Dummy::getInstance();
         $this->users = $DAO->getUsers();
 
+        if(isset($_SESSION['error'])){
+            $this->error = $_SESSION['error'];
+            unset($_SESSION['error']);
+        }
     }
 
     /**
