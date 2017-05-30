@@ -14,8 +14,6 @@
           <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="?">Accueil</a></li>
-              <li><a href="index2.html">Dashboard2</a></li>
-              <li><a href="index3.html">Dashboard3</a></li>
             </ul>
           </li>
           <li><a><i class="fa fa-user"></i> Users <span class="fa fa-chevron-down"></span></a>
@@ -30,14 +28,21 @@
 
             </ul>
           </li>
-          <li><a><i class="fa fa-map-marker"></i> Salles <span class="fa fa-chevron-down"></span></a>
+          <li><a><i class="fa flaticon-construction"></i> Salles <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="?/rooms">Salles</a></li>
             </ul>
           </li>
-          <li><a><i class=" fa flaticon-construction"></i> Portes <span class="fa fa-chevron-down"></span></a>
+          <li><a><i class="fa flaticon-education"></i> Portes <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="?/doors">Liste des portes</a></li>
+            </ul>
+          </li>
+          <li><a><i class="glyphicon glyphicon-cog"></i> Debug <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="?/populateDatabase">Remplir BDD</a></li>
+              <li><a href="?/dumpDatabase">Afficher BDD</a></li>
+              <li><a href="?/clearsession">Vider session</a></li>
             </ul>
           </li>
         </ul>

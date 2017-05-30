@@ -7,6 +7,7 @@ class RoomController {
 
     public function __construct($pageName){
         $this->pageName = $pageName;
+
         $roomDAO        = implementationRoomDAO_Session::getInstance();
         $this->rooms    = $roomDAO->getRooms();
     }
