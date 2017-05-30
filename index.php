@@ -200,16 +200,19 @@ function create_door_form(){
     require 'View/createDoorForm.php';
     require 'View/Partial/footer.php';
 }
-dispatch('/create_door', 'create_door');
+
+
+dispatch_post('/create_door', 'create_door');
 function create_door(){
     //Import des classes
+	require_once 'Model/Service/implementationDoorService.php';
     require_once 'Model/DAO/implementationDoorDAO_Dummy.php';
     require_once 'Model/VO/DoorVO.php';
     require_once 'Controller/CreateDoorController.php';
     //Appel du controlleur
     $controller = new CreateDoorController("Doors");
     
-	header('location:?/create_door_form');
+	header('location:?/doors');
 }
 
 

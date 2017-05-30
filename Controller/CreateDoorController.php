@@ -5,10 +5,13 @@ class CreateDoorController {
     public $pageName;
 
     public function __construct(){
-        $createDoor    = implementationDoorDAO_Dummy::getInstance();
-        //$createDoor->borrowKeychain();
-		echo 'hehehehhehey';
+       if(isset($_POST['room']) && isset($_POST['lock'])){
 
+            $createDoor    = implementationDoorService::getInstance();
+
+            $createDoor->createDoor($_POST['room'], $_POST['lock']);
+
+        }
 
     }
 
