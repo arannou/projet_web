@@ -25,7 +25,6 @@
             <ul class="nav child_menu">
               <li><a href="?/BorrowKeychainForm">Emprunter une clé</a></li>
               <li><a href="?/keys">Les clés</a></li>
-
             </ul>
           </li>
           <li><a><i class="fa flaticon-construction"></i> Salles <span class="fa fa-chevron-down"></span></a>

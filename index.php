@@ -178,6 +178,20 @@ function borrowKeychain(){
   header('location:?/borrowKeychainForm');
 }
 
+//Traitement du formulaire CSV
+dispatch_post('/uploadKeyCSV', 'uploadKeyCSV');
+function uploadKeyCSV(){
+  require_once 'Model/Service/implementationKeyService_Dummy.php';
+  require_once 'Controller/UploadKeyCSVController.php';
+  require_once 'Model/DAO/implementationKeyDAO_Dummy.php';
+
+  $controller = new UploadKeyCSVController();
+
+  //header('location:?/keys');
+}
+
+//Ajout de clé
+
 dispatch('/doors', 'doors');
 function doors(){
     //Import des classes
