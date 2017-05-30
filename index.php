@@ -180,6 +180,34 @@ function doors(){
     require 'View/Partial/footer.php';
 }
 
+dispatch('/create_door_form', 'create_door_form');
+function create_door_form(){
+    //Import des classes
+    require_once 'Model/DAO/implementationDoorDAO_Dummy.php';
+    require_once 'Model/VO/DoorVO.php';
+    require_once 'Controller/CreateDoorFormController.php';
+	require_once 'Model/DAO/implementationRoomDAO_Session.php';
+	
+    //Appel du controlleur
+    $controller = new CreateDoorFormController("Doors");
+    //Appel de la vue
+    require 'View/Partial/head.php';
+    require 'View/Partial/nav.php';
+    require 'View/createDoorForm.php';
+    require 'View/Partial/footer.php';
+}
+dispatch('/create_door', 'create_door');
+function create_door(){
+    //Import des classes
+    require_once 'Model/DAO/implementationDoorDAO_Dummy.php';
+    require_once 'Model/VO/DoorVO.php';
+    require_once 'Controller/CreateDoorController.php';
+    //Appel du controlleur
+    $controller = new CreateDoorController("Doors");
+    
+	header('location:?/create_door_form');
+}
+
 
 dispatch('/locks', 'locks');
 function locks(){

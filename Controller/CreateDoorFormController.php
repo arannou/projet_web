@@ -1,15 +1,18 @@
 <?php
 
-class DoorsController {
+class CreateDoorFormController {
 
     public $pageName;
     public $doors;
-	
+	public $rooms;
 
     public function __construct($pageName){
         $this->pageName = $pageName;
+		
         $DAO = implementationDoorDAO_Dummy::getInstance();
         $this->doors = $DAO->getDoors();
+        $roomDAO        = implementationRoomDAO_Session::getInstance();
+        $this->rooms    = $roomDAO->getRooms();
     }
 
     /**

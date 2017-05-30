@@ -17,6 +17,7 @@
         <th>Canon</th>
     </thead>
 <?php
+	
     foreach ($controller->doors as $id=>$door) {
         echo '<tr>';
             echo '<td>'.$id.'</td>';
