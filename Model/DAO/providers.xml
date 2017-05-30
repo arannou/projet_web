@@ -1,0 +1,22 @@
+<?xml version='1.0' standalone='yes'?>
+<providers>
+  <provider>
+    <id>1</id>
+    <username>jDalton</username>
+    <name>Dalton</name>
+    <surname>Joe</surname>
+    <phone>5551</phone>
+    <office>Student</office>
+    <email>joe@dalton.fr</email>
+  </provider>
+
+  <provider>
+    <id>2</id>
+    <username>mPoirier</username>
+    <name>Poirier</name>
+    <surname>Maxime</surname>
+    <phone>1234</phone>
+    <office>ENSSAT</office>
+    <email>mpoirier@enssat.fr</email>
+  </provider>
+</providers>

@@ -1,25 +1,14 @@
 <?php
 
-class BorrowKeyChainFormController {
+class FournisseurController {
 
     public $pageName;
-    public $keychains;
-    public $borrowings;
-    public $error;
+    public $providers;
 
     public function __construct($pageName){
         $this->pageName = $pageName;
-
-        $keychainDAO = implementationKeychainDAO_Dummy::getInstance();
-        $this->keychains = $keychainDAO->getKeychains();
-
-        $DAO = implementationUserDAO_Dummy::getInstance();
-        $this->users = $DAO->getUsers();
-
-        if(isset($_SESSION['error'])){
-            $this->error = $_SESSION['error'];
-            unset($_SESSION['error']);
-        }
+        $DAO = implementationFournisseurDAO_Session::getInstance();
+        $this->providers = $DAO->getProviders();
     }
 
     /**

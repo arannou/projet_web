@@ -70,11 +70,18 @@ class implementationRoomDAO_Session implements interfaceRoomDAO
      }
      return null;
    }
+
    public function addRoom($room)
    {
      # créer un tableau dans lequel on met toutes les infos de la room
      array_push($_SESSION['rooms'], $room);
    }
+
+   /*public function addDoor() {
+     $id = $_POST["roomName"];
+     $lines = "<room>\r\n<roomId>".$id."</roomId>\n</room>";
+     file_put_contents("users.xml", $id, FILE_APPEND);
+   }*/
 }
 
 

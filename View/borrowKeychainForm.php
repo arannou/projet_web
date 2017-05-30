@@ -12,6 +12,12 @@
           </div>
           <div class="x_content">
           <form action="?/borrowKeychain" method="post" data-parsley-validate class="form-horizontal form-label-left">
+            <?php
+                if($controller->error != ""){
+                    echo $controller->error;
+                }
+             ?>
+
             <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Identifiant:</label>
             <select name = "userEnssatPrimaryKey">
