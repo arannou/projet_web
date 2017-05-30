@@ -12,7 +12,7 @@ class implementationDoorDAO_Dummy implements interfaceDoorDAO
 	private $idRoom;
 	private $id;
 	private $idLock;
-	private $lastId = 2;
+	public $lastId;
 
   /**
    * @access private
@@ -28,6 +28,7 @@ class implementationDoorDAO_Dummy implements interfaceDoorDAO
     * @return void
     */
    private function __construct() {
+	   
 	 /*$_SESSION['doors'] = array();
      if (file_exists(dirname(__FILE__).'/doors.xml')) {
        $doors = simplexml_load_file(dirname(__FILE__).'/doors.xml');
@@ -38,6 +39,7 @@ class implementationDoorDAO_Dummy implements interfaceDoorDAO
      } else {
          throw new RuntimeException('Echec lors de l\'ouverture du fichier doors.xml.');
      }*/
+	   $this->lastId = count($this->doors);
 
    }
 
@@ -47,11 +49,12 @@ class implementationDoorDAO_Dummy implements interfaceDoorDAO
          $doors = simplexml_load_file(dirname(__FILE__).'/doors.xml');
          foreach($doors->children() as $xmlDoor)
          {
-  		 $this->add((int) $xmlDoor->idroom,(int) $xmlDoor->idlock,(string)$xmlDoor->id);
+  		 $this->add($xmlDoor->idroom,(int) $xmlDoor->idlock,(string)$xmlDoor->id);
          }
        } else {
            throw new RuntimeException('Echec lors de l\'ouverture du fichier doors.xml.');
        }
+	   $this->lastId = count($this->doors);
    }
 
    /**
@@ -90,24 +93,24 @@ class implementationDoorDAO_Dummy implements interfaceDoorDAO
 		$this->idLock = $id;
 	}
 
-	public function add($idRoom, $idLock, $id=null) {
-		if ($id == null) $id= getLastId();
-		$_SESSION['doors']["$id"] = array(
-			 "room"=>"$idRoom",
-			 "lock"=>$idLock);
-	}
-
 	public function getDoors() {
 		return $_SESSION["doors"];
 	}
 	public function getLastDoorId() {
-		$this->$lastId = $this->$lastId+1;
-		return $this->$lastId;
+		count($_SESSION["doors"]);
+		$this->lastId = $this->lastId+1;
+		return count($_SESSION["doors"])+1;
 	}
 	public function delete($id) {
 		unset($_SESSION['doors'][$id]);
 	}
 
+	public function add($idRoom, $idLock, $id=null) {
+		if ($id == null) $id= $this->getLastDoorId();
+		$_SESSION['doors']["$id"] = array(
+			 "room"=>"$idRoom",
+			 "lock"=>$idLock);
+	}
 }
 
 
