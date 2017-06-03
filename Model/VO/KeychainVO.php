@@ -1,6 +1,7 @@
 <?php
 class KeychainVO
 {
+
     protected $id;
     public function setId($id) {
         $this->id = $id;
@@ -12,21 +13,21 @@ class KeychainVO
     protected $creationDate;
     public function setCreationDate($date)
     {
-      $this->creationDate=$date;
+        $this->creationDate=$date;
     }
     public function getCreationDate()
     {
-      return $this->creationDate;
+        return $this->creationDate;
     }
 
     protected $destructionDate;
     public function setDestructionDate($date)
     {
-      $this->destructionDate=$date;
+        $this->destructionDate=$date;
     }
     public function getDestructionDate()
     {
-      return $this->destructionDate;
+        return $this->destructionDate;
     }
 
 }
