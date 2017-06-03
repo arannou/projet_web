@@ -52,5 +52,32 @@ class implementationKeyService_Dummy
         $key->setType($type);
         $this->_keyDAO->addKey($key);
       }
+
+      public function getAvailableKeys(){
+          $keys = $this->_keyDAO->getKeys();
+          $availableKeys = [];
+
+          foreach ($keys as $index => $key) {
+              if($this->isKeyAvailable($key->getId())){
+                  array_push($availableKeys, $key);
+              }
+          }
+
+          return $availableKeys;
+      }
+
+      public function isKeyAvailable($keyId){
+          $keychains = $this->_keychainDAO->getKeychains();
+
+          foreach ($keychains as $index => $keychain) {
+              foreach ($keychain->getKeysIds() as $keyIndex => $key) {
+                  if($key == $keyId){
+                      return false;
+                  }
+              }
+          }
+
+          return true;
+      }
 }
 ?>

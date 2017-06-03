@@ -111,7 +111,7 @@ function home(){
 }
 
 //Utilisateurs
-dispatch('/users', 'users');
+dispatch('/users/', 'users');
 function users(){
   //Import des classes
   require_once 'Model/DAO/implementationUserDAO_Dummy.php';
@@ -144,8 +144,10 @@ dispatch('/borrowKeychainForm', 'borrowKeychainForm');
 function borrowKeychainForm(){
   //Import des classes
   require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+  require_once 'Model/DAO/implementationKeyDAO_Dummy.php';
   require_once 'Model/DAO/implementationUserDAO_Dummy.php';
   require_once 'Model/Service/implementationBorrowService_Dummy.php';
+  require_once 'Model/Service/implementationKeyService_Dummy.php';
   require_once 'Controller/BorrowKeyChainFormController.php';
   //Appel du controller
   $controller = new BorrowKeyChainFormController("Emprunt");
@@ -163,10 +165,12 @@ function borrowKeychain(){
   require_once 'Model/DAO/implementationUserDAO_Dummy.php';
   require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
   require_once 'Model/Service/implementationBorrowService_Dummy.php';
+  require_once 'Model/Service/implementationKeyService_Dummy.php';
+  require_once 'Model/Service/implementationKeychainService.php';
 
   $controller = new BorrowKeychainController();
 
-  header('location:?/borrowKeychainForm');
+  //header('location:?/borrowKeychainForm');
 }
 
 //Traitement du formulaire CSV
@@ -202,7 +206,7 @@ function create_door_form(){
     require_once 'Model/VO/DoorVO.php';
     require_once 'Controller/CreateDoorFormController.php';
 	require_once 'Model/DAO/implementationRoomDAO_Session.php';
-	
+
     //Appel du controlleur
     $controller = new CreateDoorFormController("Doors");
     //Appel de la vue
@@ -222,7 +226,7 @@ function create_door(){
     require_once 'Controller/CreateDoorController.php';
     //Appel du controlleur
     $controller = new CreateDoorController("Doors");
-    
+
 	header('location:?/doors');
 }
 
@@ -251,17 +255,6 @@ function rooms(){
   require 'View/rooms.php';
   require 'View/Partial/footer.php';
 }
-//Salles - Formulaire (dispatch_post)
-dispatch_post('/rooms', 'roomsForm');
-function roomsForm(){
-  require_once 'Model/DAO/implementationRoomDAO_Session.php';
-  require_once 'Model/Service/implementationRoomService.php';
-  require_once 'Controller/CreateRoomController.php';
-
-  $controller = new CreateRoomController("Salles");
-  header('location:?/rooms');
-}
-
 //Salles - Formulaire (dispatch_post)
 dispatch_post('/rooms', 'roomsForm');
 function roomsForm(){

@@ -61,12 +61,6 @@ class implementationKeyDAO_Dummy implements interfaceKeyDAO
    public function getKeys()
    {
      return $_SESSION['keys'];
-     /*
-     foreach($this->_keys as $clef=>$key)
-     {
-       echo $key->getEnssatPrimaryKey()." ".$key->getkeyname()." ".$key->getPhone()."\n";
-     }
-     */
    }
 
    public function getkeyByEnssatPrimaryKey($enssatPrimaryKey)
