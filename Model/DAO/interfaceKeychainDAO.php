@@ -4,6 +4,8 @@ interface interfaceKeyChainDAO
 {
 
     // Singleton
+    public function populate();
+    
     public static function getInstance();
 
     public function getKeychains();

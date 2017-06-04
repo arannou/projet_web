@@ -7,6 +7,7 @@ interface interfaceUserDAO
     //public function getByUserId($userId);
 
     // Singleton
+    public function populate();
     public static function getInstance();
 
     // Retrieves all users currently in the database.
