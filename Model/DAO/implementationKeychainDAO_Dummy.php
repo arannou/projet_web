@@ -75,6 +75,16 @@ class implementationKeychainDAO_Dummy implements interfaceKeyChainDAO
     {
         return $_SESSION['keychains'][array_rand($this->_keychains,1)];
     }
+
+    public function getKeychainById($keychainId)
+    {
+      foreach ($this->getKeychains() as $key => $keychain) {
+       if($keychainId == $keychain->getId()) {
+         return $keychain;
+       }
+      }
+      return null;
+    }
 }
 
 

@@ -45,13 +45,6 @@
               <li><a href="?/clearsession">Vider session</a></li>
             </ul>
           </li>
-          <li><a><i class="glyphicon glyphicon-cog"></i> Debug <span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-              <li><a href="?/populateDatabase">Remplir BDD</a></li>
-              <li><a href="?/dumpDatabase">Afficher BDD</a></li>
-              <li><a href="?/clearsession">Vider session</a></li>
-            </ul>
-          </li>
         </ul>
       </div>
     </div>

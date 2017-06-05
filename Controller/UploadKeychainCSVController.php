@@ -7,7 +7,7 @@ class UploadKeychainCSVController {
 
   public function __construct(){
     $DAO = implementationKeychainDAO_Dummy::getInstance();
-    $this->service = implementationKeychainService_Dummy::getInstance();
+    $this->service = implementationKeychainService::getInstance();
     $this->saveCSV();
     $this->readCSV();
   }
@@ -51,7 +51,7 @@ class UploadKeychainCSVController {
     if (($handle = fopen($dir, "r")) !== FALSE) {
       while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
         $num = count($data);
-        $this->service->createKeychainFromCSV($data[0], $data[1], $data[2]);
+        $this->service->createKeychainFromCSV($data[0], $data[1], $data[2], $data[3]);
       }
       fclose($handle);
       unlink($dir);
