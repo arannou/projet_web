@@ -15,7 +15,8 @@ class implementationKeychainService implements interfaceKeychainService
    private static $_instance = null;
 
    private $_keyDAO;
-
+   private $_keychainDAO;
+   private $_borrowingsDAO;
 
    /**
    * Constructeur de la classe
@@ -27,6 +28,7 @@ class implementationKeychainService implements interfaceKeychainService
    {
      $this->_keychainDAO   = implementationKeychainDAO_Dummy::getInstance();
      $this->_borrowingsDAO = implementationBorrowingsDAO_Session::getInstance();
+     $this->_keyDAO        = implementationKeyDAO_Dummy::getInstance();
    }
 
       /**
@@ -45,11 +47,8 @@ class implementationKeychainService implements interfaceKeychainService
         return self::$_instance;
     }
 
-<<<<<<< HEAD
-    public function createKeychain($creationDate, $dueDate){
-=======
+
     public function createKeychain($creationDate, $dueDate, $keys){
->>>>>>> 124624c83fb56207e6554591c7e8c648675dae7c
         $keychains = $this->_keychainDAO->getKeychains();
         $newId = $keychains[count($keychains)-1]->getId()+1;
 
@@ -57,10 +56,12 @@ class implementationKeychainService implements interfaceKeychainService
         $keychain->setId($newId);
         $keychain->setCreationDate($creationDate);
         $keychain->setDestructionDate($dueDate);
-<<<<<<< HEAD
-=======
-        $keychain->setKeysIds($keys);
->>>>>>> 124624c83fb56207e6554591c7e8c648675dae7c
+
+        foreach ($keys as $index => $keyId) {
+            $key = $this->_keyDAO->getKeyById($keyId);
+            $key->setKeychainId($newId);
+            $this->_keyDAO->updateKey($key);
+        }
 
         $this->_keychainDAO->addKeychain($keychain);
 

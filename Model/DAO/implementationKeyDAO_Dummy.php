@@ -75,6 +75,17 @@ class implementationKeyDAO_Dummy implements interfaceKeyDAO
         array_push($_SESSION['keys'], $key);
     }
 
+    public function updateKey($updatedKey){
+        $keyId = $updatedKey->getId();
+        $keys = $_SESSION['keys'];
+        foreach ($keys as $index => $key) {
+            if($key->getId() == $keyId){
+                $_SESSION['keys'][$index] = $updatedKey;
+            }
+        }
+
+    }
+
 }
 
 

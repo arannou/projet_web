@@ -2,7 +2,7 @@
 
 interface interfaceKeychainService
 {
-    public function createKeychain($creationDate, $dueDate);
+    public function createKeychain($creationDate, $dueDate, $keys);
 }
 
 ?>
