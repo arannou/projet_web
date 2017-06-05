@@ -111,7 +111,7 @@ function home(){
 }
 
 //Utilisateurs
-dispatch('/users', 'users');
+dispatch('/users/', 'users');
 function users(){
   //Import des classes
   require_once 'Model/DAO/implementationUserDAO_Dummy.php';
@@ -156,8 +156,10 @@ dispatch('/borrowKeychainForm', 'borrowKeychainForm');
 function borrowKeychainForm(){
   //Import des classes
   require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+  require_once 'Model/DAO/implementationKeyDAO_Dummy.php';
   require_once 'Model/DAO/implementationUserDAO_Dummy.php';
   require_once 'Model/Service/implementationBorrowService_Dummy.php';
+  require_once 'Model/Service/implementationKeyService_Dummy.php';
   require_once 'Controller/BorrowKeyChainFormController.php';
   //Appel du controller
   $controller = new BorrowKeyChainFormController("Emprunt");
@@ -175,10 +177,12 @@ function borrowKeychain(){
   require_once 'Model/DAO/implementationUserDAO_Dummy.php';
   require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
   require_once 'Model/Service/implementationBorrowService_Dummy.php';
+  require_once 'Model/Service/implementationKeyService_Dummy.php';
+  require_once 'Model/Service/implementationKeychainService.php';
 
   $controller = new BorrowKeychainController();
 
-  header('location:?/borrowKeychainForm');
+  //header('location:?/borrowKeychainForm');
 }
 
 //Traitement du formulaire CSV
