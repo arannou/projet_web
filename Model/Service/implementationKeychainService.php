@@ -45,7 +45,11 @@ class implementationKeychainService implements interfaceKeychainService
         return self::$_instance;
     }
 
+<<<<<<< HEAD
     public function createKeychain($creationDate, $dueDate){
+=======
+    public function createKeychain($creationDate, $dueDate, $keys){
+>>>>>>> 124624c83fb56207e6554591c7e8c648675dae7c
         $keychains = $this->_keychainDAO->getKeychains();
         $newId = $keychains[count($keychains)-1]->getId()+1;
 
@@ -53,6 +57,10 @@ class implementationKeychainService implements interfaceKeychainService
         $keychain->setId($newId);
         $keychain->setCreationDate($creationDate);
         $keychain->setDestructionDate($dueDate);
+<<<<<<< HEAD
+=======
+        $keychain->setKeysIds($keys);
+>>>>>>> 124624c83fb56207e6554591c7e8c648675dae7c
 
         $this->_keychainDAO->addKeychain($keychain);
 

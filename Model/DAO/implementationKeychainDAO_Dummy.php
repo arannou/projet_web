@@ -70,7 +70,7 @@ class implementationKeychainDAO_Dummy implements interfaceKeyChainDAO
     {
         return $_SESSION['keychains'];
     }
-    
+
     public function getRandomKeychain()
     {
         return $_SESSION['keychains'][array_rand($this->_keychains,1)];

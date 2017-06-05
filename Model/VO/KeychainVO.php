@@ -29,5 +29,4 @@ class KeychainVO
     {
         return $this->destructionDate;
     }
-
 }

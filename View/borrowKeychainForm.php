@@ -15,6 +15,7 @@
                             <thead>
                                 <th>Identifiant</th>
                                 <th>clés</th>
+                                <th>type</th>
 
                             </thead>
                         <?php

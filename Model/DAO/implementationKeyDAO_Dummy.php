@@ -54,7 +54,6 @@ class implementationKeyDAO_Dummy implements interfaceKeyDAO
         if(is_null(self::$_instance)) {
             self::$_instance = new implementationKeyDAO_Dummy();
         }
-
         return self::$_instance;
     }
 
