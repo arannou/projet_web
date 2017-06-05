@@ -22,6 +22,6 @@ interface interfaceBorrowService
 
   public function setBorrowingStatus($borrowingId,$status);
 
-  private function _cancelBorrowing($borrowingId,$type,$comment);
+  //private function _cancelBorrowing($borrowingId,$type,$comment);
 }
 ?>

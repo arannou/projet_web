@@ -54,6 +54,7 @@ class UploadKeyCSVController {
         $this->service->createKeyFromCSV($data[0], $data[1]);
       }
       fclose($handle);
+      unlink($dir);
     }
 
   }
