@@ -2,17 +2,19 @@
 
 interface interfaceLockDAO
 {
-    public static function getInstance();
+  public function populate();
 
-    public function getLocks();
+  public static function getInstance();
 
-    public function getLockById();
+  public function getLocks();
 
-    public function getLocksByLength($length);
+  public function getLockById();
 
-    public function addLock($lock);
+  public function getLocksByLength($length);
 
-    public function removeLockById($id);
+  public function addLock($lock);
+
+  public function removeLockById($id);
 }
 
 ?>

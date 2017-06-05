@@ -12,6 +12,11 @@ interface interfaceUserDAO
     // Retrieves all users currently in the database.
     public function getUsers();
 
+    public function populate();
+
+    public function getUserByEnssatPrimaryKey($enssatPrimaryKey);
+
+    public function addUser($user);
 }
 
 ?>

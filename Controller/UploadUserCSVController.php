@@ -1,22 +1,22 @@
 <?php
 
-class UploadKeyCSVController {
+class UploadUserCSVController {
 
   public $CSVName;
   public $service;
 
   public function __construct(){
-    $DAO = implementationKeyDAO_Dummy::getInstance();
-    $this->service = implementationKeyService_Dummy::getInstance();
+    $DAO = implementationUserDAO_Dummy::getInstance();
+    $this->service = implementationUserService::getInstance();
     $this->saveCSV();
     $this->readCSV();
   }
 
   public function saveCSV(){
     $dossier = 'Upload/';
-    $fichier = basename($_FILES['keyCSV']['name']);
-    $taille = filesize($_FILES['keyCSV']['tmp_name']);
-    $extension = strrchr($_FILES['keyCSV']['name'], '.');
+    $fichier = basename($_FILES['userCSV']['name']);
+    $taille = filesize($_FILES['userCSV']['tmp_name']);
+    $extension = strrchr($_FILES['userCSV']['name'], '.');
     //Début des vérifications de sécurité...
     if($extension != '.csv')
     {
@@ -29,7 +29,7 @@ class UploadKeyCSVController {
       'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
       'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
       $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
-      if(move_uploaded_file($_FILES['keyCSV']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+      if(move_uploaded_file($_FILES['userCSV']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
       {
         echo 'Upload effectué avec succès !';
         $this->CSVName = $fichier;
@@ -51,11 +51,12 @@ class UploadKeyCSVController {
     if (($handle = fopen($dir, "r")) !== FALSE) {
       while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
         $num = count($data);
-        $this->service->createKeyFromCSV($data[0], $data[1]);
+        $this->service->createUserFromCSV($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6], $data[7]);
       }
       fclose($handle);
       unlink($dir);
     }
 
   }
+
 }

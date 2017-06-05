@@ -3,11 +3,9 @@
 
 interface interfaceFournisseurService
 {
-  
-    public function getProviderById($providerId);
+  public static function getInstance();
+  public function getProviderById($providerId);
+  public function getProviders();
 
 }
-
-
-
 ?>

@@ -3,10 +3,10 @@
 
 interface interfaceDoorService
 {
-  //Constructeur
-    public function addLockToDoor();
-
-    public function deleteLockToDoor();
+  public static function getInstance();
+  public function createDoor($room, $lock);
+  public function addLockToDoor();
+  public function deleteLockToDoor();
 
 }
 

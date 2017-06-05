@@ -72,9 +72,17 @@ class implementationUserDAO_Dummy implements interfaceUserDAO
 
    public function getUserByEnssatPrimaryKey($enssatPrimaryKey)
    {
-
+     foreach ($this->getUsers() as $key => $user) {
+      if($enssatPrimaryKey == $user->getEnssatPrimaryKey()) {
+        return $user;
+      }
+     }
+     return null;
    }
 
+   public function addUser($user){
+     array_push($_SESSION['users'], $user);
+   }
 
 }
 

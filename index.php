@@ -125,6 +125,18 @@ function users(){
   require 'View/Partial/footer.php';
 }
 
+//Traitement du formulaire CSV
+dispatch_post('/uploadUserCSV', 'uploadUserCSV');
+function uploadUserCSV(){
+  require_once 'Model/Service/implementationUserService.php';
+  require_once 'Controller/UploadUserCSVController.php';
+  require_once 'Model/DAO/implementationUserDAO_Dummy.php';
+
+  $controller = new UploadUserCSVController();
+
+  header('location:?/users');
+}
+
 dispatch('/keys', 'keys');
 function keys(){
     //Import des classes
@@ -202,7 +214,7 @@ function create_door_form(){
     require_once 'Model/VO/DoorVO.php';
     require_once 'Controller/CreateDoorFormController.php';
 	require_once 'Model/DAO/implementationRoomDAO_Session.php';
-	
+
     //Appel du controlleur
     $controller = new CreateDoorFormController("Doors");
     //Appel de la vue
@@ -222,7 +234,7 @@ function create_door(){
     require_once 'Controller/CreateDoorController.php';
     //Appel du controlleur
     $controller = new CreateDoorController("Doors");
-    
+
 	header('location:?/doors');
 }
 
@@ -251,17 +263,6 @@ function rooms(){
   require 'View/rooms.php';
   require 'View/Partial/footer.php';
 }
-//Salles - Formulaire (dispatch_post)
-dispatch_post('/rooms', 'roomsForm');
-function roomsForm(){
-  require_once 'Model/DAO/implementationRoomDAO_Session.php';
-  require_once 'Model/Service/implementationRoomService.php';
-  require_once 'Controller/CreateRoomController.php';
-
-  $controller = new CreateRoomController("Salles");
-  header('location:?/rooms');
-}
-
 //Salles - Formulaire (dispatch_post)
 dispatch_post('/rooms', 'roomsForm');
 function roomsForm(){
