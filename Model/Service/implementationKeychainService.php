@@ -84,10 +84,11 @@ class implementationKeychainService implements interfaceKeychainService
         $keychain->setDestructionDate($dateDestruction);
         $parsedKeys = explode(',', $keys);
         foreach ($parsedKeys as $index => $keyId) {
-          if(!$this->checkKeychainOfKey($keyId, $keychainId)) {
-            $key = $this->_keyDAO->getKeyById($keyId);
-            $key->setKeychainId($keyId);
+          if(!$this->checkKeychainOfKey((int)$keyId, $keychainId)) {
+            $key = $this->_keyDAO->getKeyById((int)$keyId);
+            $key->setKeychainId($keychainId);
             $this->_keyDAO->updateKey($key);
+            var_dump($key);
           }
         }
         $this->_keychainDAO->addKeychain($keychain);
@@ -104,9 +105,10 @@ class implementationKeychainService implements interfaceKeychainService
     }
 
     public function checkKeychainOfKey($keyId, $keychainId) {
+      var_dump($this->_keyDAO->getKeyById($keyId));
       if ($this->_keyDAO->getKeyById($keyId) != null) {
-        var_dump($this->_keyDAO->getKeychainOfKeyByKeychainId($keychainId));
-        if($this->_keyDAO->getKeychainOfKeyByKeychainId($keychainId) != null) {
+        var_dump($this->_keyDAO->getKeychainOfKey($keychainId, $keyId));
+        if($this->_keyDAO->getKeychainOfKey($keychainId, $keyId) != null) {
           return true;
         }
         else {

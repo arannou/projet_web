@@ -71,12 +71,12 @@ class implementationKeyDAO_Dummy implements interfaceKeyDAO
         return null;
     }
 
-    public function getKeychainOfKeyByKeychainId($keychainId) {
-        foreach ($this->getKeys() as $key => $cle) {
-            if($keychainId == $cle->getKeychainId()) {
-                return $keychainId;
-            }
+    public function getKeychainOfKey($keychainId, $keyId) {
+      var_dump($keyId);
+        if($keychainId == $keyId->getKeychainId()) {
+            return $keychainId;
         }
+
         return null;
     }
 

@@ -48,7 +48,7 @@ class implementationKeyService_Dummy
     public function createKeyFromCSV($id, $type) {
         if(!$this->checkKeyByIdKey($id)) {
             $key = new KeyVO();
-            $key->setId($id);
+            $key->setId((int)$id);
             $key->setType($type);
             $this->_keyDAO->addKey($key);
         }
