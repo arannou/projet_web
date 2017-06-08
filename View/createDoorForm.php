@@ -2,7 +2,7 @@
   <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3>Clés</h3>
+        <h3>Portes</h3>
       </div>
       <hr>
       <div class="col-md-12 col-sm-12 col-xs-12">
@@ -14,7 +14,7 @@
           <div class="x_content">
           <form action="?/create_door" method="post" data-parsley-validate class="form-horizontal form-label-left">
             <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12">Identifiant:</label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Salle:</label>
             <select name = "room">
               <?php
               foreach($controller->rooms as $room){ ?>
