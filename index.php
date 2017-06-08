@@ -182,7 +182,19 @@ function borrowKeychain(){
 
   $controller = new BorrowKeychainController();
 
-  //header('location:?/borrowKeychainForm');
+  header('location:?/borrowKeychainForm');
+}
+
+//Traitement du formulaire CSV
+dispatch_post('/uploadKeychainCSV', 'uploadKeychainCSV');
+function uploadKeychainCSV(){
+  require_once 'Model/Service/implementationKeychainService.php';
+  require_once 'Controller/uploadKeychainCSVController.php';
+  require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+
+  $controller = new uploadKeychainCSVController();
+
+  header('location:?/BorrowKeychainForm');
 }
 
 //Traitement du formulaire CSV
