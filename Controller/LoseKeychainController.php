@@ -7,7 +7,7 @@ class LoseKeychainController {
 			echo "id: ".$_POST['id'].", comment: ".$_POST['comment'];
 			$loseKeychain= implementationBorrowService_Dummy::getInstance();
 			$loseKeychain->lostKeychain(intval($_POST['id']), $_POST['comment']);
-			
+
 		}
     }
 }

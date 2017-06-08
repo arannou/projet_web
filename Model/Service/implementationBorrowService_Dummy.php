@@ -35,8 +35,8 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
    */
    private function __construct()
    {
-     $this->_userDAO       = implementationUserDAO_Dummy::getInstance();
-     $this->_keychainDAO   = implementationKeychainDAO_Dummy::getInstance();
+    // $this->_userDAO       = implementationUserDAO_Dummy::getInstance();
+  //   $this->_keychainDAO   = implementationKeychainDAO_Dummy::getInstance();
      $this->_borrowingsDAO = implementationBorrowingsDAO_Session::getInstance();
    }
 
@@ -214,6 +214,8 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
           $this->_borrowings[$borrowingId-1]['comment'] = $comment;
           $_SESSION["borrowings"][$borrowingId-1]['comment'] = $comment;
 
+
+          $_SESSION['borrowings']->_borrowings[$borrowingId-1]['comment'] .= $comment;
         }
     }
 
