@@ -32,7 +32,7 @@ class implementationRoomService implements interfaceRoomService
      if(is_null(self::$_instance)) {
        self::$_instance = new implementationRoomService();
    }
-     return self::$_instance();
+     return self::$_instance;
    }
    public function createRoom($id) {
      $room = new RoomVO();
