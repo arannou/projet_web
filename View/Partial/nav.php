@@ -38,6 +38,15 @@
               <li><a href="?/BorrowKeychainForm">Emprunter un trousseau</a></li>
               <li><a href="?/keys">Gérer les clés</a></li>
               <li><a href="?/locks">Gérer les canons</a></li>
+
+              <li><a href="?/BorrowKeychainForm">Emprunter une clé</a></li>
+              <li><a href="?/keys">Les clés</a></li>
+              <li><a href="?/keychainReturn">Retourner trousseaux</a></li>
+
+
+
+
+
             </ul>
           </li>
           <li><a><i class="fa flaticon-construction"></i> Salles <span class="fa fa-chevron-down"></span></a>
