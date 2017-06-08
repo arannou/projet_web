@@ -2,7 +2,7 @@
 class DoorVO
 {
     protected $id;
-	protected $idRoom;
+	protected $roomId;
 	protected $idLock;
 
     public function setId($id) {
@@ -12,22 +12,15 @@ class DoorVO
     public function getId() {
         return $this->id;
     }
-	
-	    public function setIdRoom($idRoom) {
-        $this->idRoom = $idRoom;
+
+	public function setRoomId($roomId) {
+        $this->roomId = $roomId;
     }
 
-    public function getIdRoom() {
-        return $this->idRoom;
-    }
-	
-	    public function setIdLock($idLock) {
-        $this->idLock = $idLock;
+    public function getRoomId() {
+        return $this->roomId;
     }
 
-    public function getIdLock() {
-        return $this->idLock;
-    }
 
 
 }

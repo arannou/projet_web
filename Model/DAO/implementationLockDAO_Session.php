@@ -33,6 +33,7 @@ class implementationLockDAO_Session implements interfaceLockDAO
            $lock = new LockVO();
            $lock->setId(intval($xmlLock->id));
            $lock->setLength(intval($xmlLock->length));
+           $lock->setDoorId((string)$xmlLock->doorId);
            $this->addLock($lock);
          }
        } else {

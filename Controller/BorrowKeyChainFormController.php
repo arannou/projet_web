@@ -8,20 +8,32 @@ class BorrowKeyChainFormController {
     public $keys;
     public $availableKeys;
     public $error;
+    public $keychainsKeys;
 
     public function __construct($pageName){
         $this->pageName = $pageName;
 
         $keychainDAO = implementationKeychainDAO_Dummy::getInstance();
+        $usersDAO    = implementationUserDAO_Dummy::getInstance();
+        $keyDAO     = implementationKeyDAO_Dummy::getInstance();
+        $keyService  = implementationKeyService_Dummy::getInstance();
+
+
         $this->keychains = $keychainDAO->getKeychains();
+        $this->keychainsKeys = [];
+        foreach ($this->keychains as $index => $keychain) {
+            $keys = $keyDAO->getKeysByKeychainId($keychain->getId());
 
-        $usersDAO = implementationUserDAO_Dummy::getInstance();
-        $this->users = $usersDAO->getUsers();
+            $ids = [];
+            foreach ($keys as $index2 => $key) {
+                array_push($ids, $key->getId());
+            }
 
-        $keysDAO = implementationKeyDAO_Dummy::getInstance();
-        $this->keys = $keysDAO->getKeys();
+            array_push($this->keychainsKeys, $ids);
+        }
 
-        $keyService = implementationKeyService_Dummy::getInstance();
+        $this->users         = $usersDAO->getUsers();
+        $this->keys          = $keyDAO->getKeys();
         $this->availableKeys = $keyService->getAvailableKeys();
 
         if(isset($_SESSION['error'])){
