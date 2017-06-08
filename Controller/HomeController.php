@@ -8,6 +8,7 @@ class HomeController {
     public $lateBorrowings;
     public $lostBorrowings;
 
+
 public $users;
     public $keys;
 
@@ -31,6 +32,7 @@ public $users;
         $user = $this->userDAO->getUserByEnssatPrimaryKey($epk);
         return $user->getSurname()." ".$user->getName();
         $this->borrowings = $borrowService->getBorrowingsWithStatus();
+//        $this->borrowings = $borrowService->getBorrowings();
 
         foreach ($this->borrowings as $key => $borrowing) {
             $this->borrowings[$key]['status'] = $borrowService->getBorrowingStatus($borrowing['borrowingId']);
@@ -39,7 +41,11 @@ public $users;
 
         $DAO = implementationUserDAO_Dummy::getInstance();
         $this->users = $DAO->getUsers();
-      
+
+
+      /*  $keysDAO= implementationKeyDAO_Dummy::getInstance();
+        $this->keys=$keysDAO->getKeys();
+*/
     }
 
     /**

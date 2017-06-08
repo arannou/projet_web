@@ -41,7 +41,7 @@ class BorrowKeyChainFormController {
 
                 $lockId = $key->getLockId();
                 $lock   = $lockDAO->getLockById($lockId);
-                $doorId = $lock->getDoorId();;
+                $doorId = $lock->getDoorId();
                 $door   = $doorDAO->getDoorById($doorId);
 
                 array_push($rooms, $door->getRoomId());

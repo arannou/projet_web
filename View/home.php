@@ -279,6 +279,10 @@ foreach ($controller->users as $user) {
           </table>
         </div>
       </div>
+<<<<<<< HEAD
+=======
+>>>>>>> rendreTrousseao
+>>>>>>> rendreTrousseao
     </div>
 </div>
 </div>
