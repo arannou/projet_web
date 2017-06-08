@@ -51,10 +51,10 @@ class UploadKeyCSVController {
     if (($handle = fopen($dir, "r")) !== FALSE) {
       while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
         $num = count($data);
-        $this->service->createKeyFromCSV($data[0], $data[1]);
+        $this->service->createKeyFromCSV($data[0], $data[1], $data[2], $data[3]);
       }
       fclose($handle);
-      unlink($dir);
+     // unlink($dir);
     }
 
   }

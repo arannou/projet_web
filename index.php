@@ -217,7 +217,7 @@ function borrowKeychain(){
 dispatch_post('/uploadKeychainCSV', 'uploadKeychainCSV');
 function uploadKeychainCSV(){
   require_once 'Model/Service/implementationKeychainService.php';
-  require_once 'Controller/uploadKeychainCSVController.php';
+  require_once 'Controller/UploadKeychainCSVController.php';
   require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
 
   $controller = new uploadKeychainCSVController();

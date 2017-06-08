@@ -45,11 +45,13 @@ class implementationKeyService_Dummy
         return self::$_instance;
     }
 
-    public function createKeyFromCSV($id, $type) {
+    public function createKeyFromCSV($id, $type, $keychainId, $lockId) {
         if(!$this->checkKeyByIdKey($id)) {
             $key = new KeyVO();
             $key->setId((int)$id);
             $key->setType($type);
+            $key->setKeychainId($keychainId);
+            $key->setLockId($lockId);
             $this->_keyDAO->addKey($key);
         }
     }
