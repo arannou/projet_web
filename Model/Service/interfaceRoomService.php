@@ -3,13 +3,9 @@
 
 interface interfaceRoomService
 {
-  //Constructeur
-    public function addDoorToRoom();
-
-    public function deleteDoorToRoom();
-
+  public static function getInstance();
+  public function createRoom($id);
+  public function addDoorToRoom();
+  public function deleteDoorToRoom();
 }
-
-
-
 ?>

@@ -2,11 +2,11 @@
 class KeyVO
 {
 
-    public static $keyType = array("Simple"=>"Clé","Partiel"=>"Passe Partiel","Total"=>"PasseTotal");
+    public static $keyType = array("Simple"=>"Clé","Partiel"=>"Passe Partiel","Total"=>"Passe Total");
 
     protected $id;
     protected $type; //Clef ou Passe Partiel ou Passe Total
-
+    protected $keychainId = null;
 
 
     public function setId($id) {
@@ -17,22 +17,36 @@ class KeyVO
         return $this->id;
     }
 
-/*    public function setType($type) {
-      if(array_key_exists($type,$this->keyType)){
-        $this->type = $type;
-      }
-      else
-      {
-        throw new RuntimeException('Le type de clef <strong>' . $type . '</strong> n\'existe pas !');
-      }
-    }*/
-
     public function setType($type) {
         $this->type = $type;
     }
 
     public function getType() {
         return $this->type;
+    }
+
+    /**
+     * Get the value of Keychain Id
+     *
+     * @return mixed
+     */
+    public function getKeychainId()
+    {
+        return $this->keychainId;
+    }
+
+    /**
+     * Set the value of Keychain Id
+     *
+     * @param mixed keychainId
+     *
+     * @return self
+     */
+    public function setKeychainId($keychainId)
+    {
+        $this->keychainId = $keychainId;
+
+        return $this;
     }
 
 }

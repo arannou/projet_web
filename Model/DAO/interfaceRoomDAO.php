@@ -4,6 +4,8 @@ interface interfaceRoomDAO
 {
 
     // Singleton
+    public function populate();
+
     public static function getInstance();
 
     public function getRooms();

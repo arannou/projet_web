@@ -3,10 +3,12 @@
   <key>
     <id>1</id>
     <type>simple</type>
+    <keychainId>null</keychainId>
   </key>
 
   <key>
     <id>2</id>
     <type>passe partiel</type>
+    <keychainId>null</keychainId>
   </key>
 </keys>
