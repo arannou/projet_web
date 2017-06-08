@@ -77,18 +77,17 @@ class implementationKeychainService implements interfaceKeychainService
     public function createKeychainFromCSV($keychainId, $creationDate, $dueDate, $keys) {
       if(!$this->checkKeychainById($keychainId)) {
         $keychain = new KeychainVO;
-        $keychain->setId($keychainId);
+        $keychain->setId((int)$keychainId);
         $dateCreation = DateTime::createFromFormat('Y-m-d', $creationDate);
         $keychain->setCreationDate($dateCreation);
         $dateDestruction = DateTime::createFromFormat('Y-m-d', $dueDate);
         $keychain->setDestructionDate($dateDestruction);
         $parsedKeys = explode(',', $keys);
         foreach ($parsedKeys as $index => $keyId) {
-          if(!$this->checkKeychainOfKey((int)$keyId, $keychainId)) {
+          if(!$this->checkKeychainOfKey((int)$keyId, (int)$keychainId)) {
             $key = $this->_keyDAO->getKeyById((int)$keyId);
-            $key->setKeychainId($keychainId);
+            $key->setKeychainId((int)$keychainId);
             $this->_keyDAO->updateKey($key);
-            var_dump($key);
           }
         }
         $this->_keychainDAO->addKeychain($keychain);
@@ -105,9 +104,7 @@ class implementationKeychainService implements interfaceKeychainService
     }
 
     public function checkKeychainOfKey($keyId, $keychainId) {
-      var_dump($this->_keyDAO->getKeyById($keyId));
       if ($this->_keyDAO->getKeyById($keyId) != null) {
-        var_dump($this->_keyDAO->getKeychainOfKey($keychainId, $keyId));
         if($this->_keyDAO->getKeychainOfKey($keychainId, $keyId) != null) {
           return true;
         }

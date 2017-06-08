@@ -194,7 +194,7 @@ function uploadKeychainCSV(){
 
   $controller = new uploadKeychainCSVController();
 
-  //header('location:?/BorrowKeychainForm');
+  header('location:?/BorrowKeychainForm');
 }
 
 //Traitement du formulaire CSV
