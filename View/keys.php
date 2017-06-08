@@ -84,4 +84,24 @@
       </div>
     </div>
   </div>
+
+<table class="table">
+    <thead>
+        <th>Identifiant</th>
+        <th>Type</th>
+
+    </thead>
+<?php
+    foreach ($controller->keys as $key) {
+        echo '<tr>';
+            echo '<td>'.$key->getId().'</td>';
+            echo '<td>'.$key->getType().'</td>';
+        echo '</tr>';
+    }
+?>
+</table>
+</div>
+</div>
+</div>
+</div>
 </div>

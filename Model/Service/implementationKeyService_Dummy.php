@@ -29,6 +29,8 @@ class implementationKeyService_Dummy
         $this->_borrowingsDAO = implementationBorrowingsDAO_Session::getInstance();
     }
 
+
+
     /**
     * Méthode qui crée l'unique instance de la classe
     * si elle n'existe pas encore puis la retourne.
@@ -45,7 +47,27 @@ class implementationKeyService_Dummy
         return self::$_instance;
     }
 
-    public function createKeyFromCSV($id, $type, $keychainId, $lockId) {
+
+    //on emprunte toujours un trousseau
+    public function borrowKeychain($userId,$keychainId,DateTime $dueDate)
+    {
+      $tDate = new DateTime;
+      $tDate->setTimestamp(time());
+
+      //@todo : Faire les verifications de sécurité avant de valider l'emprunt
+      $this->_borrowingsDAO->addBorrow([
+        'borrowingId'=>count($this->_borrowingsDAO->getBorrowings())+1,
+        'userEnssatPrimaryKey'=>$userId,
+        'keychainId'=>$keychainId,
+        'borrowDate'=>$tDate,
+        'dueDate'=>$dueDate,
+        'returnDate'=>null,
+        'lostDate'=>null,
+        'comment'=>""
+      ]);
+    }
+
+    public function createKeyFromCSV($id, $type) {
         if(!$this->checkKeyByIdKey($id)) {
             $key = new KeyVO();
             $key->setId((int)$id);

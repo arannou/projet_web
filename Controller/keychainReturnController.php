@@ -1,6 +1,6 @@
 <?php
 
-class HomeController {
+class keychainReturnController {
 
     public $pageName;
     public $keychains;
@@ -8,6 +8,7 @@ class HomeController {
 
 public $users;
     public $keys;
+
 
     public function __construct($pageName){
         $this->pageName   = $pageName;

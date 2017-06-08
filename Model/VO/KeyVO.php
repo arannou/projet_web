@@ -4,6 +4,7 @@ class KeyVO
 
     public static $keyType = array("Simple"=>"Clé","Partiel"=>"Passe Partiel","Total"=>"Passe Total");
 
+
     protected $id;
     protected $type; //Clef ou Passe Partiel ou Passe Total
     protected $keychainId = null;

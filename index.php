@@ -1,5 +1,4 @@
 <?php
-
 require_once 'Model/VO/KeychainVO.php';
 require_once 'Model/VO/UserVO.php';
 require_once 'Model/VO/KeyVO.php';
@@ -90,8 +89,11 @@ function dumpDatabase(){
     var_dump($_SESSION);
 }
 
+
 //Page home
 dispatch('/', 'home');
+
+ dispatch('/', 'home');
 function home(){
   //Import des classes
   require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
@@ -108,10 +110,14 @@ function home(){
   require 'View/Partial/nav.php';
   require 'View/home.php';
   require 'View/Partial/footer.php';
-}
+ }
+
+
 
 //Utilisateurs
 dispatch('/users/', 'users');
+
+dispatch('/users', 'users');
 function users(){
   //Import des classes
   require_once 'Model/DAO/implementationUserDAO_Dummy.php';
@@ -142,7 +148,9 @@ function keys(){
     //Import des classes
     require_once 'Model/DAO/implementationKeyDAO_Dummy.php';
     require_once 'Controller/KeysController.php';
-    //Appel du controlleur
+  //  require_once 'Model/Service/implementationKeyService_Dummy.php';
+
+  //Appel du controlleur
     $controller = new KeysController("Keys");
     //Appel de la vue
     require 'View/Partial/head.php';
@@ -150,6 +158,56 @@ function keys(){
     require 'View/keys.php';
     require 'View/Partial/footer.php';
 }
+
+
+
+// retourné trousseau
+
+dispatch('/keychainReturn', 'keychainReturn');
+function keychainReturn(){
+  //Import des classes
+  require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+  require_once 'Model/DAO/implementationBorrowingsDAO_Session.php';
+  require_once 'Model/DAO/implementationUserDAO_Dummy.php';
+  require_once 'Model/Service/implementationBorrowService_Dummy.php';
+  require_once 'Controller/keychainReturnController.php';
+
+
+  //Appel du controlleur
+  $controller = new keychainReturnController("Return");
+
+  //Appel de la vue
+  require 'View/Partial/head.php';
+  require 'View/Partial/nav.php';
+  //require 'View/home.php';
+
+require 'View/keychainReturn.php';
+  require 'View/Partial/footer.php';
+ }
+
+
+
+ dispatch('/keychainReturnValider/:id', 'keychainReturnValider');
+function keychainReturnValider($id){
+
+  require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+  require_once 'Model/Service/implementationBorrowService_Dummy.php';
+
+  require_once 'Controller/keychainReturnValiderController.php';
+
+  $controller = new keychainReturnValiderController($id);
+
+header('location:?/keychainReturn');
+//Appel de la vue
+require 'View/Partial/head.php';
+require 'View/Partial/nav.php';
+require 'View/keychainReturn.php';
+require 'View/Partial/footer.php';
+}
+
+
+
+
 
 //Emprunt
 dispatch('/borrowKeychainForm', 'borrowKeychainForm');
@@ -197,6 +255,8 @@ function loseKeychain(){
 
   //header('location:?/');
 }
+
+
 
 //Emprunts - Formulaire (dispatch_post)
 dispatch_post('/borrowKeychain', 'borrowKeychain');

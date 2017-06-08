@@ -16,6 +16,56 @@
                                 <th>Identifiant</th>
                                 <th>clés</th>
 
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Clés</h3>
+      </div>
+      <hr>
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            Emprunter un trousseau
+          </div>
+          <div class="x_content">
+            <table class="table">
+              <thead>
+                <th>Identifiant</th>
+                <th>clés</th>
+                <th>type</th>
+
+              </thead>
+
+          <form action="?/borrowKeychain" method="post" data-parsley-validate class="form-horizontal form-label-left">
+            <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Identifiant :</label>
+            <select name = "userEnssatPrimaryKey">
+              <?php
+              foreach ($controller->keychains as $keychain) {
+                print_r($keychain);
+                echo '<br><br>';
+                echo '<tr>';
+                echo '<td>'.$keychain->getId().'</td>';
+                echo '<td>WIP</td>';
+                echo '</tr>';
+              }
+              ?>
+            </table>
+          </div>
+        </div>
+
+        <div class="x_panel">
+          <div class="x_title">
+            Emprunter un trousseau
+          </div>
+          <div class="x_content">
+            <form action="?/borrowKeychain" method="post" data-parsley-validate class="form-horizontal form-label-left">
+              <?php
+              if($controller->error != ""){
+                echo $controller->error;
+              }
+              ?>
+
                             </thead>
                             <?php
                             foreach ($controller->keychains as $index => $keychain) {

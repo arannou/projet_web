@@ -21,15 +21,13 @@
               <th>lostDate</th>
               <th>comment</th>
               <th>status</th>
-              <th></th>
-<th></th>
 
+              <th>nom emprunteurs </th>
             </thead>
             <tbody>
 
 
               <?php
-
               foreach ($controller->borrowings as $borrowing) {
                 echo '<tr>';
                 echo '<td>'.$borrowing['borrowingId'].'</td>';
@@ -37,29 +35,23 @@
                 echo '<td>'.$borrowing['keychainId'].'</td>';
                 echo '<td>'.$borrowing['borrowDate']->getTimestamp().'</td>';
                 echo '<td>'.$borrowing['dueDate']->getTimestamp().'</td>';
-				if(isset($borrowing['returnDate'])) $borrowing['returnDate'] = $borrowing['returnDate']->getTimestamp();
                 echo '<td>'.$borrowing['returnDate'].'</td>';
-				if(isset($borrowing['lostDate'])) $borrowing['lostDate'] = $borrowing['lostDate']->getTimestamp();
                 echo '<td>'.$borrowing['lostDate'].'</td>';
                 echo '<td>'.$borrowing['comment'].'</td>';
                 echo '<td>'.$borrowing['status'].'</td>';
-				if(!isset($borrowing['lostDate'])) {
-                	echo '<td><a href="?/loseKeychainForm/'.$borrowing['borrowingId'].'"><button class="btn btn-primary">Perdu</button></a></td>';
-				} else echo '<td></td>';
-
                 echo '<tr>';
               }
 
-// user name de l'emprenteur
-/*
-          foreach ($controller->borrowings as $borrowing) {
-foreach ($controller->users as $user) {
-  if ( $user->getEnssatPrimaryKey() == $borrowing['userEnssatPrimaryKey']) {
 
+
+foreach ($controller->users as $user) {
+          foreach ($controller->borrowings as $borrowing) {
+  if ( $user->getEnssatPrimaryKey() == $borrowing['userEnssatPrimaryKey']) {
     echo '<td>'.$user->getUsername().'</td>';
+
   }
 }
-}*/
+}
               ?>
             </tbody>
           </table>

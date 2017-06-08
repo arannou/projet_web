@@ -36,6 +36,9 @@ class BorrowKeyChainFormController {
         $this->keys          = $keyDAO->getKeys();
         $this->availableKeys = $keyService->getAvailableKeys();
 
+        $keyService = implementationKeyService_Dummy::getInstance();
+       $this->availableKeys = $keyService->getAvailableKeys();
+
         if(isset($_SESSION['error'])){
             $this->error = $_SESSION['error'];
             unset($_SESSION['error']);
