@@ -118,6 +118,7 @@ function users(){
   require_once 'Controller/UsersController.php';
   require_once 'Model/Service/implementationBorrowService_Dummy.php';
   require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+  require_once 'Model/Service/implementationKeyService_Dummy.php';
   //Appel du controlleur
   $controller = new UsersController("Users");
   //Appel de la vue
