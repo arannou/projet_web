@@ -14,12 +14,14 @@
             <thead>
               <th>Identifiant</th>
               <th>type</th>
+              <th>LockId</th>
             </thead>
             <?php
             foreach ($controller->keys as $key) {
               echo '<tr>';
               echo '<td>'.$key->getId().'</td>';
               echo '<td>'.$key->getType().'</td>';
+              echo '<td>'.$key->getLockId().'</td>';
               //Afficher ID de la porte + salle associée à la clé
               echo '</tr>';
             }

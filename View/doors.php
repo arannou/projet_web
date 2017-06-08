@@ -14,15 +14,12 @@
     <thead>
         <th>id</th>
         <th>Salle</th>
-        <th>Canon</th>
     </thead>
 <?php
-	
     foreach ($controller->doors as $id=>$door) {
         echo '<tr>';
-            echo '<td>'.$id.'</td>';
-            echo '<td>'.$controller->doors[$id]["room"].'</td>';
-            echo '<td>'.$controller->doors[$id]["lock"].'</td>';
+            echo '<td>'.$door->getId().'</td>';
+            echo '<td>'.$door->getRoomId().'</td>';
         echo '</tr>';
     }
 ?>

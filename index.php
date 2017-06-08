@@ -286,6 +286,7 @@ dispatch('/locks', 'locks');
 function locks(){
   require_once 'Model/DAO/implementationLockDAO_Session.php';
   require_once 'Model/Service/implementationLockService.php';
+  require_once 'Model/DAO/implementationDoorDAO_Dummy.php';
   require_once 'Controller/LocksController.php';
 
   $controller = new LocksController("Locks");
@@ -293,6 +294,7 @@ function locks(){
   require 'View/Partial/head.php';
   require 'View/Partial/nav.php';
   require 'View/locks.php';
+  require 'View/Partial/footer.php';
 }
 //Salles
 dispatch('/rooms', 'rooms');
