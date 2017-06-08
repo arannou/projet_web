@@ -115,7 +115,6 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
             $_SESSION["borrowings"][$borrowingId-1]['returnDate'] = $tDate; //@todo : Mettre a jour $_SESSION
           break;
           case "Lost":
-				 echo ' set ';
             $this->_borrowings[$borrowingId-1]['lostDate'] = $tDate; //@todo : Mettre a jour $_SESSION
             $_SESSION["borrowings"][$borrowingId-1]['lostDate'] = $tDate; //@todo : Mettre a jour $_SESSION
 				var_dump($_SESSION["borrowings"][$borrowingId-1]);
@@ -164,7 +163,6 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
               $this->setBorrowingStatus($borrowingId,"Returned");
               break;
             case "lost" :
-				  echo ' cancel ';
               $this->setBorrowingStatus($borrowingId,"Lost");
               break;
             default :

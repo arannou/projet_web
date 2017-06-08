@@ -195,7 +195,7 @@ function loseKeychain(){
 
   $controller = new LoseKeychainController();
 
-  //header('location:?/');
+  header('location:?/');
 }
 
 //Emprunts - Formulaire (dispatch_post)
