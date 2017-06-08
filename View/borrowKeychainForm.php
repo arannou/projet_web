@@ -42,35 +42,35 @@
 
                             <div class="form-group" id="keyChainSelector">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Trousseaux existant</label>
-                                <select class="" name="">
+                                <select class="" name="keychainId">
                                     <?php
                                     foreach($controller->keychains as $keychain){ ?>
                                         <option value = "<?php echo $keychain->getId(); ?>"><?php echo $keychain->getId(); ?></option>
                                         <?php  } ?>
+                                </select>
+                                <button type="button" name="button" id="showKeyChainCreator">Creer un trousseau</button>
+                            </div>
+
+                            <div class="form-group" id="keyChainCreator">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Former un trousseau :</label>
+                                <select id="availableKeys">
+                                    <?php
+                                    foreach($controller->availableKeys as $key){ ?>
+                                        <option value = "<?php echo $key->getId(); ?>"><?php echo $key->getId(); ?></option>
+                                        <?php  } ?>
                                     </select>
-                                    <button type="button" name="button" id="showKeyChainCreator">Creer un trousseau</button>
+
+                                    <button type="button" id="addKey">=></button>
+                                    <button type="button" id="returnKey"><=</button>
+
+                                    <select id="keyChain">
+
+                                    </select>
+
+                                    <button type="button" name="button" id="showKeyChainSelector">Utiliser un trousseau existant</button>
+
+                                    <input type="hidden" name="keys" id="selectedKeys" value="">
                                 </div>
-
-                                <div class="form-group" id="keyChainCreator">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Former un trousseau :</label>
-                                    <select id="availableKeys">
-                                        <?php
-                                        foreach($controller->availableKeys as $key){ ?>
-                                            <option value = "<?php echo $key->getId(); ?>"><?php echo $key->getId(); ?></option>
-                                            <?php  } ?>
-                                        </select>
-
-                                        <button type="button" id="addKey">=></button>
-                                        <button type="button" id="returnKey"><=</button>
-
-                                        <select id="keyChain">
-
-                                        </select>
-
-                                        <button type="button" name="button" id="showKeyChainSelector">Utiliser un trousseau existant</button>
-
-                                        <input type="hidden" name="keys" id="selectedKeys" value="">
-                                    </div>
 
                                     <input type="hidden" id="keychainSelection" name="keychainSelection" value="selection">
 
