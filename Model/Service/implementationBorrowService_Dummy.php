@@ -143,7 +143,19 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
           }
           else
           {
-            $status = "Borrowed";
+			  $tDate = new DateTime;
+			  $tDate->setTimestamp(time());
+
+			  $firstDateTimeStamp = $borrowing['dueDate']->format("U");
+    			$secondDateTimeStamp = $tDate->format("U");
+    			$rv = round ((($firstDateTimeStamp - $secondDateTimeStamp))/86400);
+
+			  
+			  if ($rv<0) {
+				  $status = "Late";
+			  } else {
+				  $status = "Borrowed";
+			  }
           }
         }
       }
