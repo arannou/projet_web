@@ -38,7 +38,7 @@ class implementationUserDAO_Dummy implements interfaceUserDAO
            $user->setUsername((string)$xmlUser->username);
            $user->setName((string)$xmlUser->name);
            $user->setSurname((string)$xmlUser->surname);
-           $user->setPhone((int)$xmlUser->phone);
+           $user->setPhone((string)$xmlUser->phone);
            $user->setStatus((string)$xmlUser->status);
            $user->setEmail((string)$xmlUser->email);
 

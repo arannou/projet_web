@@ -116,6 +116,8 @@ function users(){
   //Import des classes
   require_once 'Model/DAO/implementationUserDAO_Dummy.php';
   require_once 'Controller/UsersController.php';
+  require_once 'Model/Service/implementationBorrowService_Dummy.php';
+  require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
   //Appel du controlleur
   $controller = new UsersController("Users");
   //Appel de la vue

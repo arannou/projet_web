@@ -88,6 +88,17 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
       return $borrowing;
     }
 
+    public function getBorrowingByEnssatPrimaryKey($userEnssatPrimaryKey) {
+      $borrowingArray = null;
+      $borrowings = $this->_borrowingsDAO->getBorrowings();
+      foreach ($borrowings as $key => $borrowing) {
+        if ($borrowing['userEnssatPrimaryKey'] == $userEnssatPrimaryKey) {
+          $borrowingArray[] = $borrowing;
+        }
+      }
+      return $borrowingArray;
+    }
+
     public function getBorrowingByKeychainId($keychainId){
         $borrowing  = null;
         $borrowings = $this->_borrowingsDAO->getBorrowings();
