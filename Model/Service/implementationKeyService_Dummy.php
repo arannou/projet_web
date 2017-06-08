@@ -84,5 +84,16 @@ class implementationKeyService_Dummy
             return true;
         }
     }
+
+    public function getKeysOfKeychain($keychainId)
+    {
+      $keysArray = null;
+      $keys = $this->_keyDAO->getKeys();
+      foreach ($keys as $index => $key) {
+        if ($keychainId == $key->getKeychainId()) {
+          $keysArray[] = $key->getId();
+        }
+      }
+    }
 }
 ?>

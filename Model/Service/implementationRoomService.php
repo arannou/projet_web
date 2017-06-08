@@ -32,6 +32,7 @@ class implementationRoomService implements interfaceRoomService
      if(is_null(self::$_instance)) {
        self::$_instance = new implementationRoomService();
    }
+
      return self::$_instance;
    }
    public function createRoom($id) {
@@ -39,6 +40,7 @@ class implementationRoomService implements interfaceRoomService
      $room->setId($id);
      $this->_roomDAO->addRoom($room);
    }
+   
    public function addDoorToRoom() {
    }
    public function deleteDoorToRoom() {

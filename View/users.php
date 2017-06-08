@@ -90,7 +90,11 @@ echo '<div class="modal fade" id="user'.$user->getEnssatPrimaryKey().'" tabindex
         }
         echo '<br><strong>Accès :</strong><br>';
         if ($borrowTab != null) {
-          
+          foreach ($borrowTab as $key => $borrow) {
+            print_r($borrow);
+
+          }
+
         }
         else {
           echo "<em>Pas d'accès aux différentes salles.</em>";
