@@ -156,6 +156,34 @@ function borrowKeychainForm(){
   require 'View/Partial/footer.php';
 }
 
+// trousseau perdu
+dispatch('/loseKeychainForm/:id', 'loseKeychainForm');
+function loseKeychainForm($id){
+  require_once 'Controller/LoseKeychainControllerForm.php';
+  require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+  require_once 'Model/Service/implementationBorrowService_Dummy.php';
+
+  $controller = new LoseKeychainControllerForm("Emprunt", $id);
+  //Appel de la vue
+  require 'View/Partial/head.php';
+  require 'View/Partial/nav.php';
+  require 'View/loseKeychainForm.php';
+  require 'View/Partial/footer.php';
+}
+
+// trousseau perdu (post)
+dispatch_post('/loseKeychain/', 'loseKeychain');
+function loseKeychain(){
+  require_once 'Controller/LoseKeychainController.php';
+  require_once 'Model/DAO/implementationUserDAO_Dummy.php';
+  require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+  require_once 'Model/Service/implementationBorrowService_Dummy.php';
+
+  $controller = new LoseKeychainController();
+
+  //header('location:?/');
+}
+
 //Emprunts - Formulaire (dispatch_post)
 dispatch_post('/borrowKeychain', 'borrowKeychain');
 function borrowKeychain(){
@@ -202,7 +230,7 @@ function create_door_form(){
 }
 
 
-dispatch_post('/create_door', 'create_door');
+dispatch_post('/create_door/', 'create_door');
 function create_door(){
     //Import des classes
 	require_once 'Model/Service/implementationDoorService.php';
