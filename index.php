@@ -144,6 +144,7 @@ dispatch('/keys', 'keys');
 function keys(){
     //Import des classes
     require_once 'Model/DAO/implementationKeyDAO_Dummy.php';
+    require_once 'Model/Service/implementationKeyService_Dummy.php';
     require_once 'Controller/KeysController.php';
     //Appel du controlleur
     $controller = new KeysController("Keys");
@@ -306,6 +307,9 @@ dispatch('/rooms', 'rooms');
 function rooms(){
   require_once 'Model/DAO/implementationRoomDAO_Session.php';
   require_once 'Model/Service/implementationRoomService.php';
+  require_once 'Model/DAO/implementationDoorDAO_Dummy.php';
+  require_once 'Model/DAO/implementationLockDAO_Session.php';
+  require_once 'Model/DAO/implementationKeyDAO_Dummy.php';
   require_once 'Controller/RoomController.php';
 
   $controller = new RoomController("Salles");

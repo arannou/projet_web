@@ -76,6 +76,18 @@ class implementationDoorDAO_Dummy implements interfaceDoorDAO
 	public function addDoor($door) {
 		array_push($_SESSION['doors'], $door);
 	}
+
+	public function getDoorByRoomId($idRoom) {
+		$doors = $this->getDoors();
+
+		foreach ($doors as $key => $door) {
+			if($door->getRoomId() == $idRoom){
+				return $door;
+			}
+		}
+
+		return null;
+	}
 }
 
 
