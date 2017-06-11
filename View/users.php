@@ -68,8 +68,7 @@
 <?php
 foreach ($controller->users as $user) {
   $borrowTab = $controller->borrowByUser[$user->getEnssatPrimaryKey()];
-
-echo '<div class="modal fade" id="user'.$user->getEnssatPrimaryKey().'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  echo '<div class="modal fade" id="user'.$user->getEnssatPrimaryKey().'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -119,5 +118,4 @@ $(document).ready(function(){
     $('#myInput').focus();
   });
 });
-
 </script>

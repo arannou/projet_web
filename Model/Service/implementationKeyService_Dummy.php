@@ -101,7 +101,6 @@ class implementationKeyService_Dummy
           $keysArray[] = $key->getId();
         }
       }
-
       return $keysArray;
     }
 
@@ -116,7 +115,6 @@ class implementationKeyService_Dummy
           $door   = $this->_doorDAO->getDoorById($doorId);
 
           return $door;
-
     }
 }
 ?>

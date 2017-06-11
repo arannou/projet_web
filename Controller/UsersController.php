@@ -15,7 +15,6 @@ class UsersController {
         $this->users = $DAO->getUsers();
         $serviceBorrow = implementationBorrowService_Dummy::getInstance();
         $serviceKey = implementationKeyService_Dummy::getInstance();
-
         $this->borrowByUser = [];
         foreach ($this->users as $key => $user) {
           $this->borrowByUser[$user->getEnssatPrimaryKey()] = $serviceBorrow->getBorrowingByEnssatPrimaryKey($user->getEnssatPrimaryKey());
