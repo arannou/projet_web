@@ -3,6 +3,9 @@
 require_once 'Model/DAO/implementationKeyDAO_Dummy.php';
 require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
 require_once 'Model/DAO/implementationBorrowingsDAO_Session.php';
+require_once 'Model/DAO/implementationLockDAO_Session.php';
+require_once 'Model/DAO/implementationDoorDAO_Dummy.php';
+
 class implementationKeyService_Dummy
 {
 
@@ -27,6 +30,8 @@ class implementationKeyService_Dummy
         $this->_keyDAO  = implementationKeyDAO_Dummy::getInstance();
         $this->_keychainDAO   = implementationKeychainDAO_Dummy::getInstance();
         $this->_borrowingsDAO = implementationBorrowingsDAO_Session::getInstance();
+        $this->_lockDAO = implementationLockDAO_Session::getInstance();
+        $this->_doorDAO = implementationDoorDAO_Dummy::getInstance();
     }
 
     /**
@@ -85,6 +90,31 @@ class implementationKeyService_Dummy
         }else {
             return true;
         }
+    }
+
+    public function getKeysOfKeychain($keychainId)
+    {
+      $keysArray = null;
+      $keys = $this->_keyDAO->getKeys();
+      foreach ($keys as $index => $key) {
+        if ($keychainId == $key->getKeychainId()) {
+          $keysArray[] = $key->getId();
+        }
+      }
+      return $keysArray;
+    }
+
+    public function getDoorByKeyId($keyId)
+    {
+
+          $key = $this->_keyDAO->getKeyById($keyId);
+
+          $lockId = $key->getLockId();
+          $lock   = $this->_lockDAO->getLockById($lockId);
+          $doorId = $lock->getDoorId();
+          $door   = $this->_doorDAO->getDoorById($doorId);
+
+          return $door;
     }
 }
 ?>

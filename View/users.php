@@ -20,6 +20,7 @@
               <th>Phone</th>
               <th>Status</th>
               <th>Email</th>
+              <th>Keys</th>
             </thead>
             <?php
             foreach ($controller->users as $user) {
@@ -32,6 +33,7 @@
               echo '<td>'.$user->getPhone().'</td>';
               echo '<td>'.$user->getStatus().'</td>';
               echo '<td>'.$user->getEmail().'</td>';
+              echo '<td><button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#user'.$user->getEnssatPrimaryKey().'""><i class="fa fa-key"></i></button></td>';
               echo '</tr>';
             }
             ?>
@@ -60,3 +62,60 @@
     </div>
   </div>
 </div>
+
+
+<!-- Modal -->
+<?php
+foreach ($controller->users as $user) {
+  $borrowTab = $controller->borrowByUser[$user->getEnssatPrimaryKey()];
+  echo '<div class="modal fade" id="user'.$user->getEnssatPrimaryKey().'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">'.$user->getName().' '.$user->getSurname().'</h4>
+      </div>
+      <div class="modal-body">
+        <strong>Trousseaux empruntés :</strong>
+        <br>
+        ';
+        //print_r($controller->borrowByUser[$user->getEnssatPrimaryKey()]);
+        if ($borrowTab != null) {
+          foreach ($borrowTab as $key => $borrow) {
+            echo $borrow['keychainId'].' ';
+          }
+        }
+        else {
+          echo "<em>Pas de trousseau emprunté.</em>";
+        }
+        echo '<br><strong>Accès :</strong><br>';
+        if ($borrowTab != null) {
+          echo '<ul>';
+          foreach ($borrowTab as $key => $borrow) {
+            $keyTab = $controller->keysOfKeychains[$borrow['borrowingId']];
+            foreach ($controller->doors[$key] as $index => $door) {
+              echo '<li>'.$door->getRoomId().'</li>';
+            }
+          }
+          echo '</ul>';
+        }
+        else {
+          echo "<em>Pas d'accès aux différentes salles.</em>";
+        }
+      echo '</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>';
+}
+?>
+
+<script>
+$(document).ready(function(){
+  $('.modalUser').on('shown.bs.modal', function () {
+    $('#myInput').focus();
+  });
+});
+</script>
