@@ -61,9 +61,9 @@ class implementationLockDAO_Session implements interfaceLockDAO
        return $_SESSION['locks'];
    }
 
-   public function getLockById(){
+   public function getLockById($id){
        foreach ($this->getLocks() as $key => $lock) {
-           if($lock['id'] == $id){
+           if($lock->getId() == $id){
                return $lock;
            }
        }

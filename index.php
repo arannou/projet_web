@@ -64,11 +64,11 @@ function populateDatabase(){
 
     require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
     $keyChainDAO = implementationKeychainDAO_Dummy::getInstance();
-    $keyChainDAO->populate();
+    //$keyChainDAO->populate();
 
     require_once 'Model/DAO/implementationKeyDAO_Dummy.php';
     $keyDAO = implementationKeyDAO_Dummy::getInstance();
-    $keyDAO->populate();
+    //$keyDAO->populate();
 
     require_once 'Model/DAO/implementationLockDAO_Session.php';
     $lockDAO = implementationLockDAO_Session::getInstance();
@@ -158,6 +158,8 @@ function borrowKeychainForm(){
   require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
   require_once 'Model/DAO/implementationKeyDAO_Dummy.php';
   require_once 'Model/DAO/implementationUserDAO_Dummy.php';
+  require_once 'Model/DAO/implementationLockDAO_Session.php';
+  require_once 'Model/DAO/implementationDoorDAO_Dummy.php';
   require_once 'Model/Service/implementationBorrowService_Dummy.php';
   require_once 'Model/Service/implementationKeyService_Dummy.php';
   require_once 'Controller/BorrowKeyChainFormController.php';

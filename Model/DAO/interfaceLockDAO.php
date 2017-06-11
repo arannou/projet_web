@@ -8,7 +8,7 @@ interface interfaceLockDAO
 
   public function getLocks();
 
-  public function getLockById();
+  public function getLockById($id);
 
   public function getLocksByLength($length);
 

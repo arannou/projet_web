@@ -5,13 +5,19 @@ class HomeController {
     public $pageName;
     public $keychains;
     public $borrowings;
-
+    public $lateBorrowings;
     public $keys;
 
     public function __construct($pageName){
         $this->pageName   = $pageName;
         $borrowService    = implementationBorrowService_Dummy::getInstance();
-        $this->borrowings = $borrowService->getBorrowingsWithStatus();
+        $this->borrowings = $borrowService->getCurrentBorrowings();
+
+        $this->lateBorrowings = $borrowService->getLateBorrowing();
+    }
+
+    public function getDeltaInDays($lateBorrowing){
+        return date_diff($lateBorrowing['dueDate'], new DateTime())->days;
     }
 
     /**

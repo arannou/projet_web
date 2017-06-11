@@ -16,13 +16,15 @@
                             <thead>
                                 <th>Id</th>
                                 <th>doorId</th>
+                                <th>Salle associée</th>
                                 <th>Length</th>
                             </thead>
                             <?php
-                            foreach ($controller->locks as $lock) {
+                            foreach ($controller->locks as $index => $lock) {
                                 echo '<tr>';
                                 echo '<td>'.$lock->getId().'</td>';
                                 echo '<td>'.$lock->getDoorId().'</td>';
+                                echo '<td>'.$controller->roomIds[$index].'</td>';
                                 echo '<td>'.$lock->getLength().'</td>';
                                 echo '</tr>';
                             }
