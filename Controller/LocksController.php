@@ -5,6 +5,7 @@ class LocksController {
     public $pageName;
     public $locks;
     public $doors;
+    public $roomIds = [];
 
     public function __construct($pageName){
         $this->pageName = $pageName;
@@ -12,7 +13,12 @@ class LocksController {
         $this->locks = $DAO->getLocks();
 
         $doorDAO = implementationDoorDAO_Dummy::getInstance();
-        $this->doors = $doorDAO->getDoors();
+
+
+        foreach ($this->locks as $key => $lock) {
+            $roomId = $doorDAO->getDoorById($lock->getDoorId())->getRoomId();
+            array_push($this->roomIds, $roomId);
+        }
 
     }
 

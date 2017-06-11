@@ -2,6 +2,7 @@
 
 require_once 'Model/Service/interfaceBorrowService.php';
 require_once 'Model/DAO/implementationBorrowingsDAO_Session.php';
+require_once 'Model/DAO/implementationUserDAO_Dummy.php';
 
 class implementationBorrowService_Dummy implements interfaceBorrowService
 {
