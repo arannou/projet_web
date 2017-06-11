@@ -7,6 +7,7 @@ class UsersController {
     public $keychain;
     public $borrowByUser;
     public $keysOfKeychains;
+    public $doors;
 
     public function __construct($pageName){
         $this->pageName = $pageName;
@@ -14,16 +15,26 @@ class UsersController {
         $this->users = $DAO->getUsers();
         $serviceBorrow = implementationBorrowService_Dummy::getInstance();
         $serviceKey = implementationKeyService_Dummy::getInstance();
+
         $this->borrowByUser = [];
         foreach ($this->users as $key => $user) {
           $this->borrowByUser[$user->getEnssatPrimaryKey()] = $serviceBorrow->getBorrowingByEnssatPrimaryKey($user->getEnssatPrimaryKey());
         }
+
         $this->keysOfKeychains = [];
         foreach ($this->users as $key => $user) {
           foreach ($this->borrowByUser[$user->getEnssatPrimaryKey()] as $index => $keyBorrow) {
-            $this->keysOfKeychains[$user->getEnssatPrimaryKey()] = $serviceKey->getKeysOfKeychain($keyBorrow['keychainId']);
+            $this->keysOfKeychains[$keyBorrow['borrowingId']] = $serviceKey->getKeysOfKeychain($keyBorrow['keychainId']);
           }
+        }
 
+        $this->doors = [];
+        foreach ($this->keysOfKeychains as $index => $keys) {
+          $keyId = [];
+          foreach ($keys as $index2 => $key) {
+            $keyId[] = $serviceKey->getDoorByKeyId($key);
+          }
+          $this->doors[] = $keyId;
         }
 
 

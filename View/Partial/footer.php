@@ -13,14 +13,7 @@
 <script src="Asset/vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="Asset/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- FastClick -->
-<script src="Asset/vendors/fastclick/lib/fastclick.js"></script>
-<!-- NProgress -->
-<script src="Asset/vendors/nprogress/nprogress.js"></script>
-<!-- Chart.js -->
-<script src="Asset/vendors/Chart.js/dist/Chart.min.js"></script>
-<!-- gauge.js -->
-<script src="Asset/vendors/bernii/gauge.js/dist/gauge.min.js"></script>
+
 <!-- bootstrap-progressbar -->
 <script src="Asset/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
 <!-- iCheck -->
@@ -32,7 +25,7 @@
 <script src="Asset/vendors/Flot/jquery.flot.pie.js"></script>
 <script src="Asset/vendors/Flot/jquery.flot.time.js"></script>
 <script src="Asset/vendors/Flot/jquery.flot.stack.js"></script>
-<script src="Asset/vendors/Flot/jquery.flot.resize.js"></script>
+<!--<script src="Asset/vendors/Flot/jquery.flot.resize.js"></script>-->
 <!-- Flot plugins -->
 <script src="Asset/js/flot/jquery.flot.orderBars.js"></script>
 <script src="Asset/js/flot/date.js"></script>

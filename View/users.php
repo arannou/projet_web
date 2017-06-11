@@ -68,6 +68,7 @@
 <?php
 foreach ($controller->users as $user) {
   $borrowTab = $controller->borrowByUser[$user->getEnssatPrimaryKey()];
+
 echo '<div class="modal fade" id="user'.$user->getEnssatPrimaryKey().'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -90,11 +91,14 @@ echo '<div class="modal fade" id="user'.$user->getEnssatPrimaryKey().'" tabindex
         }
         echo '<br><strong>Accès :</strong><br>';
         if ($borrowTab != null) {
+          echo '<ul>';
           foreach ($borrowTab as $key => $borrow) {
-            print_r($borrow);
-
+            $keyTab = $controller->keysOfKeychains[$borrow['borrowingId']];
+            foreach ($controller->doors[$key] as $index => $door) {
+              echo '<li>'.$door->getRoomId().'</li>';
+            }
           }
-
+          echo '</ul>';
         }
         else {
           echo "<em>Pas d'accès aux différentes salles.</em>";
@@ -110,7 +114,10 @@ echo '<div class="modal fade" id="user'.$user->getEnssatPrimaryKey().'" tabindex
 ?>
 
 <script>
-$('.modalUser').on('shown.bs.modal', function () {
-  $('#myInput').focus()
-})
+$(document).ready(function(){
+  $('.modalUser').on('shown.bs.modal', function () {
+    $('#myInput').focus();
+  });
+});
+
 </script>
