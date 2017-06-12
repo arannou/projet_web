@@ -141,6 +141,20 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
         return $current;
     }
 
+	public function getLostBorrowing(){
+        $borrowings = $this->_borrowingsDAO->getBorrowings();
+        $lost = [];
+
+        foreach ($borrowings as $key => $borrowing) {
+            if($this->getBorrowingStatus($borrowing['borrowingId']) == "Lost"){
+                $lost[$key] = $borrowing;
+                $lost[$key]['status'] = "Lost";
+            }
+        }
+
+        return $lost;
+    }
+
     public function setBorrowingStatus($borrowingId,$status)
     {
 
