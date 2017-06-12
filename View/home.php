@@ -165,14 +165,12 @@
                     foreach ($controller->borrowings as $borrowing) {
                         echo '<tr>';
                         echo '<td>'.$borrowing['borrowingId'].'</td>';
-                        echo '<td>'.$borrowing['userEnssatPrimaryKey'].'</td>';
+                        echo '<td>'.$controller->getUserNameByEnssatPrimaryKey($borrowing['userEnssatPrimaryKey']).'</td>';
                         echo '<td>'.$borrowing['keychainId'].'</td>';
-                        echo '<td>'.$borrowing['borrowDate']->getTimestamp().'</td>';
-                        echo '<td>'.$borrowing['dueDate']->getTimestamp().'</td>';
-                        if(isset($borrowing['returnDate'])) $borrowing['returnDate'] = $borrowing['returnDate']->getTimestamp();
-                        echo '<td>'.$borrowing['returnDate'].'</td>';
-                        if(isset($borrowing['lostDate'])) $borrowing['lostDate'] = $borrowing['lostDate']->getTimestamp();
-                        echo '<td>'.$borrowing['lostDate'].'</td>';
+                        echo '<td>'.date_format($borrowing['borrowDate'], 'd/m/Y').'</td>';
+                        echo '<td>'.date_format($borrowing['dueDate'], 'd/m/Y').'</td>';
+                        echo '<td>'.date_format($borrowing['returnDate'], 'd/m/Y').'</td>';
+                        echo '<td>'.date_format($borrowing['lostDate'], 'd/m/Y').'</td>';
                         echo '<td>'.$borrowing['comment'].'</td>';
                         echo '<td>'.$borrowing['status'].'</td>';
                         if(!isset($borrowing['lostDate'])) {
