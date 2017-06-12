@@ -20,12 +20,12 @@
           <link href="Asset/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
           <!-- jVectorMap -->
           <link href="Asset/css/maps/jquery-jvectormap-2.0.3.css" rel="stylesheet"/>
-          	
+
 
           <!-- Custom Theme Style -->
           <link href="Asset/build/css/custom.min.css" rel="stylesheet">
         </head>
 
-        <body class="nav-md">
+        <body class="nav-sm">
           <div class="container body">
             <div class="main_container">

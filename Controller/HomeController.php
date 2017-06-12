@@ -8,16 +8,24 @@ class HomeController {
     public $lateBorrowings;
     public $keys;
 
+    private $userDAO;
+
     public function __construct($pageName){
         $this->pageName   = $pageName;
         $borrowService    = implementationBorrowService_Dummy::getInstance();
-        $this->borrowings = $borrowService->getCurrentBorrowings();
+        $this->userDAO    = implementationUserDAO_Dummy::getInstance();
 
+        $this->borrowings = $borrowService->getCurrentBorrowings();
         $this->lateBorrowings = $borrowService->getLateBorrowing();
     }
 
     public function getDeltaInDays($lateBorrowing){
         return date_diff($lateBorrowing['dueDate'], new DateTime())->days;
+    }
+
+    public function getUserNameByEnssatPrimaryKey($epk){
+        $user = $this->userDAO->getUserByEnssatPrimaryKey($epk);
+        return $user->getSurname()." ".$user->getName();
     }
 
     /**
