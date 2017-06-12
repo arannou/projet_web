@@ -72,6 +72,44 @@
         </div>
     </div>
     <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="x_panel tile ">
+            <div class="x_title">
+                <h2>Trousseaux perdus</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                <table class="table">
+                    <thead>
+                        <th>Emprunteur</th>
+                        <th>Trousseau</th>
+                        <th>Emprunt</th>
+                        <th>Rendu prévu</th>
+                        <th>Date de perte</th>
+                    </thead>
+                    <?php
+                    foreach ($controller->lostBorrowings as $lostBorrowing) {
+
+                        $delta = $controller->getDeltaInDays($lostBorrowing);
+
+                        echo '<tr>';
+                        echo '<td>'.$lostBorrowing['userEnssatPrimaryKey'].'</td>';
+                        echo '<td>'.$lostBorrowing['keychainId'].'</td>';
+                        echo '<td>'.date_format($lostBorrowing['borrowDate'], 'd/m/Y').'</td>';
+                        echo '<td>'.date_format($lostBorrowing['dueDate'], 'd/m/Y').'</td>';
+                        echo '<td>'.date_format($lostBorrowing['lostDate'], 'd/m/Y').'</td>';
+                        echo '</tr>';
+                    }
+
+                    ?>
+                </table>
+
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12">
         <div class="x_panel tile">
             <div class="x_title">
                 <h2>App Versions</h2>

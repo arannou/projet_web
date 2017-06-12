@@ -141,6 +141,20 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
         return $current;
     }
 
+	public function getLostBorrowing(){
+        $borrowings = $this->_borrowingsDAO->getBorrowings();
+        $lost = [];
+
+        foreach ($borrowings as $key => $borrowing) {
+            if($this->getBorrowingStatus($borrowing['borrowingId']) == "Lost"){
+                $lost[$key] = $borrowing;
+                $lost[$key]['status'] = "Lost";
+            }
+        }
+
+        return $lost;
+    }
+
     public function setBorrowingStatus($borrowingId,$status)
     {
 
@@ -156,7 +170,6 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
             $_SESSION["borrowings"][$borrowingId-1]['returnDate'] = $tDate; //@todo : Mettre a jour $_SESSION
           break;
           case "Lost":
-				 echo ' set ';
             $this->_borrowings[$borrowingId-1]['lostDate'] = $tDate; //@todo : Mettre a jour $_SESSION
             $_SESSION["borrowings"][$borrowingId-1]['lostDate'] = $tDate; //@todo : Mettre a jour $_SESSION
 				var_dump($_SESSION["borrowings"][$borrowingId-1]);
@@ -185,7 +198,19 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
           }
           else
           {
-            $status = "Borrowed";
+			  $tDate = new DateTime;
+			  $tDate->setTimestamp(time());
+
+			  $firstDateTimeStamp = $borrowing['dueDate']->format("U");
+    			$secondDateTimeStamp = $tDate->format("U");
+    			$rv = round ((($firstDateTimeStamp - $secondDateTimeStamp))/86400);
+
+			  
+			  if ($rv<0) {
+				  $status = "Late";
+			  } else {
+				  $status = "Borrowed";
+			  }
           }
         }
       }
@@ -205,7 +230,6 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
               $this->setBorrowingStatus($borrowingId,"Returned");
               break;
             case "lost" :
-				  echo ' cancel ';
               $this->setBorrowingStatus($borrowingId,"Lost");
               break;
             default :

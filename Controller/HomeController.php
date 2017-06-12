@@ -6,6 +6,7 @@ class HomeController {
     public $keychains;
     public $borrowings;
     public $lateBorrowings;
+    public $lostBorrowings;
     public $keys;
 
     private $userDAO;
@@ -17,6 +18,7 @@ class HomeController {
 
         $this->borrowings = $borrowService->getCurrentBorrowings();
         $this->lateBorrowings = $borrowService->getLateBorrowing();
+        $this->lostBorrowings = $borrowService->getLostBorrowing();
     }
 
     public function getDeltaInDays($lateBorrowing){
