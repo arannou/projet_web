@@ -13,11 +13,24 @@
           <table class="table">
             <thead>
               <th>nom</th>
+              <th>Lock</th>
+              <th>Key</th>
             </thead>
             <?php
-            foreach ($controller->rooms as $room) {
+            foreach ($controller->rooms as $index => $room) {
               echo '<tr>';
               echo '<td>'.$room->getId().'</td>';
+              if ($controller->locks[$index] != null) {
+                echo '<td>'.$controller->locks[$index]->getId().'</td>';
+              } else {
+                echo '<td></td>';
+              }
+              if ($controller->keys[$index] != null) {
+                echo '<td>'.$controller->keys[$index]->getId().'</td>';
+              } else {
+                echo '<td></td>';
+              }
+
               echo '</tr>';
             }
             ?>

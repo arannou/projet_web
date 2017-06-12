@@ -34,6 +34,7 @@ class implementationKeyDAO_Dummy implements interfaceKeyDAO
                 $key = new keyVO;
                 $key->setId(intval($xmlkey->id));
                 $key->setType((string)$xmlkey->type);
+                $key->setLockId((int)$xmlkey->lockId);
 
                 array_push($_SESSION['keys'],$key);
             }
@@ -75,8 +76,17 @@ class implementationKeyDAO_Dummy implements interfaceKeyDAO
         if($keychainId == $this->getKeyById($keyId)->getKeychainId()) {
             return $keychainId;
         }
-
         return null;
+    }
+
+    public function getKeysByKeychainId($keychainId){
+        $keys = [];
+        foreach ($this->getKeys() as $index => $key) {
+            if($keychainId == $key->getKeychainId()) {
+                array_push($keys, $key);
+            }
+        }
+        return $keys;
     }
 
     public function addKey($key) {
@@ -92,6 +102,16 @@ class implementationKeyDAO_Dummy implements interfaceKeyDAO
             }
         }
 
+    }
+
+    public function getKeyByLockId($lockId)
+    {
+      foreach ($this->getKeys() as $index => $key) {
+          if($key->getLockId() == $lockId) {
+              return $key;
+          }
+      }
+      return null;
     }
 
 }

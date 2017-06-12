@@ -3,5 +3,7 @@
     <lock>
         <id>1</id>
         <length>25</length>
+        <doorId>1</doorId>
+        <lockId>1</lockId>
     </lock>
 </locks>

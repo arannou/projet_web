@@ -10,7 +10,6 @@
           <div class="x_title">
             Ajouter une porte
           </div>
-
           <div class="x_content">
           <form action="?/create_door" method="post" data-parsley-validate class="form-horizontal form-label-left">
             <div class="form-group">

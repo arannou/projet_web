@@ -33,6 +33,7 @@ class implementationLockDAO_Session implements interfaceLockDAO
            $lock = new LockVO();
            $lock->setId(intval($xmlLock->id));
            $lock->setLength(intval($xmlLock->length));
+           $lock->setDoorId((string)$xmlLock->doorId);
            $this->addLock($lock);
          }
        } else {
@@ -60,9 +61,9 @@ class implementationLockDAO_Session implements interfaceLockDAO
        return $_SESSION['locks'];
    }
 
-   public function getLockById(){
+   public function getLockById($id){
        foreach ($this->getLocks() as $key => $lock) {
-           if($lock['id'] == $id){
+           if($lock->getId() == $id){
                return $lock;
            }
        }
@@ -92,7 +93,13 @@ class implementationLockDAO_Session implements interfaceLockDAO
        }
    }
 
+   public function getLockByDoorId($doorId) {
+     foreach ($this->getLocks() as $key => $lock) {
+         if($lock->getDoorId() == $doorId){
+             return $lock;
+         }
+     }
+     return null;
+   }
 }
-
-
 ?>

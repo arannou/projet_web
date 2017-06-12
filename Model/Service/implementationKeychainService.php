@@ -4,6 +4,7 @@
 require_once 'Model/DAO/implementationKeyDAO_Dummy.php';
 require_once 'Model/DAO/implementationBorrowingsDAO_Session.php';
 require_once 'Model/Service/interfaceKeychainService.php';
+require_once 'Model/Service/implementationBorrowService_Dummy.php';
 
 class implementationKeychainService implements interfaceKeychainService
 {
@@ -18,6 +19,7 @@ class implementationKeychainService implements interfaceKeychainService
    private $_keyDAO;
    private $_keychainDAO;
    private $_borrowingsDAO;
+   private $borrowService;
 
    /**
    * Constructeur de la classe
@@ -30,6 +32,8 @@ class implementationKeychainService implements interfaceKeychainService
      $this->_keychainDAO   = implementationKeychainDAO_Dummy::getInstance();
      $this->_borrowingsDAO = implementationBorrowingsDAO_Session::getInstance();
      $this->_keyDAO        = implementationKeyDAO_Dummy::getInstance();
+
+     $borrowService = implementationBorrowService_Dummy::getInstance();
    }
 
       /**
@@ -72,6 +76,17 @@ class implementationKeychainService implements interfaceKeychainService
         $this->_keychainDAO->addKeychain($keychain);
 
         return $keychain;
+    }
+
+    public function isKeychainAvailable($id){
+        $borrowings = $this->borrowService->getCurrentBorrowings();
+        foreach ($borrowings as $key => $borrowing) {
+            if($borrowing->getKeychainId() == $id){
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public function createKeychainFromCSV($keychainId, $creationDate, $dueDate, $keys) {
