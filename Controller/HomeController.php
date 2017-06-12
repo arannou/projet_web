@@ -9,6 +9,7 @@ class HomeController {
     public $lostBorrowings;
 
 
+
 public $users;
     public $keys;
 
@@ -41,6 +42,7 @@ public $users;
 
         $DAO = implementationUserDAO_Dummy::getInstance();
         $this->users = $DAO->getUsers();
+
 
 
       /*  $keysDAO= implementationKeyDAO_Dummy::getInstance();
