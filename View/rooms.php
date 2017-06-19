@@ -79,7 +79,6 @@
 <!-- Modal -->
 <?php
 foreach ($controller->rooms as $room) {
-  //$borrowTab = $controller->borrowByUser[$user->getEnssatPrimaryKey()];
   echo '<div class="modal fade" id="room'.$room->getId().'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
