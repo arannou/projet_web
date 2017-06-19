@@ -156,6 +156,20 @@ function keys(){
     require 'View/Partial/footer.php';
 }
 
+//Ajout de clé via formulaire
+dispatch_post('/addKeysForm', 'addKeysForm');
+function addKeysForm() {
+  //Import des classes
+  require_once 'Model/DAO/implementationKeyDAO_Dummy.php';
+  require_once 'Model/Service/implementationKeyService_Dummy.php';
+  require_once 'Controller/KeyFormController.php';
+  //Appel du controlleur
+  $controller = new KeyFormController();
+
+  header('location:?keys');
+}
+
+
 //Emprunt
 dispatch('/borrowKeychainForm', 'borrowKeychainForm');
 function borrowKeychainForm(){
@@ -327,6 +341,18 @@ function roomsForm(){
   require_once 'Controller/CreateRoomController.php';
 
   $controller = new CreateRoomController("Salles");
+  header('location:?/rooms');
+}
+
+//Traitement du formulaire CSV
+dispatch_post('/uploadRoomCSV', 'uploadRoomCSV');
+function uploadRoomCSV(){
+  require_once 'Model/Service/implementationRoomService.php';
+  require_once 'Controller/UploadRoomCSVController.php';
+  require_once 'Model/DAO/implementationRoomDAO_Session.php';
+
+  $controller = new UploadRoomCSVController();
+
   header('location:?/rooms');
 }
 

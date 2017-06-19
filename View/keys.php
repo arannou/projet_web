@@ -40,7 +40,7 @@
             Ajout d'une clé
           </div>
           <div class="form-group">
-            <form action="?/rooms" method="post" data-parsley-validate class="form-horizontal form-label-left">
+            <form action="?/addKeysForm" method="post" data-parsley-validate class="form-horizontal form-label-left">
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Id de la clé :</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -60,7 +60,18 @@
                   </select>
                 </div>
               </div>
-              <br>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Id du lock :</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <select name="lockId" class="form-control">
+                    <?php
+                    foreach ($controller->locks as $key => $lock) {
+                      echo '<option value="'.$lock->getId().'">'.$lock->getId().'</option>';
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <input type="submit" value="Ajouter" class="btn btn-warning" >
               </div>

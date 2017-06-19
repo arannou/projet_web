@@ -50,6 +50,25 @@
             </form>
           </div>
         </div>
+        <div class="x_panel">
+          <div class="x_title">
+            Ajout de salles par CSV
+          </div>
+          <div class="form-group">
+            <form action="?/uploadRoomCSV" method="post" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left">
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Fichier CSV :</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="file" name="roomCSV">
+                </div>
+              </div>
+              <br>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="submit" value="Envoyer" class="btn btn-warning" >
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>
