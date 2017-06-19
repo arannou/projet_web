@@ -4,7 +4,7 @@ class DoorsController {
 
     public $pageName;
     public $doors;
-	
+
 
     public function __construct($pageName){
         $this->pageName = $pageName;

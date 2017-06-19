@@ -41,19 +41,26 @@ class implementationDoorService implements interfaceDoorService
 
      return self::$_instance;
    }
-	
+
 	    //on crée une porte
-    public function createDoor($room, $lock)
+    public function createDoor($room)
     {
-      $this->_doorDAO->add($room, $lock);
+      $doors = $this->_doorDAO->getDoors();
+      $lastId = end($doors)->getId();
+
+      $door = new DoorVO();
+      $door->setId($lastId+1);
+      $door->setRoomId($room);
+
+      $this->_doorDAO->addDoor($door);
 	}
 
     public function addLockToDoor(){
-		
+
 	}
 
     public function deleteLockToDoor(){
-		
+
 	}
 }
 
