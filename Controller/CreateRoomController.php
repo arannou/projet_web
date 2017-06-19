@@ -3,6 +3,8 @@
 class CreateRoomController {
     public function __construct(){
         $createRoom    = implementationRoomService::getInstance();
-        $createRoom->createRoom($_POST['roomName']);
+        if (isset($_POST['roomName']) && !empty($_POST['roomName'])) {
+          $createRoom->createRoom($_POST['roomName']);
+      }
     }
 }
