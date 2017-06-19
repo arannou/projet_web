@@ -41,7 +41,7 @@ class BorrowKeyChainFormController {
 
                 $lockId = $key->getLockId();
                 $lock   = $lockDAO->getLockById($lockId);
-                $doorId = $lock->getDoorId();;
+                $doorId = $lock->getDoorId();
                 $door   = $doorDAO->getDoorById($doorId);
 
                 array_push($rooms, $door->getRoomId());
@@ -66,6 +66,9 @@ class BorrowKeyChainFormController {
         $this->users         = $usersDAO->getUsers();
         $this->keys          = $keyDAO->getKeys();
         $this->availableKeys = $keyService->getAvailableKeys();
+
+        $keyService = implementationKeyService_Dummy::getInstance();
+       $this->availableKeys = $keyService->getAvailableKeys();
 
         if(isset($_SESSION['error'])){
             $this->error = $_SESSION['error'];

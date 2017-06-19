@@ -6,7 +6,7 @@ class LoseKeychainController {
 		if(isset($_POST['id']) && isset($_POST['comment'])){
 			$loseKeychain= implementationBorrowService_Dummy::getInstance();
 			$loseKeychain->lostKeychain(intval($_POST['id']), $_POST['comment']);
-			
+
 		}
     }
 }
