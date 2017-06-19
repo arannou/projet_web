@@ -79,7 +79,6 @@ foreach ($controller->users as $user) {
         <strong>Trousseaux empruntés :</strong>
         <br>
         ';
-        //print_r($controller->borrowByUser[$user->getEnssatPrimaryKey()]);
         if ($borrowTab != null) {
           foreach ($borrowTab as $key => $borrow) {
             echo $borrow['keychainId'].' ';
