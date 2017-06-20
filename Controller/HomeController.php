@@ -9,8 +9,11 @@ class HomeController {
     public $lostBorrowings;
 	
     public $keysNumber;
+    public $passNumber;
 	public $userNumber;
+	public $studentNumber;
 	public $borrowingsNumber;
+	public $lateNumber;
 	public $borrowingsThisWeek;
 
     private $userDAO;
@@ -22,16 +25,35 @@ class HomeController {
 
         $this->borrowings = $borrowService->getCurrentBorrowings();
         $this->lateBorrowings = $borrowService->getLateBorrowing();
+		$this->lateNumber = count($borrowService->getLateBorrowing());
         $this->lostBorrowings = $borrowService->getLostBorrowing();
 		
+		
+		// bloc 'nombre d'utilisateurs'
 		$users =implementationUserDAO_Session::getInstance();
 		$this->userNumber = count($users->getUsers());
+		$this->studentNumber =0;
+		foreach($users->getUsers() as $u) {
+			if (strval($u->getStatus()) =="Etudiant")
+			$this->studentNumber ++;
+		}
 		
+		// bloc nombre de clés
 		$keys =implementationKeyDAO_Session::getInstance();
 		$this->keysNumber = count($keys->getKeys());
+		$this->passNumber =0;
+		foreach($keys->getKeys() as $k) {
+			if (strval($k->getType()) !="Clé")
+			$this->passNumber ++;
+		}
 		
+		// bloc nombre d'emprunts
 		$borrowings =implementationBorrowingsDAO_Session::getInstance();
 		$this->borrowingsNumber = count($borrowings->getBorrowings());
+		
+		
+		
+		// bloc enmprunts en cours
 		$this->borrowingsThisWeek =0;
 		foreach($borrowings->getBorrowings() as $b) {
 			$firstDateTimeStamp = $b['borrowDate']->format("U");
