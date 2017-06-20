@@ -21,7 +21,7 @@ class BorrowKeychainController {
                     //verifier la dispo de toutes les clés
                     $allKeyAvailable = true;
                     foreach ($keys as $index => $keyId) {
-                        if(!$keyService->isKeyAvailable($keyId)){
+                        if(!$keychainService->isKeyAvailable($keyId)){
                             $allKeyAvailable = false;
                         }
                     }

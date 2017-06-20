@@ -15,14 +15,13 @@ class BorrowKeyChainFormController {
     public function __construct($pageName){
         $this->pageName = $pageName;
 
-        $keychainDAO = implementationKeychainDAO_Dummy::getInstance();
-        $usersDAO    = implementationUserDAO_Dummy::getInstance();
-        $keyDAO      = implementationKeyDAO_Dummy::getInstance();
-        $keyService  = implementationKeyService_Dummy::getInstance();
-        $borrowService = implementationBorrowService_Dummy::getInstance();
-        $lockDAO     = implementationLockDAO_Session::getInstance();
-        $doorDAO     = implementationDoorDAO_Dummy::getInstance();
-
+        $keychainDAO    = implementationKeychainDAO_Dummy::getInstance();
+        $usersDAO       = implementationUserDAO_Dummy::getInstance();
+        $keyDAO         = implementationKeyDAO_Dummy::getInstance();
+        $keyService     = implementationKeyService_Dummy::getInstance();
+        $borrowService  = implementationBorrowService_Dummy::getInstance();
+        $lockDAO        = implementationLockDAO_Session::getInstance();
+        $doorDAO        = implementationDoorDAO_Dummy::getInstance();
 
         $this->keychains = $keychainDAO->getKeychains();
         $currentBorrowings = $borrowService->getCurrentBorrowings();
@@ -32,7 +31,7 @@ class BorrowKeyChainFormController {
         $this->availableKeychains = [];
 
         foreach ($this->keychains as $index => $keychain) {
-            $keys = $keyDAO->getKeysByKeychainId($keychain->getId());
+            $keys = $keychain->getKeys();
 
             $ids = [];
             $rooms = [];
@@ -41,7 +40,7 @@ class BorrowKeyChainFormController {
 
                 $lockId = $key->getLockId();
                 $lock   = $lockDAO->getLockById($lockId);
-                $doorId = $lock->getDoorId();;
+                $doorId = $lock->getDoorId();
                 $door   = $doorDAO->getDoorById($doorId);
 
                 array_push($rooms, $door->getRoomId());
@@ -61,7 +60,6 @@ class BorrowKeyChainFormController {
             array_push($this->roomsNames, $rooms);
             array_push($this->keychainsKeys, $ids);
         }
-
 
         $this->users         = $usersDAO->getUsers();
         $this->keys          = $keyDAO->getKeys();

@@ -6,7 +6,6 @@ class KeyVO
 
     protected $id;
     protected $type; //Clef ou Passe Partiel ou Passe Total
-    protected $keychainId = null;
     protected $lockId;
 
     /**
@@ -77,30 +76,6 @@ class KeyVO
     public function setType($type)
     {
         $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of Keychain Id
-     *
-     * @return mixed
-     */
-    public function getKeychainId()
-    {
-        return $this->keychainId;
-    }
-
-    /**
-     * Set the value of Keychain Id
-     *
-     * @param mixed keychainId
-     *
-     * @return self
-     */
-    public function setKeychainId($keychainId)
-    {
-        $this->keychainId = $keychainId;
 
         return $this;
     }

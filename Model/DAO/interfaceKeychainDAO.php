@@ -12,8 +12,6 @@ interface interfaceKeyChainDAO
 
     public function getKeychains();
 
-    public function getRandomKeychain();
-
     public function getKeychainById($keychainId);
 
 }

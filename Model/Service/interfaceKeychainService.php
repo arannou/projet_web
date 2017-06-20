@@ -7,8 +7,6 @@ interface interfaceKeychainService
     public function createKeychainFromCSV($keychainId, $creationDate, $dueDate, $keys);
 
     public function checkKeychainById($keychainId);
-
-    public function checkKeychainOfKey($keyId, $keychainId);
 }
 
 ?>

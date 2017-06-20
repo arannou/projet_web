@@ -104,8 +104,7 @@ class implementationKeyDAO_Dummy implements interfaceKeyDAO
 
     }
 
-    public function getKeyByLockId($lockId)
-    {
+    public function getKeyByLockId($lockId){
       foreach ($this->getKeys() as $index => $key) {
           if($key->getLockId() == $lockId) {
               return $key;

@@ -14,6 +14,10 @@ if(!isset($_SESSION['borrowings'])){
   $_SESSION['borrowings'] = array();
 }
 
+if(!isset($_SESSION['keyKeychain'])){
+  $_SESSION['keyKeychain'] = array();
+}
+
 if(!isset($_SESSION['locks'])){
     $_SESSION['locks'] = array();
 }
@@ -179,6 +183,7 @@ function borrowKeychainForm(){
   require_once 'Model/DAO/implementationUserDAO_Dummy.php';
   require_once 'Model/DAO/implementationLockDAO_Session.php';
   require_once 'Model/DAO/implementationDoorDAO_Dummy.php';
+  require_once 'Model/DAO/implementationKeyKeychainDAO_Session.php';
   require_once 'Model/Service/implementationBorrowService_Dummy.php';
   require_once 'Model/Service/implementationKeyService_Dummy.php';
   require_once 'Controller/BorrowKeyChainFormController.php';
