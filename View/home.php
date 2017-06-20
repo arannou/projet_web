@@ -60,6 +60,7 @@
                             echo '<td><a href="?/loseKeychainForm/'.$borrowing['borrowingId'].'"><button class="btn btn-primary">Perdu</button></a></td>';
                         } else echo '<td></td>';
                         echo '<td><a href="?/extendBorrowingForm/'.$borrowing['borrowingId'].'"><button type="button" class="btn btn-warning">Prolonger</button></a></td>';
+                        echo '<td><a href="?/returnKeychainForm/'.$borrowing['borrowingId'].'"><button type="button" class="btn btn-warning">Retourner</button></a></td>';
                         echo '<tr>';
                     }
                     ?>

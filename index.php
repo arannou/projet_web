@@ -255,6 +255,16 @@ function extendBorrowing(){
     header('location:?/');
 }
 
+dispatch('/returnKeychainForm/:id', 'returnKeychainForm');
+function returnKeychainForm($id){
+    require_once 'Model/Service/implementationBorrowService.php';
+    require_once 'Controller/ReturnKeychainController.php';
+
+    $controller = new ReturnKeychainController($id);
+
+    header('location:?/');
+}
+
 //Emprunts - Formulaire (dispatch_post)
 dispatch_post('/borrowKeychain', 'borrowKeychain');
 function borrowKeychain(){
