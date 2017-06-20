@@ -205,7 +205,7 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
     			$secondDateTimeStamp = $tDate->format("U");
     			$rv = round ((($firstDateTimeStamp - $secondDateTimeStamp))/86400);
 
-			  
+
 			  if ($rv<0) {
 				  $status = "Late";
 			  } else {
@@ -252,6 +252,10 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
 
     }
 
+    public function setNewDueDate($borrowingId, DateTime $dueDate) {
+      $borrowing = $this->getBorrowingById($borrowingId);
+      $_SESSION["borrowings"][$borrowingId-1]['dueDate'] = $dueDate;
+    }
 
     //@todo : Remplacer l'utilisation de cette fonction par celle en DAO
     public function getBorrowingsWithStatus()

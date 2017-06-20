@@ -13,7 +13,7 @@
 <div class="col-md-3 left_col">
   <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;">
-      <a href="?" class="site_title"><i class="fa fa-paw"></i> <span><?php echo $controller->getPageName(); ?></span></a>
+      <a href="?"><img src="Asset/images/logo.png" width="65%"  class="img-responsive center-block margin-spe" /> <span><?php echo $controller->getPageName(); ?></span></a>
     </div>
 
     <div class="clearfix"></div>

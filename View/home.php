@@ -197,6 +197,7 @@
                     <th>comment</th>
                     <th>status</th>
                     <th></th>
+                    <th></th>
                 </thead>
                 <tbody>
                     <?php
@@ -214,6 +215,7 @@
                         if(!isset($borrowing['lostDate'])) {
                             echo '<td><a href="?/loseKeychainForm/'.$borrowing['borrowingId'].'"><button class="btn btn-primary">Perdu</button></a></td>';
                         } else echo '<td></td>';
+                        echo '<td><a href="?/extendBorrowingForm/'.$borrowing['borrowingId'].'"><button type="button" class="btn btn-warning">Prolonger</button></a></td>';
                         echo '<tr>';
                     }
                     ?>
@@ -221,6 +223,4 @@
             </table>
         </div>
     </div>
-</div>
-</div>
 </div>

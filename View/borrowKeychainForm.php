@@ -76,7 +76,7 @@
                                     <input type="hidden" id="keychainSelection" name="keychainSelection" value="selection">
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Identifiant:</label>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Identifiant :</label>
                                         <select name = "userEnssatPrimaryKey">
                                             <?php
                                             foreach($controller->users as $user){ ?>
