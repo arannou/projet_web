@@ -7,7 +7,7 @@ require_once 'Model/DAO/implementationLockDAO_Session.php';
 require_once 'Model/DAO/implementationDoorDAO_Session.php';
 require_once 'Model/Service/implementationKeychainService.php';
 
-class implementationKeyService_Dummy
+class implementationKeyService
 {
 
     /**
@@ -28,11 +28,11 @@ class implementationKeyService_Dummy
      */
     private function __construct()
     {
-        $this->_keyDAO  = implementationKeyDAO_Dummy::getInstance();
-        $this->_keychainDAO   = implementationKeychainDAO_Dummy::getInstance();
+        $this->_keyDAO  = implementationKeyDAO_Session::getInstance();
+        $this->_keychainDAO   = implementationKeychainDAO_Session::getInstance();
         $this->_borrowingsDAO = implementationBorrowingsDAO_Session::getInstance();
         $this->_lockDAO = implementationLockDAO_Session::getInstance();
-        $this->_doorDAO = implementationDoorDAO_Dummy::getInstance();
+        $this->_doorDAO = implementationDoorDAO_Session::getInstance();
         $this->_keychainService = implementationKeychainService::getInstance();
     }
 
@@ -46,7 +46,7 @@ class implementationKeyService_Dummy
     public static function getInstance() {
 
         if(is_null(self::$_instance)) {
-            self::$_instance = new implementationKeyService_Dummy();
+            self::$_instance = new implementationKeyService();
         }
 
         return self::$_instance;

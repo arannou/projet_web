@@ -6,7 +6,7 @@ class UploadUserCSVController {
   public $service;
 
   public function __construct(){
-    $DAO = implementationUserDAO_Dummy::getInstance();
+    $DAO = implementationUserDAO_Session::getInstance();
     $this->service = implementationUserService::getInstance();
     $this->saveCSV();
     $this->readCSV();

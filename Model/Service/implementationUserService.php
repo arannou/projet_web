@@ -22,7 +22,7 @@ class implementationUserService
    */
    private function __construct()
    {
-     $this->_userDAO  = implementationUserDAO_Dummy::getInstance();
+     $this->_userDAO  = implementationUserDAO_Session::getInstance();
    }
 
       /**

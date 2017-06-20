@@ -11,9 +11,9 @@ class RoomController {
         $this->pageName = $pageName;
 
         $roomDAO        = implementationRoomDAO_Session::getInstance();
-        $doorDAO        = implementationDoorDAO_Dummy::getInstance();
+        $doorDAO        = implementationDoorDAO_Session::getInstance();
         $lockDAO        = implementationLockDAO_Session::getInstance();
-        $keyDAO         = implementationKeyDAO_Dummy::getInstance();
+        $keyDAO         = implementationKeyDAO_Session::getInstance();
 
         $this->rooms    = $roomDAO->getRooms();
 

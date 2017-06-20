@@ -6,7 +6,7 @@ class UploadKeychainCSVController {
   public $service;
 
   public function __construct(){
-    $DAO = implementationKeychainDAO_Dummy::getInstance();
+    $DAO = implementationKeychainDAO_Session::getInstance();
     $this->service = implementationKeychainService::getInstance();
     $this->saveCSV();
     $this->readCSV();

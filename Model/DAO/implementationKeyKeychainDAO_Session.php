@@ -11,7 +11,7 @@ class implementationKeyKeychainDAO_Session implements interfaceKeyKeychainDAO
     private $_keyDAO;
 
     private function __construct(){
-        $this->_keyDAO = implementationKeyDAO_Dummy::getInstance();
+        $this->_keyDAO = implementationKeyDAO_Session::getInstance();
     }
 
     public static function getInstance(){

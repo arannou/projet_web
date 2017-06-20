@@ -3,7 +3,7 @@ require_once 'Model/VO/KeychainVO.php';
 require_once 'Model/DAO/interfaceKeychainDAO.php';
 require_once 'Model/DAO/implementationKeyKeychainDAO_Session.php';
 
-class implementationKeychainDAO_Dummy implements interfaceKeyChainDAO
+class implementationKeychainDAO_Session implements interfaceKeyChainDAO
 {
 
     private $_keychains = array();
@@ -59,7 +59,7 @@ class implementationKeychainDAO_Dummy implements interfaceKeyChainDAO
     public static function getInstance() {
 
         if(is_null(self::$_instance)) {
-            self::$_instance = new implementationKeychainDAO_Dummy();
+            self::$_instance = new implementationKeychainDAO_Session();
         }
 
         return self::$_instance;

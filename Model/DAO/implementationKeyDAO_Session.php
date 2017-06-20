@@ -2,7 +2,7 @@
 require_once 'Model/VO/KeyVO.php';
 require_once 'Model/DAO/interfaceKeyDAO.php';
 
-class implementationKeyDAO_Dummy implements interfaceKeyDAO
+class implementationKeyDAO_Session implements interfaceKeyDAO
 {
 
     private $_keys = array();
@@ -53,7 +53,7 @@ class implementationKeyDAO_Dummy implements interfaceKeyDAO
     public static function getInstance() {
 
         if(is_null(self::$_instance)) {
-            self::$_instance = new implementationKeyDAO_Dummy();
+            self::$_instance = new implementationKeyDAO_Session();
         }
         return self::$_instance;
     }
@@ -77,16 +77,6 @@ class implementationKeyDAO_Dummy implements interfaceKeyDAO
             return $keychainId;
         }
         return null;
-    }
-
-    public function getKeysByKeychainId($keychainId){
-        $keys = [];
-        foreach ($this->getKeys() as $index => $key) {
-            if($keychainId == $key->getKeychainId()) {
-                array_push($keys, $key);
-            }
-        }
-        return $keys;
     }
 
     public function addKey($key) {
