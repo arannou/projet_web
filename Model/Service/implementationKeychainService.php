@@ -111,6 +111,7 @@ class implementationKeychainService implements interfaceKeychainService
             $dateDestruction = DateTime::createFromFormat('Y-m-d', $dueDate);
             $keychain->setDestructionDate($dateDestruction);
             $parsedKeys = explode(',', $keys);
+
             foreach ($parsedKeys as $index => $keyId) {
                 if($this->isKeyAvailable((int)$keyId)) {
                     $key = $this->_keyDAO->getKeyById((int)$keyId);
