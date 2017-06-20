@@ -17,17 +17,22 @@ class HomeController {
 	public $borrowingsThisWeek;
 
     private $userDAO;
+    private $keyKeychainDAO;
+    private $lockDAO;
 
     public function __construct($pageName){
         $this->pageName   = $pageName;
         $borrowService    = implementationBorrowService::getInstance();
         $this->userDAO    = implementationUserDAO_Session::getInstance();
 
-        $this->borrowings = $borrowService->getCurrentBorrowings();
+        $this->borrowings     = $borrowService->getCurrentBorrowings();
         $this->lateBorrowings = $borrowService->getLateBorrowing();
-		$this->lateNumber = count($borrowService->getLateBorrowing());
+		$this->lateNumber     = count($borrowService->getLateBorrowing());
         $this->lostBorrowings = $borrowService->getLostBorrowing();
-		
+
+        $this->keyKeychainDAO = implementationKeyKeychainDAO_Session::getInstance();
+        $this->lockDAO        = implementationLockDAO_Session::getInstance();
+        $this->doorDAO        = implementationDoorDAO_Session::getInstance();
 		
 		// bloc 'nombre d'utilisateurs'
 		$users =implementationUserDAO_Session::getInstance();
@@ -51,8 +56,6 @@ class HomeController {
 		$borrowings =implementationBorrowingsDAO_Session::getInstance();
 		$this->borrowingsNumber = count($borrowings->getBorrowings());
 		
-		
-		
 		// bloc enmprunts en cours
 		$this->borrowingsThisWeek =0;
 		foreach($borrowings->getBorrowings() as $b) {
@@ -72,6 +75,23 @@ class HomeController {
     public function getUserNameByEnssatPrimaryKey($epk){
         $user = $this->userDAO->getUserByEnssatPrimaryKey($epk);
         return $user->getSurname()." ".$user->getName();
+    }
+
+    public function getKeysByKeychainId($kid){
+        $keys = $this->keyKeychainDAO->getKeysByKeychainId($kid);
+        $rooms = [];
+        foreach ($keys as $key){
+            $lock = $this->lockDAO->getLockById($key->getLockId());
+
+            if($lock != null){
+                $door = $this->doorDAO->getDoorById($lock->getDoorId());
+                if($door != null){
+                    array_push($rooms, $door->getRoomId());
+                }
+            }
+        }
+
+        return implode(', ', $rooms);
     }
 
     /**
