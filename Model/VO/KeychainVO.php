@@ -29,4 +29,17 @@ class KeychainVO
     {
         return $this->destructionDate;
     }
+
+    protected $keys = [];
+    public function getKeys(){
+        return $this->keys;
+    }
+
+    public function setKeys($keys){
+        $this->keys = $keys;
+    }
+
+    public function addKey($key){
+        array_push($keys, $key);
+    }
 }

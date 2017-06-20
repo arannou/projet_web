@@ -5,26 +5,27 @@ require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
 require_once 'Model/DAO/implementationBorrowingsDAO_Session.php';
 require_once 'Model/DAO/implementationLockDAO_Session.php';
 require_once 'Model/DAO/implementationDoorDAO_Dummy.php';
+require_once 'Model/Service/implementationKeychainService.php';
 
 class implementationKeyService_Dummy
 {
 
     /**
-    * @var Singleton
-    * @access private
-    * @static
-    */
+     * @var Singleton
+     * @access private
+     * @static
+     */
     private static $_instance = null;
 
     private $_keyDAO;
 
 
     /**
-    * Constructeur de la classe
-    *
-    * @param void
-    * @return void
-    */
+     * Constructeur de la classe
+     *
+     * @param void
+     * @return void
+     */
     private function __construct()
     {
         $this->_keyDAO  = implementationKeyDAO_Dummy::getInstance();
@@ -32,15 +33,16 @@ class implementationKeyService_Dummy
         $this->_borrowingsDAO = implementationBorrowingsDAO_Session::getInstance();
         $this->_lockDAO = implementationLockDAO_Session::getInstance();
         $this->_doorDAO = implementationDoorDAO_Dummy::getInstance();
+        $this->_keychainService = implementationKeychainService::getInstance();
     }
 
     /**
-    * Méthode qui crée l'unique instance de la classe
-    * si elle n'existe pas encore puis la retourne.
-    *
-    * @param void
-    * @return Singleton
-    */
+     * Méthode qui crée l'unique instance de la classe
+     * si elle n'existe pas encore puis la retourne.
+     *
+     * @param void
+     * @return Singleton
+     */
     public static function getInstance() {
 
         if(is_null(self::$_instance)) {
@@ -50,12 +52,12 @@ class implementationKeyService_Dummy
         return self::$_instance;
     }
 
-    public function createKey($id, $type, $keychainId, $lockId) {
+
+    public function createKey($id, $type, $lockId) {
         if(!$this->checkKeyByIdKey($id)) {
             $key = new KeyVO();
             $key->setId((int)$id);
             $key->setType($type);
-            $key->setKeychainId($keychainId);
             $key->setLockId($lockId);
             $this->_keyDAO->addKey($key);
         }
@@ -75,7 +77,7 @@ class implementationKeyService_Dummy
         $availableKeys = [];
 
         foreach ($keys as $index => $key) {
-            if($key->getKeychainId() == null){ //The key is not in a keychain
+            if($this->_keychainService->isKeyAvailable($key->getId())){
                 array_push($availableKeys, $key);
             }
         }
@@ -83,38 +85,34 @@ class implementationKeyService_Dummy
         return $availableKeys;
     }
 
-    public function isKeyAvailable($keyId){
-        $key = $this->_keyDAO->getKeyById($keyId);
-        if($key->getKeychainId() != null){
-            return false;
-        }else {
-            return true;
-        }
-    }
-
     public function getKeysOfKeychain($keychainId)
     {
-      $keysArray = null;
-      $keys = $this->_keyDAO->getKeys();
-      foreach ($keys as $index => $key) {
-        if ($keychainId == $key->getKeychainId()) {
-          $keysArray[] = $key->getId();
+        $keysArray = null;
+        $keys = $this->_keyDAO->getKeys();
+        foreach ($keys as $index => $key) {
+            if ($keychainId == $key->getKeychainId()) {
+                $keysArray[] = $key->getId();
+            }
         }
-      }
-      return $keysArray;
+        return $keysArray;
     }
 
     public function getDoorByKeyId($keyId)
     {
 
-          $key = $this->_keyDAO->getKeyById($keyId);
+        $key = $this->_keyDAO->getKeyById($keyId);
 
-          $lockId = $key->getLockId();
-          $lock   = $this->_lockDAO->getLockById($lockId);
-          $doorId = $lock->getDoorId();
-          $door   = $this->_doorDAO->getDoorById($doorId);
+        $lockId = $key->getLockId();
+        $lock   = $this->_lockDAO->getLockById($lockId);
 
-          return $door;
+        $door = null;
+
+        if($lock != null){
+            $doorId = $lock->getDoorId();
+            $door   = $this->_doorDAO->getDoorById($doorId);
+        }
+
+        return $door;
     }
 }
 ?>

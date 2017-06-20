@@ -1,27 +1,30 @@
 <?php
 require_once 'Model/VO/KeychainVO.php';
 require_once 'Model/DAO/interfaceKeychainDAO.php';
+require_once 'Model/DAO/implementationKeyKeychainDAO_Session.php';
 
 class implementationKeychainDAO_Dummy implements interfaceKeyChainDAO
 {
 
     private $_keychains = array();
+    private $keyKeychainDAO;
 
     /**
-    * @var Singleton
-    * @access private
-    * @static
-    */
+     * @var Singleton
+     * @access private
+     * @static
+     */
     private static $_instance = null;
 
 
     /**
-    * Constructeur de la classe
-    *
-    * @param void
-    * @return void
-    */
+     * Constructeur de la classe
+     *
+     * @param void
+     * @return void
+     */
     private function __construct() {
+        $this->keyKeychainDAO = implementationKeyKeychainDAO_Session::getInstance();
 
     }
 
@@ -47,12 +50,12 @@ class implementationKeychainDAO_Dummy implements interfaceKeyChainDAO
     }
 
     /**
-    * Méthode qui crée l'unique instance de la classe
-    * si elle n'existe pas encore puis la retourne.
-    *
-    * @param void
-    * @return Singleton
-    */
+     * Méthode qui crée l'unique instance de la classe
+     * si elle n'existe pas encore puis la retourne.
+     *
+     * @param void
+     * @return Singleton
+     */
     public static function getInstance() {
 
         if(is_null(self::$_instance)) {
@@ -68,22 +71,25 @@ class implementationKeychainDAO_Dummy implements interfaceKeyChainDAO
 
     public function getKeychains()
     {
-        return $_SESSION['keychains'];
-    }
+        $keychains = $_SESSION['keychains'];
+        foreach ($keychains as $index => $keychain){
+            $keys = $this->keyKeychainDAO->getKeysByKeychainId($keychain->getId());
+            $keychain->setKeys($keys);
+        }
 
-    public function getRandomKeychain()
-    {
-        return $_SESSION['keychains'][array_rand($this->_keychains,1)];
+        return $keychains;
     }
 
     public function getKeychainById($keychainId)
     {
-      foreach ($this->getKeychains() as $key => $keychain) {
-       if($keychainId == $keychain->getId()) {
-         return $keychain;
-       }
-      }
-      return null;
+        foreach ($this->getKeychains() as $key => $keychain) {
+            if($keychainId == $keychain->getId()) {
+                $keys = $this->keyKeychainDAO->getKeysByKeychainId($keychain->getId());
+                $keychain->setKeys($keys);
+                return $keychain;
+            }
+        }
+        return null;
     }
 }
 
