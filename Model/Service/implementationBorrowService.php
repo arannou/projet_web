@@ -156,6 +156,20 @@ class implementationBorrowService implements interfaceBorrowService
         return $lost;
     }
 
+    public function getReturnedBorrowing(){
+          $borrowings = $this->_borrowingsDAO->getBorrowings();
+          $returned = [];
+
+          foreach ($borrowings as $key => $borrowing) {
+              if($this->getBorrowingStatus($borrowing['borrowingId']) == "Returned"){
+                  $returned[$key] = $borrowing;
+                  $returned[$key]['status'] = "Returned";
+              }
+          }
+
+          return $returned;
+      }
+
     public function setBorrowingStatus($borrowingId,$status)
     {
 

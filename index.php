@@ -177,6 +177,48 @@ function addKeysForm() {
 }
 
 
+// retourné trousseau
+
+dispatch('/keychainReturn', 'keychainReturn');
+function keychainReturn(){
+  //Import des classes
+
+
+  require_once 'Model/DAO/implementationUserDAO_Session.php';
+  require_once 'Model/DAO/implementationKeychainDAO_Session.php';
+  require_once 'Model/Service/implementationBorrowService.php';
+  require_once 'Controller/keychainReturnController.php';
+  //Appel du controlleur
+  $controller = new keychainReturnController("Return");
+
+  //Appel de la vue
+  require 'View/Partial/head.php';
+  require 'View/Partial/nav.php';
+  //require 'View/home.php';
+
+require 'View/keychainReturn.php';
+  require 'View/Partial/footer.php';
+ }
+
+
+
+ dispatch('/keychainReturnValider/:id', 'keychainReturnValider');
+function keychainReturnValider($id){
+
+  require_once 'Model/DAO/implementationKeychainDAO_Session.php';
+  require_once 'Model/Service/implementationBorrowService.php';
+  require_once 'Controller/keychainReturnValiderController.php';
+
+  $controller = new keychainReturnValiderController($id);
+
+header('location:?/');
+//Appel de la vue
+require 'View/Partial/head.php';
+require 'View/Partial/nav.php';
+require 'View/keychainReturn.php';
+require 'View/Partial/footer.php';
+}
+
 //Emprunt
 dispatch('/borrowKeychainForm', 'borrowKeychainForm');
 function borrowKeychainForm(){
