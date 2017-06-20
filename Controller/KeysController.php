@@ -5,19 +5,23 @@ class KeysController {
   public $pageName;
   public $keys;
   public $doors;
+  public $locks;
 
   public function __construct($pageName){
     $this->pageName = $pageName;
-    $DAO = implementationKeyDAO_Dummy::getInstance();
-    $this->keys = $DAO->getKeys();
-    $keyService = implementationKeyService_Dummy::getInstance();
+    $DAO            = implementationKeyDAO_Dummy::getInstance();
+    $this->keys     = $DAO->getKeys();
+    $keyService     = implementationKeyService_Dummy::getInstance();
+    $lockDAO        = implementationLockDAO_Session::getInstance();
 
-    $this->doors = [];
-      foreach ($this->keys as $index => $key) {
-        //var_dump($key);
-        $this->doors[] = $keyService->getDoorByKeyId($key->getId());
-      }
-      //var_dump($keyId['roomId']);
+    $this->doors    = [];
+    foreach ($this->keys as $index => $key) {
+      $this->doors[] = $keyService->getDoorByKeyId($key->getId());
+    }
+
+    $this->locks    = $lockDAO->getLocks();
+
+
   }
 
   /**

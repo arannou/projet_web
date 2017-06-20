@@ -41,6 +41,23 @@ class implementationRoomService implements interfaceRoomService
         $this->_roomDAO->addRoom($room);
     }
 
+    public function createRoomFromCSV($id) {
+        if(!$this->checkRoomById($id)) {
+            $room = new RoomVO();
+            $room->setId($id);
+            $this->_roomDAO->addRoom($room);
+        }
+    }
+
+    public function checkRoomById($id) {
+      if ($this->_roomDAO->getRoomByIdCSV($id) != null) {
+          return true;
+      }
+      else {
+          return false;
+      }
+    }
+
     public function addDoorToRoom() {
     }
     public function deleteDoorToRoom() {

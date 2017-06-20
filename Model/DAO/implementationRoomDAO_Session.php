@@ -71,6 +71,16 @@ class implementationRoomDAO_Session implements interfaceRoomDAO
      return null;
    }
 
+   public function getRoomByIdCSV($id)
+   {
+     foreach ($this->getRooms() as $key => $room) {
+      if($id == $room->getId()) {
+        return $room;
+      }
+     }
+     return null;
+   }
+
    public function addRoom($room)
    {
      # créer un tableau dans lequel on met toutes les infos de la room

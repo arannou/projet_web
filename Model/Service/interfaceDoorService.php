@@ -4,7 +4,7 @@
 interface interfaceDoorService
 {
   public static function getInstance();
-  public function createDoor($room, $lock);
+  public function createDoor($room);
   public function addLockToDoor();
   public function deleteLockToDoor();
 

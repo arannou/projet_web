@@ -44,7 +44,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Trousseaux existant</label>
                                 <select class="" name="keychainId">
                                     <?php
-                                    foreach($controller->keychains as $index => $keychain){
+                                    foreach($controller->availableKeychains as $index => $keychain){
                                         ?>
                                         <option value = "<?php echo $keychain->getId(); ?>"><?php echo json_encode($controller->roomsNames[$index]) ?></option>
                                         <?php  } ?>

@@ -13,11 +13,14 @@ class HomeController {
 	public $borrowingsNumber;
 	public $borrowingsThisWeek;
 
+    private $userDAO;
+
     public function __construct($pageName){
         $this->pageName   = $pageName;
         $borrowService    = implementationBorrowService_Dummy::getInstance();
-        $this->borrowings = $borrowService->getCurrentBorrowings();
+        $this->userDAO    = implementationUserDAO_Dummy::getInstance();
 
+        $this->borrowings = $borrowService->getCurrentBorrowings();
         $this->lateBorrowings = $borrowService->getLateBorrowing();
         $this->lostBorrowings = $borrowService->getLostBorrowing();
 		
@@ -42,6 +45,11 @@ class HomeController {
 
     public function getDeltaInDays($lateBorrowing){
         return date_diff($lateBorrowing['dueDate'], new DateTime())->days;
+    }
+
+    public function getUserNameByEnssatPrimaryKey($epk){
+        $user = $this->userDAO->getUserByEnssatPrimaryKey($epk);
+        return $user->getSurname()." ".$user->getName();
     }
 
     /**
