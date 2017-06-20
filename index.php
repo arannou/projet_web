@@ -63,15 +63,15 @@ function populateDatabase(){
     $_SESSION['users'] = array();
 
     require_once 'Model/DAO/implementationDoorDAO_Session.php';
-    $doorDAO = implementationDoorDAO_Dummy::getInstance();
+    $doorDAO = implementationDoorDAO_Session::getInstance();
     $doorDAO->populate();
 
     require_once 'Model/DAO/implementationKeychainDAO_Session.php';
-    $keyChainDAO = implementationKeychainDAO_Dummy::getInstance();
+    $keyChainDAO = implementationKeychainDAO_Session::getInstance();
     //$keyChainDAO->populate();
 
     require_once 'Model/DAO/implementationKeyDAO_Session.php';
-    $keyDAO = implementationKeyDAO_Dummy::getInstance();
+    $keyDAO = implementationKeyDAO_Session::getInstance();
     //$keyDAO->populate();
 
     require_once 'Model/DAO/implementationLockDAO_Session.php';
@@ -83,7 +83,7 @@ function populateDatabase(){
     $roomDAO->populate();
 
     require_once 'Model/DAO/implementationUserDAO_Session.php';
-    $userDAO = implementationUserDAO_Dummy::getInstance();
+    $userDAO = implementationUserDAO_Session::getInstance();
     $userDAO->populate();
 
     var_dump($_SESSION);
@@ -98,11 +98,11 @@ function dumpDatabase(){
 dispatch('/', 'home');
 function home(){
     //Import des classes
-    require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+    require_once 'Model/DAO/implementationKeychainDAO_Session.php';
     require_once 'Model/DAO/implementationBorrowingsDAO_Session.php';
-    require_once 'Model/DAO/implementationUserDAO_Dummy.php';
-    require_once 'Model/DAO/implementationKeyDAO_Dummy.php';
-    require_once 'Model/Service/implementationBorrowService_Dummy.php';
+    require_once 'Model/DAO/implementationUserDAO_Session.php';
+    require_once 'Model/DAO/implementationKeyDAO_Session.php';
+    require_once 'Model/Service/implementationBorrowService.php';
 
     require_once 'Controller/HomeController.php';
 
@@ -230,8 +230,8 @@ function loseKeychain(){
 dispatch('/extendBorrowingForm/:id', 'extendBorrowingForm');
 function extendBorrowingForm($id){
     require_once 'Controller/extendBorrowingFormController.php';
-    require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
-    require_once 'Model/Service/implementationBorrowService_Dummy.php';
+    require_once 'Model/DAO/implementationKeychainDAO_Session.php';
+    require_once 'Model/Service/implementationBorrowService.php';
 
     $controller = new extendBorrowingFormController("Emprunt", $id);
     //Appel de la vue
@@ -245,9 +245,9 @@ function extendBorrowingForm($id){
 dispatch_post('/extendBorrowing', 'extendBorrowing');
 function extendBorrowing(){
     require_once 'Controller/extendBorrowingController.php';
-    require_once 'Model/DAO/implementationUserDAO_Dummy.php';
-    require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
-    require_once 'Model/Service/implementationBorrowService_Dummy.php';
+    require_once 'Model/DAO/implementationUserDAO_Session.php';
+    require_once 'Model/DAO/implementationKeychainDAO_Session.php';
+    require_once 'Model/Service/implementationBorrowService.php';
 
     $controller = new extendBorrowingController();
 
