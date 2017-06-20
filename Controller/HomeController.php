@@ -7,7 +7,11 @@ class HomeController {
     public $borrowings;
     public $lateBorrowings;
     public $lostBorrowings;
-    public $keys;
+	
+    public $keysNumber;
+	public $userNumber;
+	public $borrowingsNumber;
+	public $borrowingsThisWeek;
 
     private $userDAO;
 
@@ -19,6 +23,24 @@ class HomeController {
         $this->borrowings = $borrowService->getCurrentBorrowings();
         $this->lateBorrowings = $borrowService->getLateBorrowing();
         $this->lostBorrowings = $borrowService->getLostBorrowing();
+		
+		$users =implementationUserDAO_Dummy::getInstance();
+		$this->userNumber = count($users->getUsers());
+		
+		$keys =implementationKeyDAO_Dummy::getInstance();
+		$this->keysNumber = count($keys->getKeys());
+		
+		$borrowings =implementationBorrowingsDAO_Session::getInstance();
+		$this->borrowingsNumber = count($borrowings->getBorrowings());
+		$this->borrowingsThisWeek =0;
+		foreach($borrowings->getBorrowings() as $b) {
+			$firstDateTimeStamp = $b['borrowDate']->format("U");
+    		$secondDateTimeStamp = (strtotime('last saturday'));
+    		$rv = round ((($firstDateTimeStamp - $secondDateTimeStamp))/86400);
+			if($rv>=0) $this->borrowingsThisWeek++;
+		}
+		
+		
     }
 
     public function getDeltaInDays($lateBorrowing){
