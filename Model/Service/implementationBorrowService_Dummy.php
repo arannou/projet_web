@@ -119,7 +119,7 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
         $now = new DateTime();
 
         foreach ($borrowings as $key => $borrowing) {
-            if($borrowing['dueDate']->getTimestamp() - $now->getTimestamp() < 0 && $borrowing['returnDate'] == null && $borrowing['lostDate'] == null){
+            if($borrowing['dueDate']->getTimestamp() - $now->getTimestamp() <= 0 && $borrowing['returnDate'] == null && $borrowing['lostDate'] == null){
                 array_push($late, $borrowing);
             }
         }

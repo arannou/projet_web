@@ -97,6 +97,7 @@ function home(){
   require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
   require_once 'Model/DAO/implementationBorrowingsDAO_Session.php';
   require_once 'Model/DAO/implementationUserDAO_Dummy.php';
+  require_once 'Model/DAO/implementationKeyDAO_Dummy.php';
   require_once 'Model/Service/implementationBorrowService_Dummy.php';
   require_once 'Controller/HomeController.php';
 
