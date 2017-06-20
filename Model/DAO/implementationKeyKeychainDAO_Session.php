@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Model/DAO/interfaceKeyKeychainDAO.php';
-require_once 'Model/DAO/implementationKeyDAO_Dummy.php';
+require_once 'Model/DAO/implementationKeyDAO_Session.php';
 
 class implementationKeyKeychainDAO_Session implements interfaceKeyKeychainDAO
 {

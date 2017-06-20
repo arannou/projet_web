@@ -1,12 +1,12 @@
 <?php
 
 
-require_once 'Model/DAO/implementationKeyDAO_Dummy.php';
+require_once 'Model/DAO/implementationKeyDAO_Session.php';
 require_once 'Model/DAO/implementationBorrowingsDAO_Session.php';
 require_once 'Model/DAO/implementationKeyKeychainDAO_Session.php';
 require_once 'Model/Service/interfaceKeychainService.php';
-require_once 'Model/Service/implementationKeyService_Dummy.php';
-require_once 'Model/Service/implementationBorrowService_Dummy.php';
+require_once 'Model/Service/implementationKeyService.php';
+require_once 'Model/Service/implementationBorrowService.php';
 
 class implementationKeychainService implements interfaceKeychainService
 {

@@ -1,5 +1,5 @@
 <?php
-require_once 'Model/DAO/implementationUserDAO_Dummy.php';
+require_once 'Model/DAO/implementationUserDAO_Session.php';
 
 class implementationUserService
 {

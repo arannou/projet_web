@@ -14,9 +14,9 @@ spl_autoload_register('chargerClasse'); // On enregistre la fonction en autoload
 //$perso = new Personnage(30,20);
 //$perso->parler();
 
-require_once 'Model/DAO/implementationUserDAO_Dummy.php';
-require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
-require_once 'Model/Service/implementationBorrowService_Dummy.php';
+require_once 'Model/DAO/implementationUserDAO_Session.php';
+require_once 'Model/DAO/implementationKeychainDAO_Session.php';
+require_once 'Model/Service/implementationBorrowService.php';
 require_once 'Model/Service/interfaceBorrowService.php';
 require_once 'Model/DAO/interfaceUserDAO.php';
 

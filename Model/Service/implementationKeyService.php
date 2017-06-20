@@ -1,10 +1,10 @@
 <?php
 
-require_once 'Model/DAO/implementationKeyDAO_Dummy.php';
-require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+require_once 'Model/DAO/implementationKeyDAO_Session.php';
+require_once 'Model/DAO/implementationKeychainDAO_Session.php';
 require_once 'Model/DAO/implementationBorrowingsDAO_Session.php';
 require_once 'Model/DAO/implementationLockDAO_Session.php';
-require_once 'Model/DAO/implementationDoorDAO_Dummy.php';
+require_once 'Model/DAO/implementationDoorDAO_Session.php';
 require_once 'Model/Service/implementationKeychainService.php';
 
 class implementationKeyService_Dummy
