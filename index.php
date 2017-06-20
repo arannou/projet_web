@@ -254,7 +254,6 @@ function extendBorrowing(){
     header('location:?/');
 }
 
-
 //Emprunts - Formulaire (dispatch_post)
 dispatch_post('/borrowKeychain', 'borrowKeychain');
 function borrowKeychain(){
