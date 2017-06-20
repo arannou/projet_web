@@ -6,8 +6,8 @@ class UploadKeyCSVController {
   public $service;
 
   public function __construct(){
-    $DAO = implementationKeyDAO_Dummy::getInstance();
-    $this->service = implementationKeyService_Dummy::getInstance();
+    $DAO = implementationKeyDAO_Session::getInstance();
+    $this->service = implementationKeyService::getInstance();
     $this->saveCSV();
     $this->readCSV();
   }

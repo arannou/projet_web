@@ -12,7 +12,7 @@ class LocksController {
         $DAO = implementationLockDAO_Session::getInstance();
         $this->locks = $DAO->getLocks();
 
-        $doorDAO = implementationDoorDAO_Dummy::getInstance();
+        $doorDAO = implementationDoorDAO_Session::getInstance();
 
 
         foreach ($this->locks as $key => $lock) {

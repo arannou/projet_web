@@ -3,7 +3,7 @@
 require_once 'Model/Service/interfaceFournisseurService.php';
 require_once 'Model/DAO/implementationFournisseurDAO_Session.php';
 
-class implementationFournisseurService_Dummy implements interfaceFournisseurService
+class implementationFournisseurService implements interfaceFournisseurService
 {
 
 
@@ -38,7 +38,7 @@ class implementationFournisseurService_Dummy implements interfaceFournisseurServ
       public static function getInstance() {
 
         if(is_null(self::$_instance)) {
-          self::$_instance = new implementationFournisseurService_Dummy();
+          self::$_instance = new implementationFournisseurService();
       }
 
         return self::$_instance;

@@ -32,9 +32,9 @@ class implementationKeychainService implements interfaceKeychainService
      */
     private function __construct()
     {
-        $this->_keychainDAO   = implementationKeychainDAO_Dummy::getInstance();
+        $this->_keychainDAO   = implementationKeychainDAO_Session::getInstance();
         $this->_borrowingsDAO = implementationBorrowingsDAO_Session::getInstance();
-        $this->_keyDAO        = implementationKeyDAO_Dummy::getInstance();
+        $this->_keyDAO        = implementationKeyDAO_Session::getInstance();
         $this->_keyKeychainDAO = implementationKeyKeychainDAO_Session::getInstance();
     }
 

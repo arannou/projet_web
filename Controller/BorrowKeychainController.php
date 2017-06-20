@@ -6,9 +6,9 @@ class BorrowKeychainController {
 
     public function __construct(){
 
-        $borrowService     = implementationBorrowService_Dummy::getInstance();
+        $borrowService     = implementationBorrowService::getInstance();
         $keychainService   = implementationKeychainService::getInstance();
-        $keyService        = implementationKeyService_Dummy::getInstance();
+        $keyService        = implementationKeyService::getInstance();
 
         if(isset($_POST['keychainSelection'])){
             if($_POST['keychainSelection'] == "creation"){

@@ -17,17 +17,17 @@ class HomeController {
 
     public function __construct($pageName){
         $this->pageName   = $pageName;
-        $borrowService    = implementationBorrowService_Dummy::getInstance();
-        $this->userDAO    = implementationUserDAO_Dummy::getInstance();
+        $borrowService    = implementationBorrowService::getInstance();
+        $this->userDAO    = implementationUserDAO_Session::getInstance();
 
         $this->borrowings = $borrowService->getCurrentBorrowings();
         $this->lateBorrowings = $borrowService->getLateBorrowing();
         $this->lostBorrowings = $borrowService->getLostBorrowing();
 		
-		$users =implementationUserDAO_Dummy::getInstance();
+		$users =implementationUserDAO_Session::getInstance();
 		$this->userNumber = count($users->getUsers());
 		
-		$keys =implementationKeyDAO_Dummy::getInstance();
+		$keys =implementationKeyDAO_Session::getInstance();
 		$this->keysNumber = count($keys->getKeys());
 		
 		$borrowings =implementationBorrowingsDAO_Session::getInstance();

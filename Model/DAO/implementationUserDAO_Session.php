@@ -6,7 +6,7 @@ require_once 'Model/DAO/interfaceUserDAO.php';
 
 // Implémentation de l'interface
 // Ceci va fonctionner
-class implementationUserDAO_Dummy implements interfaceUserDAO
+class implementationUserDAO_Session implements interfaceUserDAO
 {
   /**
    * @var Singleton
@@ -59,7 +59,7 @@ class implementationUserDAO_Dummy implements interfaceUserDAO
    public static function getInstance() {
 
      if(is_null(self::$_instance)) {
-       self::$_instance = new implementationUserDAO_Dummy();
+       self::$_instance = new implementationUserDAO_Session();
      }
 
      return self::$_instance;

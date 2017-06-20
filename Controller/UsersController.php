@@ -11,10 +11,13 @@ class UsersController {
 
     public function __construct($pageName){
         $this->pageName = $pageName;
-        $DAO = implementationUserDAO_Dummy::getInstance();
+
+        $DAO = implementationUserDAO_Session::getInstance();
         $this->users = $DAO->getUsers();
-        $serviceBorrow = implementationBorrowService_Dummy::getInstance();
-        $serviceKey = implementationKeyService_Dummy::getInstance();
+        $serviceBorrow = implementationBorrowService::getInstance();
+        $serviceKey = implementationKeyService::getInstance();
+        $keyKeychainDAO = implementationKeyKeychainDAO_Session::getInstance();
+
         $this->borrowByUser = [];
         foreach ($this->users as $key => $user) {
           $this->borrowByUser[$user->getEnssatPrimaryKey()] = $serviceBorrow->getBorrowingByEnssatPrimaryKey($user->getEnssatPrimaryKey());
@@ -23,7 +26,7 @@ class UsersController {
         $this->keysOfKeychains = [];
         foreach ($this->users as $key => $user) {
           foreach ($this->borrowByUser[$user->getEnssatPrimaryKey()] as $index => $keyBorrow) {
-            $this->keysOfKeychains[$keyBorrow['borrowingId']] = $serviceKey->getKeysOfKeychain($keyBorrow['keychainId']);
+            $this->keysOfKeychains[$keyBorrow['borrowingId']] = $keyKeychainDAO->getKeysByKeychainId($keyBorrow['keychainId']);
           }
         }
 

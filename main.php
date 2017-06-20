@@ -20,12 +20,12 @@ require_once 'Model/Service/implementationBorrowService.php';
 require_once 'Model/Service/interfaceBorrowService.php';
 require_once 'Model/DAO/interfaceUserDAO.php';
 
-$borrowService = implementationBorrowService_Dummy::getInstance();
+$borrowService = implementationBorrowService::getInstance();
 //print_r($borrowService->getBorrowings());
 
 
-$userDAO = implementationUserDAO_Dummy::getInstance();
-$keychainDAO = implementationKeychainDAO_Dummy::getInstance();
+$userDAO = implementationUserDAO_Session::getInstance();
+$keychainDAO = implementationKeychainDAO_Session::getInstance();
 
 $users = $userDAO->getUsers();
 $keychains = $keychainDAO->getKeychains();

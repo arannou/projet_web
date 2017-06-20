@@ -4,7 +4,7 @@ require_once 'Model/Service/interfaceBorrowService.php';
 require_once 'Model/DAO/implementationBorrowingsDAO_Session.php';
 require_once 'Model/DAO/implementationUserDAO_Session.php';
 
-class implementationBorrowService_Dummy implements interfaceBorrowService
+class implementationBorrowService implements interfaceBorrowService
 {
 
   public static $borrowingStatus = array(
@@ -35,8 +35,8 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
    */
    private function __construct()
    {
-     $this->_userDAO       = implementationUserDAO_Dummy::getInstance();
-     $this->_keychainDAO   = implementationKeychainDAO_Dummy::getInstance();
+     $this->_userDAO       = implementationUserDAO_Session::getInstance();
+     $this->_keychainDAO   = implementationKeychainDAO_Session::getInstance();
      $this->_borrowingsDAO = implementationBorrowingsDAO_Session::getInstance();
    }
 
@@ -50,7 +50,7 @@ class implementationBorrowService_Dummy implements interfaceBorrowService
       public static function getInstance() {
 
         if(is_null(self::$_instance)) {
-          self::$_instance = new implementationBorrowService_Dummy();
+          self::$_instance = new implementationBorrowService();
       }
 
         return self::$_instance;

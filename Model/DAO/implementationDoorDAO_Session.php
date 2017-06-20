@@ -3,7 +3,7 @@ require_once 'Model/VO/DoorVO.php';
 require_once 'Model/DAO/interfaceDoorDAO.php';
 
 // Implémentation de l'interface
-class implementationDoorDAO_Dummy implements interfaceDoorDAO
+class implementationDoorDAO_Session implements interfaceDoorDAO
 {
 
 	private $doors = array();
@@ -51,7 +51,7 @@ class implementationDoorDAO_Dummy implements interfaceDoorDAO
    public static function getInstance() {
 
      if(is_null(self::$_instance)) {
-       self::$_instance = new implementationDoorDAO_Dummy();
+       self::$_instance = new implementationDoorDAO_Session();
      }
 
      return self::$_instance;

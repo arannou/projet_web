@@ -125,6 +125,7 @@ function users(){
     require_once 'Controller/UsersController.php';
     require_once 'Model/Service/implementationBorrowService.php';
     require_once 'Model/DAO/implementationKeychainDAO_Session.php';
+    require_once 'Model/DAO/implementationKeyKeychainDAO_Session.php';
     require_once 'Model/Service/implementationKeyService.php';
     //Appel du controlleur
     $controller = new UsersController("Users");
@@ -307,7 +308,7 @@ function doors(){
     require 'View/Partial/footer.php';
 }
 
-dispatch('/createDoorFrom', 'createDoorFrom');
+dispatch('/createDoorForm', 'createDoorFrom');
 function createDoorFrom(){
     //Import des classes
     require_once 'Model/DAO/implementationDoorDAO_Session.php';
