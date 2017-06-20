@@ -124,6 +124,7 @@
                         <th>Emprunt</th>
                         <th>Rendu prévu</th>
                         <th>Date de perte</th>
+                        <th>Commentaire</th>
                     </thead>
                     <?php
                     foreach ($controller->lostBorrowings as $lostBorrowing) {
@@ -136,6 +137,7 @@
                         echo '<td>'.date_format($lostBorrowing['borrowDate'], 'd/m/Y').'</td>';
                         echo '<td>'.date_format($lostBorrowing['dueDate'], 'd/m/Y').'</td>';
                         echo '<td>'.date_format($lostBorrowing['lostDate'], 'd/m/Y').'</td>';
+                        echo '<td>'.$lostBorrowing['comment'].'</td>';
                         echo '</tr>';
                     }
 
