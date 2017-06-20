@@ -48,7 +48,7 @@
           <li><a><i class="fa flaticon-education"></i> Portes <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="?/doors">Liste des portes</a></li>
-              <li><a href="?/create_door_form">Ajouter une porte</a></li>
+              <li><a href="?/createDoorForm">Ajouter une porte</a></li>
             </ul>
           </li>
           <li><a><i class="glyphicon glyphicon-cog"></i> Debug <span class="fa fa-chevron-down"></span></a>

@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Model/Service/interfaceDoorService.php';
-require_once 'Model/DAO/implementationDoorDAO_Dummy.php';
+require_once 'Model/DAO/implementationDoorDAO_Session.php';
 
 class implementationDoorService implements interfaceDoorService
 {
