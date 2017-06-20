@@ -21,6 +21,7 @@
           <!-- jVectorMap -->
           <link href="Asset/css/maps/jquery-jvectormap-2.0.3.css" rel="stylesheet"/>
 
+          <link href="Asset/css/custom" rel="stylesheet"/>
 
           <!-- Custom Theme Style -->
           <link href="Asset/build/css/custom.min.css" rel="stylesheet">

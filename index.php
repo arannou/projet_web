@@ -224,6 +224,35 @@ function loseKeychain(){
   header('location:?/');
 }
 
+// Prolonger un trousseau
+dispatch('/extendBorrowingForm/:id', 'extendBorrowingForm');
+function extendBorrowingForm($id){
+  require_once 'Controller/extendBorrowingFormController.php';
+  require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+  require_once 'Model/Service/implementationBorrowService_Dummy.php';
+
+  $controller = new extendBorrowingFormController("Emprunt", $id);
+  //Appel de la vue
+  require 'View/Partial/head.php';
+  require 'View/Partial/nav.php';
+  require 'View/extendBorrowingForm.php';
+  require 'View/Partial/footer.php';
+}
+
+// Prolonger un trousseau (post)
+dispatch_post('/extendBorrowing', 'extendBorrowing');
+function extendBorrowing(){
+  require_once 'Controller/extendBorrowingController.php';
+  require_once 'Model/DAO/implementationUserDAO_Dummy.php';
+  require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+  require_once 'Model/Service/implementationBorrowService_Dummy.php';
+
+  $controller = new extendBorrowingController();
+
+  header('location:?/');
+}
+
+
 //Emprunts - Formulaire (dispatch_post)
 dispatch_post('/borrowKeychain', 'borrowKeychain');
 function borrowKeychain(){
