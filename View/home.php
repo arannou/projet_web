@@ -33,13 +33,14 @@
                 <thead>
                     <th>N° d'emprunt</th>
                     <th>Emprunteur</th>
-                    <th>Clés</th>
+                    <th>Salles</th>
                     <th>Date d'emprunt</th>
                     <th>A rendre le</th>
                     <th>Rendu le</th>
                     <th>Perdu le</th>
                     <th>Commentaire</th>
                     <th>Etat</th>
+                    <th></th>
                     <th></th>
                     <th></th>
                 </thead>
@@ -49,7 +50,7 @@
                         echo '<tr>';
                         echo '<td>'.$borrowing['borrowingId'].'</td>';
                         echo '<td>'.$controller->getUserNameByEnssatPrimaryKey($borrowing['userEnssatPrimaryKey']).'</td>';
-                        echo '<td>'.$borrowing['keychainId'].'</td>';
+                        echo '<td>'.$controller->getKeysByKeychainId($borrowing['keychainId']).'</td>';
                         echo '<td>'.date_format($borrowing['borrowDate'], 'd/m/Y').'</td>';
                         echo '<td>'.date_format($borrowing['dueDate'], 'd/m/Y').'</td>';
                         echo '<td>'.date_format($borrowing['returnDate'], 'd/m/Y').'</td>';
@@ -57,10 +58,10 @@
                         echo '<td>'.$borrowing['comment'].'</td>';
                         echo '<td>'.$borrowing['status'].'</td>';
                         if(!isset($borrowing['lostDate'])) {
-                            echo '<td><a href="?/loseKeychainForm/'.$borrowing['borrowingId'].'"><button class="btn btn-primary">Perdu</button></a></td>';
+                            echo '<td><a href="?/loseKeychainForm/'.$borrowing['borrowingId'].'"><button class="btn btn-danger">Perdu</button></a></td>';
                         } else echo '<td></td>';
                         echo '<td><a href="?/extendBorrowingForm/'.$borrowing['borrowingId'].'"><button type="button" class="btn btn-warning">Prolonger</button></a></td>';
-                        echo '<td><a href="?/returnKeychainForm/'.$borrowing['borrowingId'].'"><button type="button" class="btn btn-warning">Retourner</button></a></td>';
+                        echo '<td><a href="?/returnKeychainForm/'.$borrowing['borrowingId'].'"><button type="button" class="btn btn-success">Retourner</button></a></td>';
                         echo '<tr>';
                     }
                     ?>
@@ -92,8 +93,8 @@
                         $delta = $controller->getDeltaInDays($lateBorrowing);
 
                         echo '<tr>';
-                        echo '<td>'.$lateBorrowing['userEnssatPrimaryKey'].'</td>';
-                        echo '<td>'.$lateBorrowing['keychainId'].'</td>';
+                        echo '<td>'.$controller->getUserNameByEnssatPrimaryKey($lateBorrowing['userEnssatPrimaryKey']).'</td>';
+                        echo '<td>'.$controller->getKeysByKeychainId($lateBorrowing['keychainId']).'</td>';
                         echo '<td>'.date_format($lateBorrowing['borrowDate'], 'd/m/Y').'</td>';
                         echo '<td>'.date_format($lateBorrowing['dueDate'], 'd/m/Y').'</td>';
                         echo '<td>'.$delta.' jours</td>';
@@ -123,6 +124,7 @@
                         <th>Emprunt</th>
                         <th>Rendu prévu</th>
                         <th>Date de perte</th>
+                        <th>Commentaire</th>
                     </thead>
                     <?php
                     foreach ($controller->lostBorrowings as $lostBorrowing) {
@@ -130,11 +132,12 @@
                         $delta = $controller->getDeltaInDays($lostBorrowing);
 
                         echo '<tr>';
-                        echo '<td>'.$lostBorrowing['userEnssatPrimaryKey'].'</td>';
-                        echo '<td>'.$lostBorrowing['keychainId'].'</td>';
+                        echo '<td>'.$controller->getUserNameByEnssatPrimaryKey($lostBorrowing['userEnssatPrimaryKey']).'</td>';
+                        echo '<td>'.$controller->getKeysByKeychainId($lostBorrowing['keychainId']).'</td>';
                         echo '<td>'.date_format($lostBorrowing['borrowDate'], 'd/m/Y').'</td>';
                         echo '<td>'.date_format($lostBorrowing['dueDate'], 'd/m/Y').'</td>';
                         echo '<td>'.date_format($lostBorrowing['lostDate'], 'd/m/Y').'</td>';
+                        echo '<td>'.$lostBorrowing['comment'].'</td>';
                         echo '</tr>';
                     }
 
@@ -147,50 +150,5 @@
         </div>
     </div>
     <hr>
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                Emprunts en cours
-            </div>
-            <table class="table">
-                <thead>
-                    <th>borrowingId</th>
-                    <th>userEnssatPrimaryKey</th>
-                    <th>keychainId</th>
-                    <th>borrowDate</th>
-                    <th>dueDate</th>
-                    <th>returnDate</th>
-                    <th>lostDate</th>
-                    <th>comment</th>
-                    <th>status</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </thead>
-                <tbody>
-                    <?php
-                    foreach ($controller->borrowings as $borrowing) {
-                        echo '<tr>';
-                        echo '<td>'.$borrowing['borrowingId'].'</td>';
-                        echo '<td>'.$controller->getUserNameByEnssatPrimaryKey($borrowing['userEnssatPrimaryKey']).'</td>';
-                        echo '<td>'.$borrowing['keychainId'].'</td>';
-                        echo '<td>'.date_format($borrowing['borrowDate'], 'd/m/Y').'</td>';
-                        echo '<td>'.date_format($borrowing['dueDate'], 'd/m/Y').'</td>';
-                        echo '<td>'.date_format($borrowing['returnDate'], 'd/m/Y').'</td>';
-                        echo '<td>'.date_format($borrowing['lostDate'], 'd/m/Y').'</td>';
-                        echo '<td>'.$borrowing['comment'].'</td>';
-                        echo '<td>'.$borrowing['status'].'</td>';
-                        if(!isset($borrowing['lostDate'])) {
-                            echo '<td><a href="?/loseKeychainForm/'.$borrowing['borrowingId'].'"><button class="btn btn-primary">Perdu</button></a></td>';
-                        } else echo '<td></td>';
-                        echo '<td><a href="?/extendBorrowingForm/'.$borrowing['borrowingId'].'"><button type="button" class="btn btn-warning">Prolonger</button></a></td>';
-                        echo '<td><a href="?/returnKeychainForm/'.$borrowing['borrowingId'].'"><button type="button" class="btn btn-warning">Retourner</button></a></td>';
-                        echo '<tr>';
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
 
 </div>
