@@ -1,5 +1,6 @@
 <?php
 require_once 'Model/DAO/interfaceFournisseurDAO.php';
+require_once 'Model/VO/ProviderVO.php';
 
 class implementationFournisseurDAO_Session implements interfaceFournisseurDAO
 {
@@ -21,6 +22,10 @@ class implementationFournisseurDAO_Session implements interfaceFournisseurDAO
     * @return void
     */
    private function __construct() {
+
+   }
+
+   public function populate() {
      if (file_exists(dirname(__FILE__).'/providers.xml')) {
        $providers = simplexml_load_file(dirname(__FILE__).'/providers.xml');
        foreach($providers->children() as $xmlProvider)
