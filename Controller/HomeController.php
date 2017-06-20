@@ -7,7 +7,8 @@ class HomeController {
     public $borrowings;
     public $lateBorrowings;
     public $lostBorrowings;
-	
+    public $returnedBorrowings;
+
     public $keysNumber;
     public $passNumber;
 	public $userNumber;
@@ -27,8 +28,10 @@ class HomeController {
         $this->lateBorrowings = $borrowService->getLateBorrowing();
 		$this->lateNumber = count($borrowService->getLateBorrowing());
         $this->lostBorrowings = $borrowService->getLostBorrowing();
-		
-		
+
+        $this->returnedBorrowings = $borrowService->getReturnedBorrowing();
+
+
 		// bloc 'nombre d'utilisateurs'
 		$users =implementationUserDAO_Session::getInstance();
 		$this->userNumber = count($users->getUsers());
@@ -37,7 +40,7 @@ class HomeController {
 			if (strval($u->getStatus()) =="Etudiant")
 			$this->studentNumber ++;
 		}
-		
+
 		// bloc nombre de clés
 		$keys =implementationKeyDAO_Session::getInstance();
 		$this->keysNumber = count($keys->getKeys());
@@ -46,13 +49,13 @@ class HomeController {
 			if (strval($k->getType()) !="Clé")
 			$this->passNumber ++;
 		}
-		
+
 		// bloc nombre d'emprunts
 		$borrowings =implementationBorrowingsDAO_Session::getInstance();
 		$this->borrowingsNumber = count($borrowings->getBorrowings());
-		
-		
-		
+
+
+
 		// bloc enmprunts en cours
 		$this->borrowingsThisWeek =0;
 		foreach($borrowings->getBorrowings() as $b) {
@@ -61,8 +64,8 @@ class HomeController {
     		$rv = round ((($firstDateTimeStamp - $secondDateTimeStamp))/86400);
 			if($rv>=0) $this->borrowingsThisWeek++;
 		}
-		
-		
+
+
     }
 
     public function getDeltaInDays($lateBorrowing){
