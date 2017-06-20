@@ -19,6 +19,7 @@ class RoomController {
 
         foreach ($this->rooms as $key => $room) {
           $door = $doorDAO->getDoorByRoomId($room->getId());
+			$lock =null;
           if ($door != null) {
             $lock = $lockDAO->getLockByDoorId($door->getId());
             $this->locks[] = $lock;
