@@ -4,6 +4,7 @@ class LockVO
     protected $id;
     protected $length;
     protected $doorId;
+    protected $provider;
 
     public function setId($id) {
         $this->id = $id;
@@ -45,4 +46,11 @@ class LockVO
         return $this;
     }
 
+    public function setProvider($provider) {
+        $this->provider = $provider;
+    }
+
+    public function getProvider() {
+        return $this->provider;
+    }
 }

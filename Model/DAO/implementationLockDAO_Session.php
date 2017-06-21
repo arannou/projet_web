@@ -86,11 +86,15 @@ class implementationLockDAO_Session implements interfaceLockDAO
    }
 
    public function removeLockById($id){
-       foreach ($this->getLocks() as $key => $lock) {
-           if($lock['length'] == $length){
-               return $lock;
-           }
+       $cpt=0;
+       foreach($this->getLocks() as $key => $lock){
+         if($lock->getId() == $id){
+           array_splice($_SESSION['locks'],$cpt,1);
+           break;
+         }
+         $cpt++;
        }
+
    }
 
    public function getLockByDoorId($doorId) {

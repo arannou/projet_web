@@ -6,6 +6,7 @@ require_once 'Model/VO/KeyVO.php';
 require_once 'Model/VO/DoorVO.php';
 require_once 'Model/VO/RoomVO.php';
 require_once 'Model/VO/LockVO.php';
+require_once 'Model/VO/ProviderVO.php';
 
 session_start();
 require_once 'Libs/limonade/limonade.php';
@@ -85,6 +86,10 @@ function populateDatabase(){
     require_once 'Model/DAO/implementationUserDAO_Session.php';
     $userDAO = implementationUserDAO_Session::getInstance();
     $userDAO->populate();
+
+    require_once 'Model/DAO/implementationFournisseurDAO_Session.php';
+    $providerDAO = implementationFournisseurDAO_Session::getInstance();
+    $providerDAO->populate();
 
     var_dump($_SESSION);
 }
@@ -270,6 +275,7 @@ function returnKeychainForm($id){
 //Emprunts - Formulaire (dispatch_post)
 dispatch_post('/borrowKeychain', 'borrowKeychain');
 function borrowKeychain(){
+<<<<<<< Updated upstream
     require_once 'Controller/BorrowKeychainController.php';
     require_once 'Model/DAO/implementationUserDAO_Session.php';
     require_once 'Model/DAO/implementationKeychainDAO_Session.php';
@@ -278,6 +284,18 @@ function borrowKeychain(){
     require_once 'Model/Service/implementationKeychainService.php';
 
     $controller = new BorrowKeychainController();
+=======
+  //Import des classes
+  require_once 'Controller/BorrowKeychainController.php';
+  require_once 'Model/DAO/implementationUserDAO_Dummy.php';
+  require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
+  require_once 'Model/Service/implementationBorrowService_Dummy.php';
+  require_once 'Model/Service/implementationKeyService_Dummy.php';
+  require_once 'Model/Service/implementationKeychainService.php';
+
+  //Appel du controller
+  $controller = new BorrowKeychainController();
+>>>>>>> Stashed changes
 
     header('location:?/borrowKeychainForm');
 }
@@ -365,6 +383,32 @@ function locks(){
     require 'View/locks.php';
     require 'View/Partial/footer.php';
 }
+
+dispatch_post('/locksForm', 'locksForm');
+function locksForm(){
+  //Import des classes
+  require_once 'Model/DAO/implementationLockDAO_Session.php';
+  require_once 'Model/Service/implementationLockService.php';
+  require_once 'Controller/LocksFormController.php';
+  //Appel du controlleur
+  $controller = new LocksFormController();
+  //Appel de la vue
+
+  header('location:?/locks');
+}
+
+dispatch_post('/locksSuppr', 'locksSuppr');
+function locksSuppr(){
+  //Import des classes
+  require_once 'Model/DAO/implementationLockDAO_Session.php';
+  require_once 'Model/Service/implementationLockService.php';
+  require_once 'Controller/LocksSupprController.php';
+  //Appel du controlleur
+  $controller = new LocksSupprController();
+
+  header('location:?/locks');
+}
+
 //Salles
 dispatch('/rooms', 'rooms');
 function rooms(){
