@@ -5,7 +5,6 @@ class BorrowKeychainController {
     public $pageName;
 
     public function __construct(){
-
         $borrowService     = implementationBorrowService::getInstance();
         $keychainService   = implementationKeychainService::getInstance();
         $keyService        = implementationKeyService::getInstance();
