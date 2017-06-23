@@ -9,7 +9,7 @@ class implementationBorrowingsDAO_MYSQL extends ImplementationDAO_MYSQL implemen
      * @static
      */
     private static $_instance = null;
-    private $_tableName       = "borrowings";
+    private $_tableName       = "borrowing";
 
     private function __construct(){
         parent::initDb();
@@ -81,8 +81,8 @@ class implementationBorrowingsDAO_MYSQL extends ImplementationDAO_MYSQL implemen
     }
 
     public function addBorrow($borrow){
-        $stmt = $this->pdo->prepare("INSERT INTO $this->_tableName 
-                                      (userEnssatPrimaryKey, keychainId, borrowDate, dueDate, returnDate, lostDate, comment) 
+        $stmt = $this->pdo->prepare("INSERT INTO $this->_tableName
+                                      (userEnssatPrimaryKey, keychainId, borrowDate, dueDate, returnDate, lostDate, comment)
                                       VALUES (:userEnssatPrimaryKey, :keychainId, :borrowDate, :dueDate, :returnDate, :lostDate, :comment)");
 
         $stmt->bindParam(':userEnssatPrimaryKey', $borrow['userEnssatPrimaryKey']);
