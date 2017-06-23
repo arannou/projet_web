@@ -117,13 +117,17 @@ class implementationLockDAO_MYSQL extends implementationDAO_MYSQL implements int
    }
 
    public function addLock($lock){
-       $stmt = $this->pdo->prepare("INSERT INTO $this->_tableName 
-                                      (length, doorId, provider) 
+       $stmt = $this->pdo->prepare("INSERT INTO $this->_tableName
+                                      (length, doorId, provider)
                                       VALUES (:length, :doorId, :provider)");
 
-       $stmt->bindParam(':length', $lock->getLength());
-       $stmt->bindParam(':doorId', $lock->getDoorId());
-       $stmt->bindParam(':provider', $lock->getProvider());
+       $length = $lock->getLength();
+       $doorId = $lock->getDoorId();
+       $provider = $lock->getProvider();
+
+       $stmt->bindParam(':length', $length);
+       $stmt->bindParam(':doorId', $doorId);
+       $stmt->bindParam(':provider', $provider);
 
        $stmt->execute();
    }

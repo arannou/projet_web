@@ -74,8 +74,10 @@ class implementationRoomDAO_MYSQL extends ImplementationDAO_MYSQL implements int
 
    public function addRoom($room){
      $stmt = $this->pdo->prepare("INSERT INTO $this->_tableName (name) VALUES (:name)");
+     
+     $name =  $room->getRoomById();
 
-     $stmt->bindParam(':name', $room->getId());
+     $stmt->bindParam(':name', $name);
 
      $stmt->execute();
    }
