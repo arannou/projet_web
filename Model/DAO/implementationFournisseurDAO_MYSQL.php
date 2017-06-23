@@ -9,19 +9,19 @@ class implementationFournisseurDAO_MYSQL extends ImplementationDAO_MYSQL impleme
   private $_tableName = "provider";
 
   /**
-  * @var Singleton
-  * @access private
-  * @static
-  */
+   * @var Singleton
+   * @access private
+   * @static
+   */
   private static $_instance = null;
 
 
   /**
-  * Constructeur de la classe
-  *
-  * @param void
-  * @return void
-  */
+   * Constructeur de la classe
+   *
+   * @param void
+   * @return void
+   */
   private function __construct() {
     parent::initDb();
   }
@@ -49,12 +49,12 @@ class implementationFournisseurDAO_MYSQL extends ImplementationDAO_MYSQL impleme
   }
 
   /**
-  * Méthode qui crée l'unique instance de la classe
-  * si elle n'existe pas encore puis la retourne.
-  *
-  * @param void
-  * @return Singleton
-  */
+   * Méthode qui crée l'unique instance de la classe
+   * si elle n'existe pas encore puis la retourne.
+   *
+   * @param void
+   * @return Singleton
+   */
   public static function getInstance() {
 
     if(is_null(self::$_instance)) {
@@ -256,17 +256,25 @@ class implementationFournisseurDAO_MYSQL extends ImplementationDAO_MYSQL impleme
       (name, username, surname, phone, office, email)
       VALUES (:name, :username, :surname, :phone, :office, :email)");
 
-      $stmt->bindParam(':name', $provider->getName());
-      $stmt->bindParam(':username', $provider->getUsername());
-      $stmt->bindParam(':surname', $provider->getSurname());
-      $stmt->bindParam(':phone', $provider->getPhone());
-      $stmt->bindParam(':office', $provider->getOffice());
-      $stmt->bindParam(':email', $provider->getEmail());
 
-      $stmt->execute();
-    }
+    $name     = $provider->getName();
+    $username = $provider->getUsername();
+    $surname  = $provider->getSurname();
+    $phone    = $provider->getPhone();
+    $office   = $provider->getOffice();
+    $email    = $provider->getEmail();
 
+    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':surname', $surname);
+    $stmt->bindParam(':phone', $phone);
+    $stmt->bindParam(':office', $office);
+    $stmt->bindParam(':email', $email);
+
+    $stmt->execute();
   }
 
+}
 
-  ?>
+
+?>

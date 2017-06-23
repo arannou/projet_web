@@ -29,8 +29,12 @@ class implementationKeyKeychainDAO_MYSQL extends ImplementationDAO_MYSQL impleme
 			(keyId, keychainId)
 			VALUES (:keyId, :keychainId)");
 
-        $stmt->bindParam(':keyId', $key->getId());
-        $stmt->bindParam(':keychainId', $keyChain->getId());
+        
+        $keyId = $key->getId();
+        $keychainId = $keyChain->getId();
+
+        $stmt->bindParam(':keyId', $keyId);
+        $stmt->bindParam(':keychainId', $keychainId);
 
         $stmt->execute();
     }
