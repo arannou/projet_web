@@ -6,7 +6,6 @@ require_once 'Model/DAO/implementationKeyKeychainDAO_Session.php';
 class implementationKeychainDAO_Session implements interfaceKeyChainDAO
 {
 
-    private $_keychains = array();
     private $keyKeychainDAO;
 
     /**
@@ -15,7 +14,6 @@ class implementationKeychainDAO_Session implements interfaceKeyChainDAO
      * @static
      */
     private static $_instance = null;
-
 
     /**
      * Constructeur de la classe
