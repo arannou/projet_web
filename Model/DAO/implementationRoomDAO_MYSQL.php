@@ -2,8 +2,8 @@
 require_once 'Model/VO/RoomVO.php';
 require_once 'Model/DAO/interfaceRoomDAO.php';
 
-class implementationRoomDAO_Session extends ImplementationDAO_MYSQL implements interfaceRoomDAO{
-  private $_rooms = array();
+class implementationRoomDAO_MYSQL extends ImplementationDAO_MYSQL implements interfaceRoomDAO{
+
   private static $_instance = null;
   private $_tableName = "room";
 
