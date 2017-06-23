@@ -87,8 +87,10 @@ class implementationKeyDAO_MYSQL extends ImplementationDAO_MYSQL implements inte
                                       (type, lock_id) 
                                       VALUES (:type, :lock_id)");
 
-        $stmt->bindParam(':type', $key['type']);
-        $stmt->bindParam(':lock_id', $key['lock_id']);
+		$k_type = $key->getType();
+		$k_lock_id = $key->getType();
+        $stmt->bindParam(':type', $k_type);
+        $stmt->bindParam(':lock_id', $k_lock_id);
         $stmt->execute();
     }
 	
@@ -106,9 +108,13 @@ class implementationKeyDAO_MYSQL extends ImplementationDAO_MYSQL implements inte
             if($key->getId() == $keyId){
                  $stmt = $this->pdo->prepare("UDAPTE $this->_tableName  SET
                                       (type, lock_id) = (:type, :lock_id) WHERE id=:id");
-				$stmt->bindParam(':id', $key['id']);
-				$stmt->bindParam(':type', $key['type']);
-				$stmt->bindParam(':lock_id', $key['lock_id']);
+				$k_id = $key->getId();
+				$k_type = $key->getType();
+				$k_lock_id = $key->getType();
+				
+				$stmt->bindParam(':id', $k_id);
+				$stmt->bindParam(':type', $k_type);
+				$stmt->bindParam(':lock_id', $k_lock_id);
 				$stmt->execute();
             }
         }
