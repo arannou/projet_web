@@ -15,7 +15,6 @@ class LocksController {
 
         $doorDAO = implementationDoorDAO_Session::getInstance();
 
-
         $providersDAO = implementationFournisseurDAO_Session::getInstance();
         $this->providers = $providersDAO->getProviders();
 /*
