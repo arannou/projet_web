@@ -1,5 +1,6 @@
 <?php
 require_once 'Model/DAO/interfaceBorrowingsDAO.php';
+require_once 'Model/DAO/ImplementationDAO_MYSQL.php';
 class implementationBorrowingsDAO_MYSQL extends ImplementationDAO_MYSQL implements interfaceBorrowingsDAO
 {
 

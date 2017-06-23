@@ -6,6 +6,10 @@
  * Date: 23/06/17
  * Time: 10:38
  */
+
+require_once 'Model/DAO/interfaceKeychainDAO.php';
+require_once 'Model/DAO/ImplementationDAO_MYSQL.php';
+
 class ImplementationKeychainDAO_MYSQL extends ImplementationDAO_MYSQL implements interfaceKeyChainDAO
 {
 
