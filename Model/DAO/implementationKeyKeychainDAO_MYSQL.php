@@ -28,7 +28,6 @@ class implementationKeyKeychainDAO_MYSQL extends ImplementationDAO_MYSQL impleme
         $stmt = $this->pdo->prepare("INSERT INTO $this->_tableName
 			(keyId, keychainId)
 			VALUES (:keyId, :keychainId)");
-
         
         $keyId = $key->getId();
         $keychainId = $keyChain->getId();
