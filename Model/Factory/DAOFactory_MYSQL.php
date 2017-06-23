@@ -6,6 +6,16 @@
  * Date: 23/06/17
  * Time: 09:25
  */
+
+require_once 'Model/DAO/implementationBorrowingsDAO_MYSQL.php';
+require_once 'Model/DAO/implementationDoorDAO_MYSQL.php';
+require_once 'Model/DAO/implementationKeychainDAO_MYSQL.php';
+require_once 'Model/DAO/implementationKeyKeychainDAO_MYSQL.php';
+require_once 'Model/DAO/implementationKeyDAO_MYSQL.php';
+require_once 'Model/DAO/implementationLockDAO_MYSQL.php';
+require_once 'Model/DAO/implementationRoomDAO_MYSQL.php';
+require_once 'Model/DAO/implementationUserDAO_MYSQL.php';
+require_once 'Model/DAO/implementationFournisseurDAO_MYSQL.php';
 class DAOFactory_MYSQL implements DAOFactoryInterface
 {
 
@@ -29,46 +39,46 @@ class DAOFactory_MYSQL implements DAOFactoryInterface
 
     public function getBorrowingsDAO()
     {
-        // TODO: Implement getBorrowingsDAO() method.
+        return implementationBorrowingsDAO_MYSQL::getInstance();
     }
 
     public function getDoorDAO()
     {
-        // TODO: Implement getDoorDAO() method.
+        return implementationDoorDAO_MYSQL::getInstance();
     }
 
     public function getFournisseurDAO()
     {
-        // TODO: Implement getFournisseurDAO() method.
+        return implementationFournisseurDAO_MYSQL::getInstance();
     }
 
     public function getKeychainDAO()
     {
-        // TODO: Implement getKeychainDAO() method.
+        return implementationKeychainDAO_MYSQL::getInstance();
     }
 
     public function getKeyDAO()
     {
-        // TODO: Implement getKeyDAO() method.
+        return implementationKeyDAO_MYSQL::getInstance();
     }
 
     public function getKeyKeychainDAO()
     {
-        // TODO: Implement getKeyKeychainDAO() method.
+        return implementationKeyKeychainDAO_MYSQL::getInstance();
     }
 
     public function getLockDAO()
     {
-        // TODO: Implement getLockDAO() method.
+        return implementationLockDAO_MYSQL::getInstance();
     }
 
     public function getRoomDAO()
     {
-        // TODO: Implement getRoomDAO() method.
+        return implementationRoomDAO_MYSQL::getInstance();
     }
 
     public function getUserDAO()
     {
-        // TODO: Implement getUserDAO() method.
+        return implementationUserDAO_MYSQL::getInstance();
     }
 }

@@ -1,5 +1,6 @@
 <?php
 require_once 'Model/VO/LockVO.php';
+
 require_once 'Model/DAO/interfaceLockDAO.php';
 
 class implementationLockDAO_MYSQL extends implementationDAO_MYSQL implements interfaceLockDAO
