@@ -335,6 +335,8 @@ function createDoor(){
 dispatch('/locks', 'locks');
 function locks(){
     require_once 'Model/Service/implementationLockService.php';
+    require_once 'Model/DAO/implementationDoorDAO_Session.php';
+    require_once 'Model/DAO/implementationFournisseurDAO_Session.php';
     require_once 'Controller/LocksController.php';
 
     $controller = new LocksController("Locks");
