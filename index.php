@@ -1,5 +1,18 @@
 <?php
 
+require_once 'db.conf.php';
+require_once 'Model/DAO/MysqlDbConnection.php';
+
+require_once 'Model/Factory/DAOFactory_Session.php';
+require_once 'Model/Factory/DAOFactory_MYSQL.php';
+require_once 'Model/Factory/FactoryProvider.php';
+
+function getDAOFactory(){
+    $provider = new FactoryProvider(FactoryProvider::$FACTORY_SESSION);
+    $factory = $provider->getFactory();
+    return $factory;
+}
+
 require_once 'Model/VO/KeychainVO.php';
 require_once 'Model/VO/UserVO.php';
 require_once 'Model/VO/KeyVO.php';
@@ -52,7 +65,6 @@ function clearsession() {
     session_destroy();
     session_start();
 }
-
 dispatch('/populateDatabase', 'populateDatabase');
 function populateDatabase(){
     $_SESSION['borrowings'] = array();
@@ -63,32 +75,27 @@ function populateDatabase(){
     $_SESSION['doors'] = array();
     $_SESSION['users'] = array();
 
-    require_once 'Model/DAO/implementationDoorDAO_Session.php';
-    $doorDAO = implementationDoorDAO_Session::getInstance();
+    $factory = getDAOFactory();
+
+    $doorDAO = $factory->getDoorDAO();
     $doorDAO->populate();
 
-    require_once 'Model/DAO/implementationKeychainDAO_Session.php';
-    $keyChainDAO = implementationKeychainDAO_Session::getInstance();
+    $keyChainDAO = $factory->getKeychainDAO();
     //$keyChainDAO->populate();
 
-    require_once 'Model/DAO/implementationKeyDAO_Session.php';
-    $keyDAO = implementationKeyDAO_Session::getInstance();
+    $keyDAO = $factory->getKeyDAO();
     //$keyDAO->populate();
 
-    require_once 'Model/DAO/implementationLockDAO_Session.php';
-    $lockDAO = implementationLockDAO_Session::getInstance();
+    $lockDAO = $factory->getLockDAO();
     $lockDAO->populate();
 
-    require_once 'Model/DAO/implementationRoomDAO_Session.php';
-    $roomDAO = implementationRoomDAO_Session::getInstance();
+    $roomDAO = $factory->getRoomDAO();
     $roomDAO->populate();
 
-    require_once 'Model/DAO/implementationUserDAO_Session.php';
-    $userDAO = implementationUserDAO_Session::getInstance();
+    $userDAO = $factory->getUserDAO();
     $userDAO->populate();
 
-    require_once 'Model/DAO/implementationFournisseurDAO_Session.php';
-    $providerDAO = implementationFournisseurDAO_Session::getInstance();
+    $providerDAO = $factory->getFournisseurDAO();
     $providerDAO->populate();
 
     var_dump($_SESSION);
@@ -103,12 +110,6 @@ function dumpDatabase(){
 dispatch('/', 'home');
 function home(){
     //Import des classes
-    require_once 'Model/DAO/implementationKeychainDAO_Session.php';
-    require_once 'Model/DAO/implementationBorrowingsDAO_Session.php';
-    require_once 'Model/DAO/implementationUserDAO_Session.php';
-    require_once 'Model/DAO/implementationKeyKeychainDAO_Session.php';
-    require_once 'Model/DAO/implementationLockDAO_Session.php';
-    require_once 'Model/DAO/implementationDoorDAO_Session.php';
     require_once 'Model/Service/implementationBorrowService.php';
 
     require_once 'Controller/HomeController.php';
@@ -128,11 +129,8 @@ function home(){
 dispatch('/users/', 'users');
 function users(){
     //Import des classes
-    require_once 'Model/DAO/implementationUserDAO_Session.php';
     require_once 'Controller/UsersController.php';
     require_once 'Model/Service/implementationBorrowService.php';
-    require_once 'Model/DAO/implementationKeychainDAO_Session.php';
-    require_once 'Model/DAO/implementationKeyKeychainDAO_Session.php';
     require_once 'Model/Service/implementationKeyService.php';
     //Appel du controlleur
     $controller = new UsersController("Users");
@@ -158,7 +156,6 @@ function uploadUserCSV(){
 dispatch('/keys', 'keys');
 function keys(){
     //Import des classes
-    require_once 'Model/DAO/implementationKeyDAO_Session.php';
     require_once 'Model/Service/implementationKeyService.php';
     require_once 'Controller/KeysController.php';
     //Appel du controlleur
@@ -174,7 +171,6 @@ function keys(){
 dispatch_post('/addKeysForm', 'addKeysForm');
 function addKeysForm() {
     //Import des classes
-    require_once 'Model/DAO/implementationKeyDAO_Session.php';
     require_once 'Model/Service/implementationKeyService.php';
     require_once 'Controller/KeyFormController.php';
     //Appel du controlleur
@@ -188,12 +184,6 @@ function addKeysForm() {
 dispatch('/borrowKeychainForm', 'borrowKeychainForm');
 function borrowKeychainForm(){
     //Import des classes
-    require_once 'Model/DAO/implementationKeychainDAO_Session.php';
-    require_once 'Model/DAO/implementationKeyDAO_Session.php';
-    require_once 'Model/DAO/implementationUserDAO_Session.php';
-    require_once 'Model/DAO/implementationLockDAO_Session.php';
-    require_once 'Model/DAO/implementationDoorDAO_Session.php';
-    require_once 'Model/DAO/implementationKeyKeychainDAO_Session.php';
     require_once 'Model/Service/implementationBorrowService.php';
     require_once 'Model/Service/implementationKeyService.php';
     require_once 'Controller/BorrowKeyChainFormController.php';
@@ -210,7 +200,6 @@ function borrowKeychainForm(){
 dispatch('/loseKeychainForm/:id', 'loseKeychainForm');
 function loseKeychainForm($id){
     require_once 'Controller/LoseKeychainControllerForm.php';
-    require_once 'Model/DAO/implementationKeychainDAO_Session.php';
     require_once 'Model/Service/implementationBorrowService.php';
 
     $controller = new LoseKeychainControllerForm("Emprunt", $id);
@@ -225,8 +214,6 @@ function loseKeychainForm($id){
 dispatch_post('/loseKeychain/', 'loseKeychain');
 function loseKeychain(){
     require_once 'Controller/LoseKeychainController.php';
-    require_once 'Model/DAO/implementationUserDAO_Session.php';
-    require_once 'Model/DAO/implementationKeychainDAO_Session.php';
     require_once 'Model/Service/implementationBorrowService.php';
 
     $controller = new LoseKeychainController();
@@ -238,7 +225,6 @@ function loseKeychain(){
 dispatch('/extendBorrowingForm/:id', 'extendBorrowingForm');
 function extendBorrowingForm($id){
     require_once 'Controller/extendBorrowingFormController.php';
-    require_once 'Model/DAO/implementationKeychainDAO_Session.php';
     require_once 'Model/Service/implementationBorrowService.php';
 
     $controller = new extendBorrowingFormController("Emprunt", $id);
@@ -253,8 +239,6 @@ function extendBorrowingForm($id){
 dispatch_post('/extendBorrowing', 'extendBorrowing');
 function extendBorrowing(){
     require_once 'Controller/extendBorrowingController.php';
-    require_once 'Model/DAO/implementationUserDAO_Session.php';
-    require_once 'Model/DAO/implementationKeychainDAO_Session.php';
     require_once 'Model/Service/implementationBorrowService.php';
 
     $controller = new extendBorrowingController();
@@ -276,8 +260,6 @@ function returnKeychainForm($id){
 dispatch_post('/borrowKeychain', 'borrowKeychain');
 function borrowKeychain(){
     require_once 'Controller/BorrowKeychainController.php';
-    require_once 'Model/DAO/implementationUserDAO_Session.php';
-    require_once 'Model/DAO/implementationKeychainDAO_Session.php';
     require_once 'Model/Service/implementationBorrowService.php';
     require_once 'Model/Service/implementationKeyService.php';
     require_once 'Model/Service/implementationKeychainService.php';
@@ -292,7 +274,6 @@ dispatch_post('/uploadKeychainCSV', 'uploadKeychainCSV');
 function uploadKeychainCSV(){
     require_once 'Model/Service/implementationKeychainService.php';
     require_once 'Controller/UploadKeychainCSVController.php';
-    require_once 'Model/DAO/implementationKeychainDAO_Session.php';
 
     $controller = new uploadKeychainCSVController();
 
@@ -304,7 +285,6 @@ dispatch_post('/uploadKeyCSV', 'uploadKeyCSV');
 function uploadKeyCSV(){
     require_once 'Model/Service/implementationKeyService.php';
     require_once 'Controller/UploadKeyCSVController.php';
-    require_once 'Model/DAO/implementationKeyDAO_Session.php';
 
     $controller = new UploadKeyCSVController();
 
@@ -314,7 +294,6 @@ function uploadKeyCSV(){
 dispatch('/doors', 'doors');
 function doors(){
     //Import des classes
-    require_once 'Model/DAO/implementationDoorDAO_Session.php';
     require_once 'Controller/DoorsController.php';
     //Appel du controlleur
     $controller = new DoorsController("Doors");
@@ -328,10 +307,8 @@ function doors(){
 dispatch('/createDoorForm', 'createDoorFrom');
 function createDoorFrom(){
     //Import des classes
-    require_once 'Model/DAO/implementationDoorDAO_Session.php';
     require_once 'Model/VO/DoorVO.php';
     require_once 'Controller/CreateDoorFormController.php';
-    require_once 'Model/DAO/implementationRoomDAO_Session.php';
 
     //Appel du controlleur
     $controller = new CreateDoorFormController("Doors");
@@ -347,7 +324,6 @@ dispatch_post('/createDoor/', 'createDoor');
 function createDoor(){
     //Import des classes
     require_once 'Model/Service/implementationDoorService.php';
-    require_once 'Model/DAO/implementationDoorDAO_Session.php';
     require_once 'Model/VO/DoorVO.php';
     require_once 'Controller/CreateDoorController.php';
     //Appel du controlleur
@@ -358,10 +334,7 @@ function createDoor(){
 
 dispatch('/locks', 'locks');
 function locks(){
-    require_once 'Model/DAO/implementationLockDAO_Session.php';
-    require_once 'Model/DAO/implementationFournisseurDAO_Session.php';
     require_once 'Model/Service/implementationLockService.php';
-    require_once 'Model/DAO/implementationDoorDAO_Session.php';
     require_once 'Controller/LocksController.php';
 
     $controller = new LocksController("Locks");
@@ -375,7 +348,6 @@ function locks(){
 dispatch_post('/locksForm', 'locksForm');
 function locksForm(){
   //Import des classes
-  require_once 'Model/DAO/implementationLockDAO_Session.php';
   require_once 'Model/Service/implementationLockService.php';
   require_once 'Controller/LocksFormController.php';
   //Appel du controlleur
@@ -388,7 +360,6 @@ function locksForm(){
 dispatch_post('/locksSuppr', 'locksSuppr');
 function locksSuppr(){
   //Import des classes
-  require_once 'Model/DAO/implementationLockDAO_Session.php';
   require_once 'Model/Service/implementationLockService.php';
   require_once 'Controller/LocksSupprController.php';
   //Appel du controlleur
@@ -400,11 +371,7 @@ function locksSuppr(){
 //Salles
 dispatch('/rooms', 'rooms');
 function rooms(){
-    require_once 'Model/DAO/implementationRoomDAO_Session.php';
     require_once 'Model/Service/implementationRoomService.php';
-    require_once 'Model/DAO/implementationDoorDAO_Session.php';
-    require_once 'Model/DAO/implementationLockDAO_Session.php';
-    require_once 'Model/DAO/implementationKeyDAO_Session.php';
     require_once 'Controller/RoomController.php';
 
     $controller = new RoomController("Salles");
@@ -416,7 +383,6 @@ function rooms(){
 //Salles - Formulaire (dispatch_post)
 dispatch_post('/rooms', 'roomsForm');
 function roomsForm(){
-    require_once 'Model/DAO/implementationRoomDAO_Session.php';
     require_once 'Model/Service/implementationRoomService.php';
     require_once 'Controller/CreateRoomController.php';
 
@@ -429,7 +395,6 @@ dispatch_post('/uploadRoomCSV', 'uploadRoomCSV');
 function uploadRoomCSV(){
     require_once 'Model/Service/implementationRoomService.php';
     require_once 'Controller/UploadRoomCSVController.php';
-    require_once 'Model/DAO/implementationRoomDAO_Session.php';
 
     $controller = new UploadRoomCSVController();
 
@@ -439,7 +404,6 @@ function uploadRoomCSV(){
 dispatch('/providers', 'providers');
 function providers(){
     //Import des classes
-    require_once 'Model/DAO/implementationFournisseurDAO_Session.php';
     require_once 'Model/VO/ProviderVO.php';
     require_once 'Model/Service/implementationFournisseurService.php';
     require_once 'Controller/FournisseurController.php';

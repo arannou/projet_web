@@ -14,14 +14,16 @@ class BorrowKeyChainFormController {
 
     public function __construct($pageName){
         $this->pageName = $pageName;
+        $factory = getDAOFactory();
 
-        $keychainDAO    = implementationKeychainDAO_Session::getInstance();
-        $usersDAO       = implementationUserDAO_Session::getInstance();
-        $keyDAO         = implementationKeyDAO_Session::getInstance();
+        $keychainDAO    = $factory->getKeychainDAO();
+        $usersDAO       = $factory->getUserDAO();
+        $keyDAO         = $factory->getKeyDAO();
+        $lockDAO        = $factory->getLockDAO();
+        $doorDAO        = $factory->getDoorDAO();
+
         $keyService     = implementationKeyService::getInstance();
         $borrowService  = implementationBorrowService::getInstance();
-        $lockDAO        = implementationLockDAO_Session::getInstance();
-        $doorDAO        = implementationDoorDAO_Session::getInstance();
 
         $this->keychains = $keychainDAO->getKeychains();
         $currentBorrowings = $borrowService->getCurrentBorrowings();
