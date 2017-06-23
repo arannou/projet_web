@@ -101,8 +101,11 @@ class implementationDoorDAO_MYSQL extends ImplementationDAO_MYSQL implements int
 			(lockId, roomId)
 			VALUES (:lockId, :roomId)");
 
-		$stmt->bindParam(':lockId', $door->getLockId());
-		$stmt->bindParam(':roomId', $door->getRoomId());
+		$lockId = $door->getLockId();
+		$roomId = $door->getRoomId();
+
+		$stmt->bindParam(':lockId', $lockId);
+		$stmt->bindParam(':roomId', $roomId);
 
 		$stmt->execute();
 	}

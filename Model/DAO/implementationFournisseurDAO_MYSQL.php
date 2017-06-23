@@ -58,7 +58,7 @@ class implementationFournisseurDAO_MYSQL extends ImplementationDAO_MYSQL impleme
   public static function getInstance() {
 
     if(is_null(self::$_instance)) {
-      self::$_instance = new implementationFournisseurDAO_Session();
+      self::$_instance = new implementationFournisseurDAO_MYSQL();
     }
 
     return self::$_instance;

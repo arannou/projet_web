@@ -23,8 +23,7 @@ class implementationUserDAO_MYSQL extends implementationDAO_MYSQL implements int
      * @return void
      */
     private function __construct() {
-        /**/
-
+        parent::initDb();
     }
 
     public function populate(){

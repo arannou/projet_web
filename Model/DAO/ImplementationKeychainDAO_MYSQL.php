@@ -30,6 +30,9 @@ class ImplementationKeychainDAO_MYSQL extends ImplementationDAO_MYSQL implements
      * @return void
      */
     private function __construct() {
+
+        parent::initDb();
+
         $factory = getDAOFactory();
         $this->keyKeychainDAO = $factory->getKeyKeychainDAO();
     }

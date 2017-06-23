@@ -27,7 +27,7 @@ class implementationRoomDAO_MYSQL extends ImplementationDAO_MYSQL implements int
 
   public static function getInstance() {
     if(is_null(self::$_instance)) {
-      self::$_instance = new implementationRoomDAO_Session();
+      self::$_instance = new implementationRoomDAO_MYSQL();
     }
     return self::$_instance;
   }
@@ -73,9 +73,9 @@ class implementationRoomDAO_MYSQL extends ImplementationDAO_MYSQL implements int
    }
 
    public function addRoom($room){
-     $stmt = $this->pdo->prepare("INSERT INTO $this->_tableName(name) VALUES (:name)");
+     $stmt = $this->pdo->prepare("INSERT INTO $this->_tableName (name) VALUES (:name)");
 
-     $stmt->bindParam(':name', $room['name']);
+     $stmt->bindParam(':name', $room->getId());
 
      $stmt->execute();
    }
