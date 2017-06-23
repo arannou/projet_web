@@ -9,7 +9,7 @@
 
 require_once 'Model/DAO/implementationBorrowingsDAO_MYSQL.php';
 require_once 'Model/DAO/implementationDoorDAO_MYSQL.php';
-require_once 'Model/DAO/implementationKeychainDAO_MYSQL.php';
+require_once 'Model/DAO/ImplementationKeychainDAO_MYSQL.php';
 require_once 'Model/DAO/implementationKeyKeychainDAO_MYSQL.php';
 require_once 'Model/DAO/implementationKeyDAO_MYSQL.php';
 require_once 'Model/DAO/implementationLockDAO_MYSQL.php';
