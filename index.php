@@ -275,7 +275,6 @@ function returnKeychainForm($id){
 //Emprunts - Formulaire (dispatch_post)
 dispatch_post('/borrowKeychain', 'borrowKeychain');
 function borrowKeychain(){
-<<<<<<< Updated upstream
     require_once 'Controller/BorrowKeychainController.php';
     require_once 'Model/DAO/implementationUserDAO_Session.php';
     require_once 'Model/DAO/implementationKeychainDAO_Session.php';
@@ -284,18 +283,6 @@ function borrowKeychain(){
     require_once 'Model/Service/implementationKeychainService.php';
 
     $controller = new BorrowKeychainController();
-=======
-  //Import des classes
-  require_once 'Controller/BorrowKeychainController.php';
-  require_once 'Model/DAO/implementationUserDAO_Dummy.php';
-  require_once 'Model/DAO/implementationKeychainDAO_Dummy.php';
-  require_once 'Model/Service/implementationBorrowService_Dummy.php';
-  require_once 'Model/Service/implementationKeyService_Dummy.php';
-  require_once 'Model/Service/implementationKeychainService.php';
-
-  //Appel du controller
-  $controller = new BorrowKeychainController();
->>>>>>> Stashed changes
 
     header('location:?/borrowKeychainForm');
 }
@@ -372,6 +359,7 @@ function createDoor(){
 dispatch('/locks', 'locks');
 function locks(){
     require_once 'Model/DAO/implementationLockDAO_Session.php';
+    require_once 'Model/DAO/implementationFournisseurDAO_Session.php';
     require_once 'Model/Service/implementationLockService.php';
     require_once 'Model/DAO/implementationDoorDAO_Session.php';
     require_once 'Controller/LocksController.php';
