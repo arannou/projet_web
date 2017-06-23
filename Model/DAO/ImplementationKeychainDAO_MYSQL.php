@@ -70,8 +70,8 @@ class ImplementationKeychainDAO_MYSQL extends ImplementationDAO_MYSQL implements
     public function addKeychain($keychain)
     {
         $stmt = $this->pdo->prepare("INSERT INTO $this->_tableName 
-                                      (id, creationDate, destructionDate) 
-                                      VALUES (:id, :creationDate, :destructionDate)");
+                                      (creationDate, destructionDate) 
+                                      VALUES (:creationDate, :destructionDate)");
 
         $stmt->bindParam(':creationDate', $keychain->getCreationDate());
         $stmt->bindParam(':destructionDate', $keychain->getDestructionDate());
