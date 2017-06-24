@@ -272,6 +272,8 @@ class implementationFournisseurDAO_MYSQL extends ImplementationDAO_MYSQL impleme
     $stmt->bindParam(':email', $email);
 
     $stmt->execute();
+
+    var_dump($stmt);
   }
 
 }

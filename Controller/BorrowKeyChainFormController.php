@@ -42,10 +42,13 @@ class BorrowKeyChainFormController {
 
                 $lockId = $key->getLockId();
                 $lock   = $lockDAO->getLockById($lockId);
-                $doorId = $lock->getDoorId();
-                $door   = $doorDAO->getDoorById($doorId);
 
-                array_push($rooms, $door->getRoomId());
+                $door = null;
+                if($lock != null){
+                    $doorId = $lock->getDoorId();
+                    $door   = $doorDAO->getDoorById($doorId);
+                    array_push($rooms, $door->getRoomId());
+                }
             }
 
             $isKeychainAvailable = true;
