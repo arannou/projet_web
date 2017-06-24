@@ -8,7 +8,7 @@ require_once 'Model/Factory/DAOFactory_MYSQL.php';
 require_once 'Model/Factory/FactoryProvider.php';
 
 function getDAOFactory(){
-    $provider = new FactoryProvider(FactoryProvider::$FACTORY_MYSQL);
+    $provider = new FactoryProvider(FactoryProvider::$FACTORY_SESSION);
     $factory = $provider->getFactory();
     return $factory;
 }
