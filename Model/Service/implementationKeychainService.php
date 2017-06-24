@@ -102,13 +102,13 @@ class implementationKeychainService implements interfaceKeychainService
         }
     }
 
-    public function createKeychainFromCSV($keychainId, $creationDate, $dueDate, $keys) {
+    public function createKeychainFromCSV($keychainId, $creationDate, $destructionDate, $keys) {
         if(!$this->checkKeychainById($keychainId)) {
             $keychain = new KeychainVO;
             $keychain->setId((int)$keychainId);
             $dateCreation = DateTime::createFromFormat('Y-m-d', $creationDate);
             $keychain->setCreationDate($dateCreation);
-            $dateDestruction = DateTime::createFromFormat('Y-m-d', $dueDate);
+            $dateDestruction = DateTime::createFromFormat('Y-m-d', $destructionDate);
             $keychain->setDestructionDate($dateDestruction);
             $parsedKeys = explode(',', $keys);
 
