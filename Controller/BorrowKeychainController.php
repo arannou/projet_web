@@ -18,7 +18,6 @@ class BorrowKeychainController {
                     $keys = json_decode($_POST['keys']);
                     $keychain = null;
 
-                    //verifier la dispo de toutes les clés
                     $allKeyAvailable = true;
                     foreach ($keys as $index => $keyId) {
                         if(!$keychainService->isKeyAvailable($keyId)){
