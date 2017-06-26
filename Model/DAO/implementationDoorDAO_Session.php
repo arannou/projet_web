@@ -88,6 +88,21 @@ class implementationDoorDAO_Session implements interfaceDoorDAO
 
 		return null;
 	}
+
+	public function update($door){
+		$id = null;
+		foreach ($_SESSION["doors"] as $index => $d){
+			if($d->getid() == $door->getId()){
+				$id = $index;
+			}
+		}
+
+		if($id != null){
+			$_SESSION[$id] = $door;
+		}
+	}
+
+
 }
 
 

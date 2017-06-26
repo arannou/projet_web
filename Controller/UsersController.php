@@ -34,7 +34,7 @@ class UsersController {
         foreach ($this->keysOfKeychains as $index => $keys) {
           $keyId = [];
           foreach ($keys as $index2 => $key) {
-            $keyId[] = $serviceKey->getDoorByKeyId($key);
+            $keyId[] = $serviceKey->getDoorByKeyId($key->getId());
           }
           $this->doors[] = $keyId;
         }
