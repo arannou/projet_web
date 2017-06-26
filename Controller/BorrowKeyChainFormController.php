@@ -55,6 +55,7 @@ class BorrowKeyChainFormController {
         }
       }
 
+		// vérification de la disponibilité d'un trousseau
       $isKeychainAvailable = true;
       foreach ($currentBorrowings as $key => $borrowing) {
         if($borrowing['keychainId'] == $keychain->getId()){

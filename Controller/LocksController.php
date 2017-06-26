@@ -17,11 +17,6 @@ class LocksController {
 
         $providersDAO = implementationFournisseurDAO_Session::getInstance();
         $this->providers = $providersDAO->getProviders();
-/*
-        foreach ($this->locks as $key => $lock) {
-            $roomId = $doorDAO->getDoorById($lock->getDoorId())->getRoomId();
-            array_push($this->roomIds, $roomId);
-        }*/
 
         $this->doors = $doorDAO->getDoors();
     }
