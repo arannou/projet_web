@@ -6,8 +6,19 @@ interface interfaceFournisseurDAO
     // Singleton
     public static function getInstance();
 
+    /**
+     * Retourne tout les fournisseurs
+     *
+     * @return mixed
+     */
     public function getProviders();
 
+    /**
+     * Retourne le fournisseur dont l'id est donné
+     *
+     * @param $id
+     * @return mixed
+     */
     public function getProviderById($id);
 
     public function getProviderByUsername($username);
