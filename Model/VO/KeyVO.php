@@ -20,11 +20,6 @@ class KeyVO
      */
     protected $lockId;
 
-    /**
-     * Get the value of Key Type
-     *
-     * @return mixed
-     */
     public function getKeyType()
     {
         return $this->keyType;
