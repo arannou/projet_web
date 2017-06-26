@@ -44,7 +44,7 @@ class implementationFournisseurService implements interfaceFournisseurService
         return self::$_instance;
       }
 
-    //@todo : Remplacer l'utilisation de cette fonction par celle présente en DAO
+    //On récupère le fournisseur à l'aide de son identifiant
     public function getProviderById($providerId)
     {
       $provider=null;
@@ -52,16 +52,15 @@ class implementationFournisseurService implements interfaceFournisseurService
       if(count($providers)+1 > $providerId)
       {
         $provider = $providers[$providerId-1];
-
       }
       return $provider;
     }
 
+    //On récupère la liste des fournisseurs
     public function getProviders()
     {
       return $this->_providersDAO->getProviders();
     }
-
 }
 
 ?>

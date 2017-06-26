@@ -54,13 +54,14 @@ class implementationKeychainService implements interfaceKeychainService
         return self::$_instance;
     }
 
-
+    //On crée un trousseau
     public function createKeychain($creationDate, $dueDate, $keys)
     {
         $keychains = $this->_keychainDAO->getKeychains();
+        //Si aucun trousseau n'est créé, on commence notre incrémentation d'identifiant à 0
         if (count($keychains) == 0) {
             $newId = 0;
-        } else {
+        } else { //Sinon, on ajoute un identifiant de trousseau à la suite des autres
             $newId = $keychains[count($keychains) - 1]->getId() + 1;
         }
 
@@ -81,6 +82,7 @@ class implementationKeychainService implements interfaceKeychainService
         return $keychain;
     }
 
+    //Vérification de l'existance d'un trousseau
     public function isKeychainAvailable($id){
         $borrowings = $this->borrowService->getCurrentBorrowings();
         foreach ($borrowings as $key => $borrowing) {
@@ -91,6 +93,7 @@ class implementationKeychainService implements interfaceKeychainService
         return true;
     }
 
+    //Récupération des trousseaux existants
     public function getExistingKeychains(){
         $keychains = $this->_keychainDAO->getKeychains();
 
@@ -102,6 +105,7 @@ class implementationKeychainService implements interfaceKeychainService
         }
     }
 
+    //Créaction de trousseaux à l'aide d'un CSV
     public function createKeychainFromCSV($keychainId, $creationDate, $destructionDate, $keys) {
         if(!$this->checkKeychainById($keychainId)) {
             $keychain = new KeychainVO;
@@ -122,6 +126,7 @@ class implementationKeychainService implements interfaceKeychainService
         }
     }
 
+    //Vérification de la disponibilité d'une clé
     public function isKeyAvailable($keyId){
         $existingKeychains = $this->getExistingKeychains();
 
@@ -132,10 +137,10 @@ class implementationKeychainService implements interfaceKeychainService
                 }
             }
         }
-
         return true;
     }
 
+    //Vérification de l'existance d'un trousseau à l'aide de son identifiant
     public function checkKeychainById($keychainId) {
         if ($this->_keychainDAO->getKeychainById($keychainId) != null) {
             return true;
@@ -144,5 +149,4 @@ class implementationKeychainService implements interfaceKeychainService
             return false;
         }
     }
-
 }

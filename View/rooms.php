@@ -5,6 +5,7 @@
         <h3>Salles</h3>
       </div>
       <hr>
+      <!-- Liste des salles -->
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
@@ -19,6 +20,7 @@
             </thead>
             <?php
             foreach ($controller->rooms as $index => $room) {
+              //Récupération des canons associés à la salle
               echo '<tr>';
               echo '<td>'.$room->getId().'</td>';
               if ($controller->locks[$index] != null) {
@@ -26,6 +28,7 @@
               } else {
                 echo '<td></td>';
               }
+              //Récupération des clés associées à la salle
               if ($controller->keys[$index] != null) {
                 echo '<td>'.$controller->keys[$index]->getId().'</td>';
               } else {
@@ -38,6 +41,7 @@
             ?>
           </table>
         </div>
+        <!-- Formulaire d'ajout de salle -->
         <div class="x_panel">
           <div class="x_title">
             Ajout d'une salle
@@ -52,6 +56,7 @@
             </form>
           </div>
         </div>
+        <!-- Formulaire d'ajout de salle à l'aide d'un CSV -->
         <div class="x_panel">
           <div class="x_title">
             Ajout de salles par CSV
@@ -78,6 +83,7 @@
 
 <!-- Modal -->
 <?php
+//Récupération des salles
 foreach ($controller->rooms as $room) {
   echo '<div class="modal fade" id="room'.$room->getId().'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -104,6 +110,7 @@ foreach ($controller->rooms as $room) {
 ?>
 
 <script>
+//Mise en place d'un écouteur sur le bouton du tableau salle
 $(document).ready(function(){
   $('.modalRoom').on('shown.bs.modal', function () {
     $('#myInput').focus();

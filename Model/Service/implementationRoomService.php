@@ -35,12 +35,14 @@ class implementationRoomService implements interfaceRoomService
         return self::$_instance;
     }
 
+    //Créaction de salle
     public function createRoom($id) {
         $room = new RoomVO();
         $room->setId($id);
         $this->_roomDAO->addRoom($room);
     }
 
+    //Création de salle à l'aide d'un CSV
     public function createRoomFromCSV($id) {
         if(!$this->checkRoomById($id)) {
             $room = new RoomVO();
@@ -49,6 +51,7 @@ class implementationRoomService implements interfaceRoomService
         }
     }
 
+    //Vérification de l'existance ou non d'une salle à l'aide d'un identifiant
     public function checkRoomById($id) {
       if ($this->_roomDAO->getRoomByIdCSV($id) != null) {
           return true;
@@ -56,11 +59,6 @@ class implementationRoomService implements interfaceRoomService
       else {
           return false;
       }
-    }
-
-    public function addDoorToRoom() {
-    }
-    public function deleteDoorToRoom() {
     }
 }
 ?>
