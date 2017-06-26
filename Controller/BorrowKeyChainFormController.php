@@ -50,6 +50,9 @@ class BorrowKeyChainFormController {
 
                 array_push($ids, $key->getId());
 
+
+		// vérification de la disponibilité d'un trousseau
+
                 if($isKeychainAvailable && $keychain->getDestructionDate() == null) {
 
                     $lockId = $key->getLockId();
@@ -79,6 +82,7 @@ class BorrowKeyChainFormController {
             }
 
             array_push($this->keychainsKeys, $ids);
+
         }
 
         $this->users         = $usersDAO->getUsers();
