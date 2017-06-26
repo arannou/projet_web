@@ -93,7 +93,10 @@ foreach ($controller->users as $user) {
           foreach ($borrowTab as $key => $borrow) {
             $keyTab = $controller->keysOfKeychains[$borrow['borrowingId']];
             foreach ($controller->doors[$key] as $index => $door) {
-              echo '<li>'.$door->getRoomId().'</li>';
+              if ($door != null) {
+                echo '<li>'.$door->getRoomId().'</li>';
+              }
+
             }
           }
           echo '</ul>';
