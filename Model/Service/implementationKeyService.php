@@ -52,7 +52,7 @@ class implementationKeyService
         return self::$_instance;
     }
 
-
+    //Création d'une clé
     public function createKey($id, $type, $lockId) {
         if(!$this->checkKeyByIdKey($id)) {
             $key = new KeyVO();
@@ -63,6 +63,7 @@ class implementationKeyService
         }
     }
 
+    //Vérification de l'existance d'une clé à l'aide de son identifiant
     public function checkKeyByIdKey($idKey) {
         if ($this->_keyDAO->getKeyById($idKey) != null) {
             return true;
@@ -72,6 +73,7 @@ class implementationKeyService
         }
     }
 
+    //Récupération de la liste des clés disponibles
     public function getAvailableKeys(){
         $keys = $this->_keyDAO->getKeys();
         $availableKeys = [];
@@ -81,10 +83,10 @@ class implementationKeyService
                 array_push($availableKeys, $key);
             }
         }
-
         return $availableKeys;
     }
 
+    //Récupération des clés d'un trousseau
     public function getKeysOfKeychain($keychainId)
     {
         $keysArray = null;
@@ -97,9 +99,9 @@ class implementationKeyService
         return $keysArray;
     }
 
+    //Récupération des portes associées à une clé
     public function getDoorByKeyId($keyId)
     {
-
         $key = $this->_keyDAO->getKeyById($keyId);
         $lockId = $key->getLockId();
         $lock   = $this->_lockDAO->getLockById($lockId);

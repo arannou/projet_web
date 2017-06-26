@@ -42,7 +42,7 @@ class implementationDoorService implements interfaceDoorService
         return self::$_instance;
     }
 
-    //on crée une porte
+    //Créaction de porte
     public function createDoor($room)
     {
         $doors = $this->_doorDAO->getDoors();
@@ -51,9 +51,6 @@ class implementationDoorService implements interfaceDoorService
         $door = new DoorVO();
         $door->setId($lastId+1);
         $door->setRoomId($room);
-
-        var_dump($door);
-
         $this->_doorDAO->addDoor($door);
 
         return $door;

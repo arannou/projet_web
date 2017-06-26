@@ -29,6 +29,7 @@ class implementationLockService implements interfaceLockService
          return self::$_instance;
        }
 
+    //Créaction de canon
     public function createLock($length, $provider){
         $lock = new LockVO();
         $doorId=null;
@@ -43,13 +44,13 @@ class implementationLockService implements interfaceLockService
           $lock->setId($LastIdItemArray+1);
         }
 
-        //$lock->setId(count($this->_lockDAO->getLocks())+1);
         $lock->setLength($length);
         $lock->setProvider($provider);
         $lock->setDoorId($doorId);
         $this->_lockDAO->addLock($lock);
     }
 
+    //Suppression de canon
     public function deleteLock($id){
         $this->_lockDAO->removeLockById($id);
     }
