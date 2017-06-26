@@ -1,11 +1,23 @@
 <?php
 class KeyVO
 {
-
+    /**
+     * @var array types de clés
+     */
     public static $keyType = array("Simple"=>"Clé","Partiel"=>"Passe Partiel","Total"=>"Passe Total");
 
+    /**
+     * @var identifiant
+     */
     protected $id;
+
+    /**
+     * @var type de la clé
+     */
     protected $type; //Clef ou Passe Partiel ou Passe Total
+    /**
+     * @var Identifiant du canon
+     */
     protected $lockId;
 
     /**
