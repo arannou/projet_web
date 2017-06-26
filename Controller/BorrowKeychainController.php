@@ -10,6 +10,7 @@ class BorrowKeychainController {
         $keyService        = implementationKeyService::getInstance();
 
         if(isset($_POST['keychainSelection'])){
+			// si on crée un trousseau
             if($_POST['keychainSelection'] == "creation"){
 
                 if(isset($_POST['keys']) && isset($_POST['dueDate']) && isset($_POST['userEnssatPrimaryKey'])){
@@ -33,6 +34,8 @@ class BorrowKeychainController {
                         $borrowService->borrowKeychain($_POST['userEnssatPrimaryKey'], $keychain->getId(), $dtDueDate);
                     }
                 }
+				
+				// si on sélectionne un trousseau existant
             }else if($_POST['keychainSelection'] == "selection"){
                 if(isset($_POST['keychainId']) && isset($_POST['dueDate']) && isset($_POST['userEnssatPrimaryKey'])){
                     $dt = new DateTime($_POST['dueDate']);
@@ -44,8 +47,6 @@ class BorrowKeychainController {
                     }
                 }
             }
-        }else{
-
         }
     }
 }
