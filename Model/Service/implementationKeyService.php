@@ -101,7 +101,6 @@ class implementationKeyService
     {
 
         $key = $this->_keyDAO->getKeyById($keyId);
-
         $lockId = $key->getLockId();
         $lock   = $this->_lockDAO->getLockById($lockId);
 

@@ -5,17 +5,25 @@ class CreateDoorController {
     public $pageName;
 
     public function __construct(){
-       if(isset($_POST['room']) && isset($_POST['lock'])){
+        if(isset($_POST['room']) && isset($_POST['lock'])){
 
-            $createDoor    = implementationDoorService::getInstance();
+            $createDoor = implementationDoorService::getInstance();
+            $door = $createDoor->createDoor($_POST['room']);
 
-            $createDoor->createDoor($_POST['room'], $_POST['lock']);
+            $daoFactory = getDAOFactory();
+            $lockDAO    = $daoFactory->getLockDAO();
+
+            $lock = $lockDAO->getLockById($_POST['lock']);
+            if($lock != null){
+                $lock->setDoorId($door->getId());
+                $lockDAO->update($lock);
+            }
 
         }
 
     }
 
-	
-	
+
+
 
 }

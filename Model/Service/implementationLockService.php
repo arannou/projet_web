@@ -43,8 +43,6 @@ class implementationLockService implements interfaceLockService
           $lock->setId($LastIdItemArray+1);
         }
 
-        var_dump($LastIdItemArray);
-
         //$lock->setId(count($this->_lockDAO->getLocks())+1);
         $lock->setLength($length);
         $lock->setProvider($provider);

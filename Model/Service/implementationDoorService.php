@@ -5,63 +5,59 @@ require_once 'Model/DAO/implementationDoorDAO_Session.php';
 
 class implementationDoorService implements interfaceDoorService
 {
-  /**
-   * @var Singleton
-   * @access private
-   * @static
-   */
-   private static $_instance = null;
+    /**
+     * @var Singleton
+     * @access private
+     * @static
+     */
+    private static $_instance = null;
 
-   private $_doors = array(); // doorId
-   private $_doorDAO;
+    private $_doors = array(); // doorId
+    private $_doorDAO;
 
-   /**
-   * Constructeur de la classe
-   *
-   * @param void
-   * @return void
-   */
-   private function __construct()
-   {
-     $this->_doorDAO = implementationDoorDAO_Session::getInstance();
-   }
+    /**
+     * Constructeur de la classe
+     *
+     * @param void
+     * @return void
+     */
+    private function __construct()
+    {
+        $this->_doorDAO = implementationDoorDAO_Session::getInstance();
+    }
 
-   /**
-    * Méthode qui crée l'unique instance de la classe
-    * si elle n'existe pas encore puis la retourne.
-    *
-    * @param void
-    * @return Singleton
-    */
-   public static function getInstance() {
+    /**
+     * Méthode qui crée l'unique instance de la classe
+     * si elle n'existe pas encore puis la retourne.
+     *
+     * @param void
+     * @return Singleton
+     */
+    public static function getInstance() {
 
-     if(is_null(self::$_instance)) {
-       self::$_instance = new implementationDoorService();
-   }
+        if(is_null(self::$_instance)) {
+            self::$_instance = new implementationDoorService();
+        }
 
-     return self::$_instance;
-   }
+        return self::$_instance;
+    }
 
-	    //on crée une porte
+    //on crée une porte
     public function createDoor($room)
     {
-      $doors = $this->_doorDAO->getDoors();
-      $lastId = end($doors)->getId();
+        $doors = $this->_doorDAO->getDoors();
+        $lastId = end($doors)->getId();
 
-      $door = new DoorVO();
-      $door->setId($lastId+1);
-      $door->setRoomId($room);
+        $door = new DoorVO();
+        $door->setId($lastId+1);
+        $door->setRoomId($room);
 
-      $this->_doorDAO->addDoor($door);
-	}
+        var_dump($door);
 
-    public function addLockToDoor(){
+        $this->_doorDAO->addDoor($door);
 
-	}
-
-    public function deleteLockToDoor(){
-
-	}
+        return $door;
+    }
 }
 
 ?>

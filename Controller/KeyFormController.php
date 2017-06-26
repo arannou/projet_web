@@ -8,7 +8,7 @@ class KeyFormController {
     $DAO = implementationKeyDAO_Session::getInstance();
     $this->service = implementationKeyService::getInstance();
     if (isset($_POST['keyId']) && !empty($_POST['keyId'])) {
-      $this->service->createKey($_POST['keyId'], $_POST['keyType'], null, $_POST['lockId']);
+      $this->service->createKey($_POST['keyId'], $_POST['keyType'], $_POST['lockId']);
     }
   }
 }
