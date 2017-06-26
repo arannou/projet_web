@@ -1,5 +1,6 @@
 <div class="right_col" role="main">
   <div class="">
+    <!-- Formulaire de signalement de perte de trousseau -->
     <div class="page-title">
       <div class="title_left">
         <h3>Emprunt</h3>
@@ -15,6 +16,7 @@
           <form action="?/loseKeychain" method="post" data-parsley-validate class="form-horizontal form-label-left">
             <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Trousseau:</label>
+            <!-- Récupération de l'ID du trousseau -->
             <input type="number" name=id readonly value="<?php echo($controller->borrowing) ?>" />
             </div>
               <div class="form-group">

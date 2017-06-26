@@ -5,6 +5,7 @@
         <h3>Providers</h3>
       </div>
       <hr>
+      <!-- Liste des fournisseurs -->
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">

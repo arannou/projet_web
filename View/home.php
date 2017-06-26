@@ -1,5 +1,5 @@
 <div class="right_col" role="main">
-
+<!-- Affichage des données globales du système -->
     <div class="row tile_count">
         <div class="col-md-2 col-sm-3 col-xs-3 tile_stats_count">
             <span class="count_top"><i class="fa fa-user"></i> Nombre d'utilisateurs</span>
@@ -23,6 +23,7 @@
         </div>
     </div>
 
+    <!-- Affichage des emprunts en cours -->
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
@@ -70,7 +71,7 @@
         </div>
     </div>
 
-   
+   <!-- Affichage des emprunts en retard -->
     <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="x_panel tile ">
             <div class="x_title">
@@ -109,6 +110,7 @@
 
         </div>
     </div>
+    <!-- Affichage des trousseaux perdus -->
     <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="x_panel tile ">
             <div class="x_title">

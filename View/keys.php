@@ -5,6 +5,7 @@
         <h3>Clés</h3>
       </div>
       <hr>
+      <!-- Liste des clés -->
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
@@ -24,7 +25,6 @@
               echo '<td>'.$key->getType().'</td>';
               echo '<td>'.$key->getLockId().'</td>';
               //Afficher ID de la porte + salle associée à la clé
-
               echo '<td>';
               if($controller->doors[$index] != null)
                 echo $controller->doors[$index]->getRoomId();
@@ -34,6 +34,7 @@
             ?>
           </table>
         </div>
+        <!-- Formulaire d'ajout de clé -->
         <div class="x_panel">
           <div class="x_title">
             Ajout d'une clé
@@ -64,6 +65,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <select name="lockId" class="form-control">
                     <?php
+                    //Récupération des canons
                     foreach ($controller->locks as $key => $lock) {
                       echo '<option value="'.$lock->getId().'">'.$lock->getId().'</option>';
                     }
@@ -77,6 +79,7 @@
             </form>
           </div>
         </div>
+        <!-- Formulaire d'ajout de clé à l'aide d'un CSV -->
         <div class="x_panel">
           <div class="x_title">
             Ajout de clés par CSV

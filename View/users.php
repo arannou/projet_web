@@ -5,6 +5,7 @@
         <h3>Utilisateurs</h3>
       </div>
       <hr>
+      <!-- Listing des utilisateurs -->
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
@@ -39,6 +40,7 @@
             ?>
           </table>
         </div>
+        <!-- Ajout d'utilisateurs à l'aide d'un CSV - Formulaire -->
         <div class="x_panel">
           <div class="x_title">
             Ajout d'utilisateurs par CSV
@@ -66,7 +68,9 @@
 
 <!-- Modal -->
 <?php
+//Récupération des utilisateurs
 foreach ($controller->users as $user) {
+  //On récupère les emprunts lié à l'utilisateur
   $borrowTab = $controller->borrowByUser[$user->getEnssatPrimaryKey()];
   echo '<div class="modal fade" id="user'.$user->getEnssatPrimaryKey().'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -79,6 +83,7 @@ foreach ($controller->users as $user) {
         <strong>Trousseaux empruntés :</strong>
         <br>
         ';
+        //On affiche les éventuels trousseaux empruntés
         if ($borrowTab != null) {
           foreach ($borrowTab as $key => $borrow) {
             echo $borrow['keychainId'].' ';
@@ -88,6 +93,7 @@ foreach ($controller->users as $user) {
           echo "<em>Pas de trousseau emprunté.</em>";
         }
         echo '<br><strong>Accès :</strong><br>';
+        //On cherche les salles auxquelles l'utilisateur a accès
         if ($borrowTab != null) {
           echo '<ul>';
           foreach ($borrowTab as $key => $borrow) {
@@ -115,6 +121,7 @@ foreach ($controller->users as $user) {
 ?>
 
 <script>
+//Mise en place d'un écouteur sur le bouton
 $(document).ready(function(){
   $('.modalUser').on('shown.bs.modal', function () {
     $('#myInput').focus();

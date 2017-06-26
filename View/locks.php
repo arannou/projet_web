@@ -5,6 +5,7 @@
         <h3>Canons</h3>
       </div>
       <hr>
+      <!-- Formulaire d'ajout de canon -->
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
@@ -16,6 +17,7 @@
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Fournisseur:</label>
                 <select name = "providerCanon">
                   <?php
+                  //Récupération des fournisseurs
                   foreach($controller->providers as $provider){
                     echo '<option value = "'.$provider->getId().'">'.$provider->getName()." ".$provider->getSurname().'</option>';
                   } ?>
@@ -31,7 +33,7 @@
             </form>
           </div>
         </div>
-
+        <!-- Liste des canons -->
         <div class="x_panel">
           <div class="x_title">
             Liste des canons
@@ -51,7 +53,9 @@
               echo '<td>'.$lock->getLength().'</td>';
               echo '<td>'.$lock->getProvider().'</td>';
               echo '<td>'.$lock->getDoorId().'</td>';
-              ?><form action="?/locksSuppr" method="post" data-parsley-validate class="form-horizontal form-label-left"><?php
+              ?>
+              <!-- Ajout d'un bouton suppression pour supprimer un canon -->
+              <form action="?/locksSuppr" method="post" data-parsley-validate class="form-horizontal form-label-left"><?php
               echo '<td><input type="hidden" name="idCanon" value="'.$lock->getId().'"><input type="submit" value="Supprimer" class="btn btn-warning" /></td>';
               ?></form><?php
               echo '</tr>';
