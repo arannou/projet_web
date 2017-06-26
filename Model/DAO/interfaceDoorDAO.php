@@ -37,14 +37,6 @@ interface interfaceDoorDAO
    * @return mixed
    */
   public function getDoorByRoomId($idRoom);
-
-  /**
-   * Met a jour les données stockées
-   *
-   * @param $door
-   * @return mixed
-   */
-  public function update($door);
 }
 
 ?>
