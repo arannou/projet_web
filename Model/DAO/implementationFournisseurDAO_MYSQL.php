@@ -4,9 +4,7 @@ require_once 'Model/VO/ProviderVO.php';
 
 class implementationFournisseurDAO_MYSQL extends ImplementationDAO_MYSQL implements interfaceFournisseurDAO
 {
-
-  private $_providers = array();
-  private $_tableName = "provider";
+  private $_tableName = "fournisseurs";
 
   /**
    * @var Singleton
@@ -272,8 +270,6 @@ class implementationFournisseurDAO_MYSQL extends ImplementationDAO_MYSQL impleme
     $stmt->bindParam(':email', $email);
 
     $stmt->execute();
-
-    var_dump($stmt);
   }
 
 }

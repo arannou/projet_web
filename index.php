@@ -10,7 +10,7 @@ require_once 'Model/Factory/FactoryProvider.php';
 
 // Recupère la factory correspond au mode de persistance
 function getDAOFactory(){
-    $provider = new FactoryProvider(FactoryProvider::$FACTORY_SESSION);
+    $provider = new FactoryProvider(FactoryProvider::$FACTORY_MYSQL);
     $factory = $provider->getFactory();
     return $factory;
 }
@@ -105,7 +105,7 @@ function populateDatabase(){
     $providerDAO = $factory->getFournisseurDAO();
     $providerDAO->populate();
 
-    var_dump($_SESSION);
+    //var_dump($_SESSION);
 }
 
 // Fonction qui affiche les différentes données stockées dans la session
