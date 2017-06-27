@@ -36,9 +36,11 @@ class implementationBorrowService implements interfaceBorrowService
   */
   private function __construct()
   {
-    $this->_userDAO       = implementationUserDAO_Session::getInstance();
-    $this->_keychainDAO   = implementationKeychainDAO_Session::getInstance();
-    $this->_borrowingsDAO = implementationBorrowingsDAO_Session::getInstance();
+      $factory = getDAOFactory();
+
+      $this->_userDAO       = $factory->getUserDAO();
+      $this->_keychainDAO   = $factory->getKeychainDAO();
+      $this->_borrowingsDAO = $factory->getBorrowingsDAO();
   }
 
   /**
@@ -52,6 +54,7 @@ class implementationBorrowService implements interfaceBorrowService
 
     if(is_null(self::$_instance)) {
       self::$_instance = new implementationBorrowService();
+
     }
 
     return self::$_instance;

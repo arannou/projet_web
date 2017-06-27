@@ -9,39 +9,42 @@ class LocksController {
 
     public function __construct($pageName){
 
-      $this->pageName = $pageName;
-        $DAO = implementationLockDAO_Session::getInstance();
+        $this->pageName = $pageName;
+
+        $factory = getDAOFactory();
+
+        $DAO = $factory->getLockDAO();
         $this->locks = $DAO->getLocks();
 
-        $doorDAO = implementationDoorDAO_Session::getInstance();
+        $doorDAO = $factory->getDoorDAO();
 
-        $providersDAO = implementationFournisseurDAO_Session::getInstance();
+        $providersDAO = $factory->getFournisseurDAO();
         $this->providers = $providersDAO->getProviders();
 
         $this->doors = $doorDAO->getDoors();
     }
 
     /**
-    * Get the value of Page Name
-    *
-    * @return mixed
-    */
+     * Get the value of Page Name
+     *
+     * @return mixed
+     */
     public function getPageName()
     {
-      return $this->pageName;
+        return $this->pageName;
     }
 
     /**
-    * Set the value of Page Name
-    *
-    * @param mixed pageName
-    *
-    * @return self
-    */
+     * Set the value of Page Name
+     *
+     * @param mixed pageName
+     *
+     * @return self
+     */
     public function setPageName($pageName)
     {
-      $this->pageName = $pageName;
+        $this->pageName = $pageName;
 
-      return $this;
+        return $this;
     }
 }

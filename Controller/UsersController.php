@@ -12,11 +12,13 @@ class UsersController {
     public function __construct($pageName){
         $this->pageName = $pageName;
 
-        $DAO = implementationUserDAO_Session::getInstance();
+        $factory = getDAOFactory();
+
+        $DAO = $factory->getUserDAO();
         $this->users = $DAO->getUsers();
         $serviceBorrow = implementationBorrowService::getInstance();
         $serviceKey = implementationKeyService::getInstance();
-        $keyKeychainDAO = implementationKeyKeychainDAO_Session::getInstance();
+        $keyKeychainDAO = $factory->getKeychainDAO();
 
         $this->borrowByUser = [];
         foreach ($this->users as $key => $user) {

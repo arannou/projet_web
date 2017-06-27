@@ -22,8 +22,8 @@ class implementationKeychainDAO_Session implements interfaceKeyChainDAO
      * @return void
      */
     private function __construct() {
-        $this->keyKeychainDAO = implementationKeyKeychainDAO_Session::getInstance();
-
+        $factory = getDAOFactory();
+        $this->keyKeychainDAO = $factory->getKeyKeychainDAO();
     }
 
     public function populate(){

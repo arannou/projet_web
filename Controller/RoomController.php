@@ -10,10 +10,12 @@ class RoomController {
     public function __construct($pageName){
         $this->pageName = $pageName;
 
-        $roomDAO        = implementationRoomDAO_Session::getInstance();
-        $doorDAO        = implementationDoorDAO_Session::getInstance();
-        $lockDAO        = implementationLockDAO_Session::getInstance();
-        $keyDAO         = implementationKeyDAO_Session::getInstance();
+        $factory = getDAOFactory();
+
+        $roomDAO        = $factory->getRoomDAO();
+        $doorDAO        = $factory->getDoorDAO();
+        $lockDAO        = $factory->getLockDAO();
+        $keyDAO         = $factory->getKeyDAO();
 
         $this->rooms    = $roomDAO->getRooms();
 

@@ -8,7 +8,10 @@ class DoorsController {
 
     public function __construct($pageName){
         $this->pageName = $pageName;
-        $DAO = implementationDoorDAO_Session::getInstance();
+
+        $factory = getDAOFactory();
+
+        $DAO = $factory->getDoorDAO();
         $this->doors = $DAO->getDoors();
     }
 

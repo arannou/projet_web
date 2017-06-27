@@ -9,8 +9,9 @@ class implementationLockService implements interfaceLockService
 
     private function __construct()
     {
-      $this->_lockDAO       = implementationLockDAO_Session::getInstance();
+        $factory = getDAOFactory();
 
+        $this->_lockDAO = $factory->getLockDAO();
     }
 
        /**
