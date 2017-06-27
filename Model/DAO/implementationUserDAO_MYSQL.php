@@ -113,16 +113,20 @@ class implementationUserDAO_MYSQL extends implementationDAO_MYSQL implements int
 
     public function addUser($user){
         $stmt = $this->pdo->prepare("INSERT INTO $this->_tableName
-                                      ( name, username, surname, phone, status, email)
-                                      VALUES (:name, :username, :surname, :phone, :status, :email)");
+                                      (ur1identifier, enssatPrimaryKey, name, username, surname, phone, status, email)
+                                      VALUES (:ur1identifier, :enssatPrimaryKey, :name, :username, :surname, :phone, :status, :email)");
 
+        $ur1identifier = $user->getUr1Identifier();
+        $enssatPrimaryKey = $user->getEnssatPrimaryKey();
         $name = $user->getName();
         $username = $user->getUsername();
         $surname = $user->getSurname();
         $phone = $user->getPhone();
         $status = $user->getStatus();
         $email = $user->getEmail();
-        
+
+        $stmt->bindParam(':ur1identifier', $ur1identifier);
+        $stmt->bindParam(':enssatPrimaryKey', $enssatPrimaryKey);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':surname', $surname);
@@ -131,6 +135,9 @@ class implementationUserDAO_MYSQL extends implementationDAO_MYSQL implements int
         $stmt->bindParam(':email', $email);
 
         $stmt->execute();
+
+        var_dump($stmt);
+        echo '<br><br>';
     }
 
 }
