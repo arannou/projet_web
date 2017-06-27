@@ -43,7 +43,7 @@ class implementationKeyDAO_MYSQL extends ImplementationDAO_MYSQL implements inte
                 $key->setType((string)$xmlkey->type);
                 $key->setLockId((int)$xmlkey->lockId);
 
-                addKey($key);
+                $this->addKey($key);
             }
         } else {
             throw new RuntimeException('Echec lors de l\'ouverture du fichier keys.xml.');
@@ -84,14 +84,17 @@ class implementationKeyDAO_MYSQL extends ImplementationDAO_MYSQL implements inte
 
     public function addKey($key){
         $stmt = $this->pdo->prepare("INSERT INTO $this->_tableName 
-                                      (type, lock_id) 
+                                      (type, lockId) 
                                       VALUES (:type, :lock_id)");
 
 		$k_type = $key->getType();
 		$k_lock_id = $key->getType();
+
         $stmt->bindParam(':type', $k_type);
         $stmt->bindParam(':lock_id', $k_lock_id);
         $stmt->execute();
+
+        var_dump($stmt);
     }
 	
 	public function getKeychainOfKey($keychainId, $keyId) {

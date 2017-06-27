@@ -4,7 +4,7 @@ require_once 'Model/VO/ProviderVO.php';
 
 class implementationFournisseurDAO_MYSQL extends ImplementationDAO_MYSQL implements interfaceFournisseurDAO
 {
-  private $_tableName = "fournisseurs";
+  private $_tableName = "provider";
 
   /**
    * @var Singleton
