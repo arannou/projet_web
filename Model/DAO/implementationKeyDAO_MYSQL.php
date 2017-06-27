@@ -26,7 +26,7 @@ class implementationKeyDAO_MYSQL extends ImplementationDAO_MYSQL implements inte
     public static function getInstance() {
 
         if(is_null(self::$_instance)) {
-            self::$_instance = new implementationBorrowingsDAO_Session();
+            self::$_instance = new implementationKeyDAO_MYSQL();
         }
 
         return self::$_instance;
