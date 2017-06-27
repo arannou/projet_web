@@ -98,13 +98,10 @@ class implementationDoorDAO_MYSQL extends ImplementationDAO_MYSQL implements int
 	public function addDoor($door)
 	{
 		$stmt = $this->pdo->prepare("INSERT INTO $this->_tableName
-			(lockId, roomId)
-			VALUES (:lockId, :roomId)");
+			(roomId)
+			VALUES (:lockId)");
 
-		$lockId = $door->getLockId();
 		$roomId = $door->getRoomId();
-
-		$stmt->bindParam(':lockId', $lockId);
 		$stmt->bindParam(':roomId', $roomId);
 
 		$stmt->execute();
