@@ -7,7 +7,10 @@ class FournisseurController {
 
     public function __construct($pageName){
         $this->pageName = $pageName;
-        $DAO = implementationFournisseurDAO_Session::getInstance();
+
+        $factory = getDAOFactory();
+
+        $DAO = $factory->getFournisseurDAO();
         $this->providers = $DAO->getProviders();
     }
 

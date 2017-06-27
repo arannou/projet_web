@@ -9,9 +9,12 @@ class CreateDoorFormController {
     public function __construct($pageName){
         $this->pageName = $pageName;
 
-        $DAO = implementationDoorDAO_Session::getInstance();
+        $factory = getDAOFactory();
+
+        $DAO            = $factory->getDoorDAO();
         $this->doors    = $DAO->getDoors();
-        $roomDAO        = implementationRoomDAO_Session::getInstance();
+
+        $roomDAO        = $factory->getRoomDAO();
         $this->rooms    = $roomDAO->getRooms();
     }
 

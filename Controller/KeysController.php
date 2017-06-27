@@ -9,10 +9,13 @@ class KeysController {
 
   public function __construct($pageName){
     $this->pageName = $pageName;
-    $DAO            = implementationKeyDAO_Session::getInstance();
+
+    $factory = getDAOFactory();
+
+    $DAO            = $factory->getKeyDAO();
     $this->keys     = $DAO->getKeys();
     $keyService     = implementationKeyService::getInstance();
-    $lockDAO        = implementationLockDAO_Session::getInstance();
+    $lockDAO        = $factory->getLockDAO();
 
     $this->doors    = [];
     foreach ($this->keys as $index => $key) {

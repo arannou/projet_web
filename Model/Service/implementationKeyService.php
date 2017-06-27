@@ -28,12 +28,14 @@ class implementationKeyService
      */
     private function __construct()
     {
-        $this->_keyDAO  = implementationKeyDAO_Session::getInstance();
-        $this->_keychainDAO   = implementationKeychainDAO_Session::getInstance();
-        $this->_borrowingsDAO = implementationBorrowingsDAO_Session::getInstance();
-        $this->_lockDAO = implementationLockDAO_Session::getInstance();
-        $this->_doorDAO = implementationDoorDAO_Session::getInstance();
-        $this->_keychainService = implementationKeychainService::getInstance();
+        $factory = getDAOFactory();
+
+        $this->_keyDAO          = $factory->getKeyDAO();
+        $this->_keychainDAO     = $factory->getKeychainDAO();
+        $this->_borrowingsDAO   = $factory->getBorrowingsDAO();
+        $this->_lockDAO         = $factory->getLockDAO();
+        $this->_doorDAO         = $factory->getDoorDAO();
+        $this->_keychainService = $factory->getKeychainDAO();
     }
 
     /**

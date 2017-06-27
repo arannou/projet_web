@@ -22,20 +22,23 @@ class HomeController {
 
     public function __construct($pageName){
         $this->pageName   = $pageName;
+
+        $factory = getDAOFactory();
+
         $borrowService    = implementationBorrowService::getInstance();
-        $this->userDAO    = implementationUserDAO_Session::getInstance();
+        $this->userDAO    = $factory->getUserDAO();
 
         $this->borrowings     = $borrowService->getCurrentBorrowings();
         $this->lateBorrowings = $borrowService->getLateBorrowing();
 		$this->lateNumber     = count($borrowService->getLateBorrowing());
         $this->lostBorrowings = $borrowService->getLostBorrowing();
 
-        $this->keyKeychainDAO = implementationKeyKeychainDAO_Session::getInstance();
-        $this->lockDAO        = implementationLockDAO_Session::getInstance();
-        $this->doorDAO        = implementationDoorDAO_Session::getInstance();
+        $this->keyKeychainDAO = $factory->getKeychainDAO();
+        $this->lockDAO        = $factory->getLockDAO();
+        $this->doorDAO        = $factory->getDoorDAO();
 		
 		// bloc 'nombre d'utilisateurs'
-		$users =implementationUserDAO_Session::getInstance();
+		$users = $factory->getUserDAO();
 		$this->userNumber = count($users->getUsers());
 		$this->studentNumber =0;
 		foreach($users->getUsers() as $u) {
@@ -44,7 +47,7 @@ class HomeController {
 		}
 		
 		// bloc nombre de clés
-		$keys =implementationKeyDAO_Session::getInstance();
+		$keys = $factory->getKeyDAO();
 		$this->keysNumber = count($keys->getKeys());
 		$this->passNumber =0;
 		foreach($keys->getKeys() as $k) {
@@ -53,7 +56,7 @@ class HomeController {
 		}
 		
 		// bloc nombre d'emprunts
-		$borrowings =implementationBorrowingsDAO_Session::getInstance();
+		$borrowings = $factory->getBorrowingsDAO();
 		$this->borrowingsNumber = count($borrowings->getBorrowings());
 		
 		// bloc enmprunts en cours
@@ -64,8 +67,6 @@ class HomeController {
     		$rv = round ((($firstDateTimeStamp - $secondDateTimeStamp))/86400);
 			if($rv>=0) $this->borrowingsThisWeek++;
 		}
-		
-		
     }
 
     public function getDeltaInDays($lateBorrowing){

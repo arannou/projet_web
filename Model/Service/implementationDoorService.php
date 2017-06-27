@@ -23,7 +23,8 @@ class implementationDoorService implements interfaceDoorService
      */
     private function __construct()
     {
-        $this->_doorDAO = implementationDoorDAO_Session::getInstance();
+        $factory = getDAOFactory();
+        $this->_doorDAO = $factory->getDoorDAO();
     }
 
     /**

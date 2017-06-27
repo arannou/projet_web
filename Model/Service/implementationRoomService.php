@@ -19,7 +19,9 @@ class implementationRoomService implements interfaceRoomService
     */
     private function __construct()
     {
-        $this->_roomDAO = implementationRoomDAO_Session::getInstance();
+        $factory = getDAOFactory();
+
+        $this->_roomDAO = $factory->getRoomDAO();
     }
     /**
     * Méthode qui crée l'unique instance de la classe

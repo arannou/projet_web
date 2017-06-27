@@ -5,9 +5,11 @@ class BorrowKeychainController {
     public $pageName;
 
     public function __construct(){
-        $borrowService     = implementationBorrowService::getInstance();
-        $keychainService   = implementationKeychainService::getInstance();
-        $keyService        = implementationKeyService::getInstance();
+
+        $factory = getDAOFactory();
+
+        $borrowService     = $factory->getBorrowingsDAO();
+        $keychainService   = $factory->getKeychainDAO();
 
         if(isset($_POST['keychainSelection'])){
 			// si on crée un trousseau

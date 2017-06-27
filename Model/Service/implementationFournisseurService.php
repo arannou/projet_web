@@ -25,7 +25,8 @@ class implementationFournisseurService implements interfaceFournisseurService
    */
    private function __construct()
    {
-     $this->_providersDAO = implementationFournisseurDAO_Session::getInstance();
+     $factory = getDAOFactory();
+     $this->_providersDAO = $factory->getFournisseurDAO();
    }
 
       /**
