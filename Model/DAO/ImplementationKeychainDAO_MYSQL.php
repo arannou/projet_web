@@ -46,8 +46,10 @@ class ImplementationKeychainDAO_MYSQL extends ImplementationDAO_MYSQL implements
 
                 $keychain->setId((float) $xmlKeychain->id);
                 $tDate = new DateTime;
+
                 $tDate->setTimestamp((int)$xmlKeychain->creationDate);
                 $keychain->setCreationDate($tDate);
+
                 $tDate->setTimestamp((int)$xmlKeychain->destructionDate);
                 $keychain->setDestructionDate($tDate);
 
@@ -80,8 +82,8 @@ class ImplementationKeychainDAO_MYSQL extends ImplementationDAO_MYSQL implements
                                       (creationDate, destructionDate)
                                       VALUES (:creationDate, :destructionDate)");
                                       
-        $creationDate = $keychain->getCreationDate();
-        $destructionDate = $keychain->getDestructionDate();
+        $creationDate = date_format($keychain->getCreationDate(), 'Y-m-d H:i:s');
+        $destructionDate = date_format($keychain->getDestructionDate(), 'Y-m-d H:i:s');
 
         $stmt->bindParam(':creationDate', $creationDate);
         $stmt->bindParam(':destructionDate', $destructionDate);

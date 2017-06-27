@@ -84,27 +84,26 @@ function populateDatabase(){
 
     $factory = getDAOFactory();
 
-    $doorDAO = $factory->getDoorDAO();
-    $doorDAO->populate();
-
-    $keyChainDAO = $factory->getKeychainDAO();
-    //$keyChainDAO->populate();
-
-    $keyDAO = $factory->getKeyDAO();
-    //$keyDAO->populate();
-
-    $lockDAO = $factory->getLockDAO();
-    $lockDAO->populate();
+    $providerDAO = $factory->getFournisseurDAO();
+    $providerDAO->populate();
 
     $roomDAO = $factory->getRoomDAO();
     $roomDAO->populate();
 
+    $doorDAO = $factory->getDoorDAO();
+    $doorDAO->populate();
+
+    $lockDAO = $factory->getLockDAO();
+    $lockDAO->populate();
+
+    $keyDAO = $factory->getKeyDAO();
+    $keyDAO->populate();
+
+    $keyChainDAO = $factory->getKeychainDAO();
+    $keyChainDAO->populate();
+
     $userDAO = $factory->getUserDAO();
     $userDAO->populate();
-
-    $providerDAO = $factory->getFournisseurDAO();
-    $providerDAO->populate();
-
     //var_dump($_SESSION);
 }
 

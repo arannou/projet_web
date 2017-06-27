@@ -5,71 +5,83 @@
         <length>25</length>
         <doorId>1</doorId>
         <lockId>1</lockId>
+        <providerId>1</providerId>
     </lock>
     <lock>
         <id>2</id>
         <length>34</length>
         <doorId>2</doorId>
         <lockId>2</lockId>
+        <providerId>1</providerId>
     </lock>
     <lock>
         <id>3</id>
         <length>29</length>
         <doorId>3</doorId>
         <lockId>3</lockId>
+        <providerId>1</providerId>
     </lock>
     <lock>
         <id>4</id>
         <length>34</length>
         <doorId>4</doorId>
         <lockId>4</lockId>
+        <providerId>1</providerId>
     </lock>
     <lock>
         <id>5</id>
         <length>30</length>
         <doorId>5</doorId>
         <lockId>5</lockId>
+        <providerId>1</providerId>
     </lock>
     <lock>
         <id>6</id>
         <length>34</length>
         <doorId>6</doorId>
         <lockId>6</lockId>
+        <providerId>1</providerId>
     </lock>
     <lock>
         <id>7</id>
         <length>30</length>
         <doorId>7</doorId>
         <lockId>7</lockId>
+        <providerId>1</providerId>
     </lock>
     <lock>
         <id>8</id>
         <length>29</length>
         <doorId>8</doorId>
         <lockId>8</lockId>
+        <providerId>1</providerId>
     </lock>
     <lock>
         <id>9</id>
         <length>34</length>
         <doorId>9</doorId>
         <lockId>9</lockId>
+        <providerId>1</providerId>
     </lock>
     <lock>
         <id>10</id>
         <length>31</length>
         <doorId>10</doorId>
         <lockId>10</lockId>
+        <providerId>1</providerId>
     </lock>
     <lock>
         <id>11</id>
         <length>34</length>
         <doorId>11</doorId>
         <lockId>11</lockId>
+        <providerId>1</providerId>
     </lock>
     <lock>
         <id>12</id>
         <length>24</length>
         <doorId>12</doorId>
         <lockId>12</lockId>
+        <providerId>1</providerId>
     </lock>
 </locks>

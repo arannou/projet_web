@@ -40,8 +40,8 @@ class implementationBorrowingsDAO_MYSQL extends ImplementationDAO_MYSQL implemen
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $borrowing = [
-                'borrowingId'=>$row["borrowingId"],
-                'userEnssatPrimaryKey'=>$row["userEnssatPrimaryKey"],
+                'borrowingId'=>$row["id"],
+                'userEnssatPrimaryKey'=>$row["userId"],
                 'keychainId'=>$row["keychainId"],
                 'borrowDate'=>$row["borrowDate"],
                 'dueDate'=>$row["dueDate"],
@@ -57,7 +57,7 @@ class implementationBorrowingsDAO_MYSQL extends ImplementationDAO_MYSQL implemen
     }
 
     public function getBorrowingById($id){
-        $stmt = $this->pdo->prepare("SELECT * FROM $this->_tableName WHERE borrowingId = :id");
+        $stmt = $this->pdo->prepare("SELECT * FROM $this->_tableName WHERE id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
@@ -65,8 +65,8 @@ class implementationBorrowingsDAO_MYSQL extends ImplementationDAO_MYSQL implemen
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $borrowing = [
-                'borrowingId'=>$row["borrowingId"],
-                'userEnssatPrimaryKey'=>$row["userEnssatPrimaryKey"],
+                'borrowingId'=>$row["id"],
+                'userEnssatPrimaryKey'=>$row["userId"],
                 'keychainId'=>$row["keychainId"],
                 'borrowDate'=>$row["borrowDate"],
                 'dueDate'=>$row["dueDate"],
@@ -83,7 +83,7 @@ class implementationBorrowingsDAO_MYSQL extends ImplementationDAO_MYSQL implemen
 
     public function addBorrow($borrow){
         $stmt = $this->pdo->prepare("INSERT INTO $this->_tableName
-                                      (userEnssatPrimaryKey, keychainId, borrowDate, dueDate, returnDate, lostDate, comment)
+                                      (userId, keychainId, borrowDate, dueDate, returnDate, lostDate, comment)
                                       VALUES (:userEnssatPrimaryKey, :keychainId, :borrowDate, :dueDate, :returnDate, :lostDate, :comment)");
 
         $stmt->bindParam(':userEnssatPrimaryKey', $borrow['userEnssatPrimaryKey']);

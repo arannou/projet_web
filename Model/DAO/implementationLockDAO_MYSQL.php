@@ -34,6 +34,7 @@ class implementationLockDAO_MYSQL extends implementationDAO_MYSQL implements int
            $lock->setId(intval($xmlLock->id));
            $lock->setLength(intval($xmlLock->length));
            $lock->setDoorId((string)$xmlLock->doorId);
+           $lock->setProvider((string)$xmlLock->providerId);
            $this->addLock($lock);
          }
        } else {
@@ -118,7 +119,7 @@ class implementationLockDAO_MYSQL extends implementationDAO_MYSQL implements int
 
    public function addLock($lock){
        $stmt = $this->pdo->prepare("INSERT INTO $this->_tableName
-                                      (length, doorId, provider)
+                                      (length, doorId, providerId)
                                       VALUES (:length, :doorId, :provider)");
 
        $length = $lock->getLength();
