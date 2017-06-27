@@ -40,7 +40,7 @@ class implementationRoomDAO_MYSQL extends ImplementationDAO_MYSQL implements int
 
      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
        $room = new RoomVO();
-       $room->setRoomId($row["name"]);
+       $room->setId($row["name"]);
 
        array_push($rooms, $room);
      }
@@ -56,7 +56,7 @@ class implementationRoomDAO_MYSQL extends ImplementationDAO_MYSQL implements int
 
      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $room = new RoomVO();
-        $room->setRoomId($row["name"]);
+        $room->setId($row["name"]);
 
         array_push($rooms, $room);
     }
@@ -78,6 +78,8 @@ class implementationRoomDAO_MYSQL extends ImplementationDAO_MYSQL implements int
      $name =  $room->getId();
 
      $stmt->bindParam(':name', $name);
+
+     var_dump($stmt);
 
      $stmt->execute();
    }

@@ -6,8 +6,8 @@
     <username>jDalton</username>
     <name>Dalton</name>
     <surname>Joe</surname>
-    <status>Student</status>
-    <phone>5551</phone>
+    <status>Etudiant</status>
+    <phone>5555555551</phone>
     <email>joe@dalton.fr</email>
   </user>
   <user>
@@ -16,8 +16,8 @@
     <username>jDalton2</username>
     <name>Dalton</name>
     <surname>Jack</surname>
-    <status>Staff</status>
-    <phone>5552</phone>
+    <status>Personnel</status>
+    <phone>5555555552</phone>
     <email>jack@dalton.fr</email>
   </user>
   <user>
@@ -26,8 +26,8 @@
     <username>wDalton</username>
     <name>Dalton</name>
     <surname>William</surname>
-    <status>Outsider</status>
-    <phone>5553</phone>
+    <status>Personnel</status>
+    <phone>5555555553</phone>
     <email>william@dalton.fr</email>
   </user>
   <user>
@@ -36,8 +36,8 @@
     <username>aDalton</username>
     <name>Dalton</name>
     <surname>Avrell</surname>
-    <status>Staff</status>
-    <phone>5554</phone>
+    <status>Enseignant</status>
+    <phone>5555555554</phone>
     <email>avrell@dalton.fr</email>
   </user>
   <user>
@@ -46,8 +46,8 @@
     <username>lluke</username>
     <name>Luke</name>
     <surname>Lucky</surname>
-    <status>Outsider</status>
-    <phone>5555</phone>
+    <status>Personnel</status>
+    <phone>5555555555</phone>
     <email>lucky.luke@fbi.fr</email>
   </user>
 
