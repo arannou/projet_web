@@ -68,10 +68,10 @@ class implementationLockDAO_MYSQL extends implementationDAO_MYSQL implements int
 
            $lock = new LockVO();
 
-           $lock->setId($row['lock']);
+           $lock->setId($row['id']);
            $lock->setDoorId($row['doorId']);
            $lock->setLength($row['length']);
-           $lock->setProvider($row['provider']);
+           $lock->setProvider($row['providerId']);
 
            array_push($locks, $lock);
        }
@@ -87,10 +87,10 @@ class implementationLockDAO_MYSQL extends implementationDAO_MYSQL implements int
        $row = $stmt->fetch(PDO::FETCH_ASSOC);
        $lock = new LockVO();
 
-       $lock->setId($row['lock']);
+       $lock->setId($row['id']);
        $lock->setDoorId($row['doorId']);
        $lock->setLength($row['length']);
-       $lock->setProvider($row['provider']);
+       $lock->setProvider($row['providerId']);
 
        return $lock;
    }
@@ -106,10 +106,10 @@ class implementationLockDAO_MYSQL extends implementationDAO_MYSQL implements int
 
            $lock = new LockVO();
 
-           $lock->setId($row['lock']);
+           $lock->setId($row['id']);
            $lock->setDoorId($row['doorId']);
            $lock->setLength($row['length']);
-           $lock->setProvider($row['provider']);
+           $lock->setProvider($row['providerId']);;
 
            array_push($locks, $lock);
        }
@@ -150,10 +150,10 @@ class implementationLockDAO_MYSQL extends implementationDAO_MYSQL implements int
        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
        $lock = new LockVO();
-       $lock->setId($row['lock']);
+       $lock->setId($row['id']);
        $lock->setDoorId($row['doorId']);
        $lock->setLength($row['length']);
-       $lock->setProvider($row['provider']);
+       $lock->setProvider($row['providerId']);
 
        return $lock;
    }

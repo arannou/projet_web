@@ -118,7 +118,6 @@ class implementationDoorDAO_MYSQL extends ImplementationDAO_MYSQL implements int
 
 		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			$door->setId($row["id"]);
-			$door->setLockId($row["lockId"]);
 			$door->setRoomId($row["roomId"]);
 
 			array_push($doors, $door);
