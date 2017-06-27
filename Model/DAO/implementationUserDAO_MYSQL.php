@@ -137,6 +137,7 @@ class implementationUserDAO_MYSQL extends implementationDAO_MYSQL implements int
         $stmt->execute();
 
         var_dump($stmt);
+
         echo '<br><br>';
     }
 
