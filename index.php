@@ -104,7 +104,6 @@ function populateDatabase(){
 
     $userDAO = $factory->getUserDAO();
     $userDAO->populate();
-    //var_dump($_SESSION);
 }
 
 // Fonction qui affiche les différentes données stockées dans la session

@@ -64,6 +64,14 @@ class implementationKeychainDAO_Session implements interfaceKeyChainDAO
     }
 
     public function addKeychain($keychain){
+      $newId = 0;
+      $keychains = $this->getKeychains();
+      //Si aucun trousseau n'est créé, on commence notre incrémentation d'identifiant à 0
+      if (count($keychains) != 0) {
+        //On ajoute un identifiant de trousseau à la suite des autres
+          $newId = $keychains[count($keychains) - 1]->getId() + 1;
+      }
+      $keychain->setId($newId);
         array_push($_SESSION['keychains'], $keychain);
     }
 

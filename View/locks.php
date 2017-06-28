@@ -29,6 +29,13 @@
                   <input type="text" name = "lengthCanon">
                 </div>
               </div>
+
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Id de la porte :</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" name = "doorId">
+                </div>
+              </div>
               <p><input type="submit" value="Envoyer" class="btn btn-warning" /></p>
             </form>
           </div>

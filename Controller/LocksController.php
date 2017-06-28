@@ -20,7 +20,7 @@ class LocksController {
 
         $providersDAO = $factory->getFournisseurDAO();
         $this->providers = $providersDAO->getProviders();
-
+        
         $this->doors = $doorDAO->getDoors();
     }
 

@@ -31,16 +31,14 @@ class implementationLockService implements interfaceLockService
        }
 
     //Créaction de canon
-    public function createLock($length, $provider){
+    public function createLock($length, $provider, $doorId){
         $lock = new LockVO();
-        $doorId=null;
         $locks = $this->_lockDAO->getLocks();
-        $LastIdItemArray=end($locks);
-        var_dump($LastIdItemArray);
+        $LastIdItemArray = end($locks);
+
         if($LastIdItemArray == false){
           $lock->setId(1);
-        }
-        else{
+        } else {
           $LastIdItemArray=$LastIdItemArray->getId();
           $lock->setId($LastIdItemArray+1);
         }

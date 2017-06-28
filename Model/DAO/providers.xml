@@ -5,8 +5,8 @@
     <username>jDalton</username>
     <name>Dalton</name>
     <surname>Joe</surname>
-    <phone>5551</phone>
-    <office>Student</office>
+    <phone>5555555551</phone>
+    <office>ENSSAT</office>
     <email>joe@dalton.fr</email>
   </provider>
 
@@ -15,7 +15,7 @@
     <username>mPoirier</username>
     <name>Poirier</name>
     <surname>Maxime</surname>
-    <phone>1234</phone>
+    <phone>1234567890</phone>
     <office>ENSSAT</office>
     <email>mpoirier@enssat.fr</email>
   </provider>

@@ -4,13 +4,13 @@
     <id>1</id>
     <type>simple</type>
     <keychainId>null</keychainId>
-    <lockId>1</lockId>
+    <lockId>25</lockId>
   </key>
 
   <key>
     <id>2</id>
     <type>passe partiel</type>
     <keychainId>null</keychainId>
-    <lockId>1</lockId>
+    <lockId>36</lockId>
   </key>
 </keys>

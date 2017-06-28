@@ -54,7 +54,7 @@
                     <?php
                     $keyType = KeyVO::$keyType;
                     foreach ($keyType as $key => $value) {
-                      echo '<option value="'.$value.'">'.$value.'</option>';
+                      echo '<option value="'.$key.'">'.$value.'</option>';
                     }
                     ?>
                   </select>

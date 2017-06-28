@@ -142,6 +142,24 @@ class implementationLockDAO_MYSQL extends implementationDAO_MYSQL implements int
 
    }
 
+   public function update($lock){
+
+     $stmt = $this->pdo->prepare("UPDATE $this->_tableName
+                                    SET length = :length, doorId = :doorId, providerId = :providerId
+                                    WHERE id = :lockId");
+
+     $length = $lock->getLength();
+     $doorId = $lock->getDoorId();
+     $provider = $lock->getProvider();
+
+     $stmt->bindParam(':length', $length);
+     $stmt->bindParam(':doorId', $doorId);
+     $stmt->bindParam(':provider', $provider);
+     $stmt->bindParam(':lockId', $lock->getId());
+
+     $stmt->execute();
+   }
+
    public function getLockByDoorId($doorId) {
        $stmt = $this->pdo->prepare("SELECT * FROM $this->_tableName WHERE doorId = :doorId");
        $stmt->bindParam(':length', $doorId);

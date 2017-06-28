@@ -87,14 +87,14 @@ class implementationLockDAO_Session implements interfaceLockDAO
 
    public function update($lock){
        $id = null;
-       foreach ($_SESSION["doors"] as $index => $d){
-           if($d->getid() == $lock->getId()){
+       foreach ($_SESSION["lock"] as $index => $l){
+           if($l->getid() == $lock->getId()){
                $id = $index;
            }
        }
 
        if($id != null){
-           $_SESSION[$id] = $lock;
+           $_SESSION["lock"][$id] = $lock;
        }
    }
 
