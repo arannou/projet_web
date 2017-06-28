@@ -23,14 +23,14 @@
               //Récupération des canons associés à la salle
               echo '<tr>';
               echo '<td>'.$room->getId().'</td>';
-              if ($controller->locks[$index] != null) {
-                echo '<td>'.$controller->locks[$index]->getId().'</td>';
+              if (isset($controller->locks[$room->getId()])) {
+                echo '<td>'.$controller->locks[$room->getId()]->getId().'</td>';
               } else {
                 echo '<td></td>';
               }
               //Récupération des clés associées à la salle
-              if ($controller->keys[$index] != null) {
-                echo '<td>'.$controller->keys[$index]->getId().'</td>';
+              if (isset($controller->keys[$room->getId()])) {
+                echo '<td>'.$controller->keys[$room->getId()]->getId().'</td>';
               } else {
                 echo '<td></td>';
               }

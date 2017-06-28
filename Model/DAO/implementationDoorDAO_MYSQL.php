@@ -62,13 +62,14 @@ class implementationDoorDAO_MYSQL extends ImplementationDAO_MYSQL implements int
 
 	public function getDoors()
 	{
-		$stmt = $this->pdo->prepare("SELECT * FROM $this->_tableName");
+		$stmt = $this->pdo->prepare("SELECT * FROM $this->_tableName ORDER BY id");
 		$stmt->execute();
 
 		$doors = [];
-		$door = new DoorVO;
 
 		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
+			$door = new DoorVO;
 			$door->setId($row["id"]);
 			$door->setRoomId($row["roomId"]);
 
@@ -88,7 +89,6 @@ class implementationDoorDAO_MYSQL extends ImplementationDAO_MYSQL implements int
 
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		$door->setId($row["id"]);
-		$door->setLockId($row["lockId"]);
 		$door->setRoomId($row["roomId"]);
 
 		return $door;
@@ -99,7 +99,6 @@ class implementationDoorDAO_MYSQL extends ImplementationDAO_MYSQL implements int
 		$stmt = $this->pdo->prepare("INSERT INTO $this->_tableName
 			(roomId)
 			VALUES (:roomId)");
-
 		$roomId = $door->getRoomId();
 
 		$stmt->bindParam(':roomId', $roomId);
@@ -114,9 +113,10 @@ class implementationDoorDAO_MYSQL extends ImplementationDAO_MYSQL implements int
 		$stmt->execute();
 
 		$doors = [];
-		$door = new DoorVO;
 
 		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			$door = new DoorVO;
+
 			$door->setId($row["id"]);
 			$door->setRoomId($row["roomId"]);
 

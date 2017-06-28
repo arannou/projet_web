@@ -8,8 +8,8 @@ class BorrowKeychainController {
 
         $factory = getDAOFactory();
 
-        $borrowService     = $factory->getBorrowingsDAO();
-        $keychainService   = $factory->getKeychainDAO();
+        $borrowService     = implementationBorrowService::getInstance();
+        $keychainService   = implementationKeychainService::getInstance();
 
         if(isset($_POST['keychainSelection'])){
 			// si on crée un trousseau
@@ -26,7 +26,6 @@ class BorrowKeychainController {
                             $allKeyAvailable = false;
                         }
                     }
-
                     //Creer un trousseau avec les cles
                     if($allKeyAvailable){
                         $dt = new DateTime();
@@ -35,7 +34,7 @@ class BorrowKeychainController {
                         $borrowService->borrowKeychain($_POST['userEnssatPrimaryKey'], $keychain->getId(), $dtDueDate);
                     }
                 }
-				
+
 				// si on sélectionne un trousseau existant
             }else if($_POST['keychainSelection'] == "selection"){
                 if(isset($_POST['keychainId']) && isset($_POST['dueDate']) && isset($_POST['userEnssatPrimaryKey'])){

@@ -68,10 +68,9 @@ class implementationFournisseurDAO_MYSQL extends ImplementationDAO_MYSQL impleme
     $stmt->execute();
 
     $providers = [];
-    $provider = new ProviderVO;
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-
+      $provider = new ProviderVO;
       $provider->setId($row["id"]);
       $provider->setUsername($row["username"]);
       $provider->setName($row["name"]);

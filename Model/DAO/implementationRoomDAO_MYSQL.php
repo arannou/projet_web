@@ -79,8 +79,6 @@ class implementationRoomDAO_MYSQL extends ImplementationDAO_MYSQL implements int
 
      $stmt->bindParam(':name', $name);
 
-     var_dump($stmt);
-
      $stmt->execute();
    }
 }

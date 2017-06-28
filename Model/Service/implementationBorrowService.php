@@ -180,7 +180,6 @@ class implementationBorrowService implements interfaceBorrowService
         case "Lost":
         $this->_borrowings[$borrowingId-1]['lostDate'] = $tDate;
         $_SESSION["borrowings"][$borrowingId-1]['lostDate'] = $tDate;
-        var_dump($_SESSION["borrowings"][$borrowingId-1]);
         break;
         default :
         throw new RuntimeException('borrowing does not exists.');

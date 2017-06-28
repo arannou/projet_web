@@ -13,6 +13,7 @@ class implementationKeyKeychainDAO_MYSQL extends ImplementationDAO_MYSQL impleme
     private $_keyDAO;
 
     private function __construct(){
+        parent::initDb();
         $factory = getDAOFactory();
         $this->_keyDAO = $factory->getKeyDAO();
     }
@@ -28,14 +29,14 @@ class implementationKeyKeychainDAO_MYSQL extends ImplementationDAO_MYSQL impleme
         $stmt = $this->pdo->prepare("INSERT INTO $this->_tableName
 			(keyId, keychainId)
 			VALUES (:keyId, :keychainId)");
-        
-        $keyId = $key->getId();
-        $keychainId = $keyChain->getId();
+        if($key != null) {
+          $keyId = $key->getId();
+          $keychainId = $keyChain->getId();
 
-        $stmt->bindParam(':keyId', $keyId);
-        $stmt->bindParam(':keychainId', $keychainId);
-
-        $stmt->execute();
+          $stmt->bindParam(':keyId', $keyId);
+          $stmt->bindParam(':keychainId', $keychainId);
+          $stmt->execute();
+        }
     }
 
     public function getKeysByKeychainId($keychainId){

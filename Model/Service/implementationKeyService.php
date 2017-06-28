@@ -35,7 +35,7 @@ class implementationKeyService
         $this->_borrowingsDAO   = $factory->getBorrowingsDAO();
         $this->_lockDAO         = $factory->getLockDAO();
         $this->_doorDAO         = $factory->getDoorDAO();
-        $this->_keychainService = $factory->getKeychainDAO();
+        $this->_keychainService = implementationKeychainService::getInstance();
     }
 
     /**

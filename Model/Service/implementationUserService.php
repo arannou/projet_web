@@ -46,8 +46,8 @@ class implementationUserService
     public function createUserFromCSV($username, $enssatPrimaryKey, $Ur1Identifier, $name, $surname, $phone, $status, $email) {
         if(!$this->checkUserByEnssatPrimaryKey($enssatPrimaryKey)) {
             $user = new UserVO();
-            $user->setUr1identifier((int) $Ur1Identifier);
-            $user->setEnssatPrimaryKey((int) $enssatPrimaryKey);
+            $user->setUr1identifier($Ur1Identifier);
+            $user->setEnssatPrimaryKey($enssatPrimaryKey);
             $user->setUsername($username);
             $user->setName($name);
             $user->setSurname($surname);

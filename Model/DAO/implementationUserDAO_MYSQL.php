@@ -97,16 +97,18 @@ class implementationUserDAO_MYSQL extends implementationDAO_MYSQL implements int
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        $user = new UserVO();
-        $user->setEnssatPrimaryKey($row["enssatPrimaryKey"]);
-        $user->setUr1Identifier($row["ur1identifier"]);
-        $user->setUsername($row["username"]);
-        $user->setName($row["name"]);
-        $user->setSurname($row["surname"]);
-        $user->setPhone($row["phone"]);
-        $user->setStatus($row["status"]);
-        $user->setEmail($row["email"]);
+        $user = null;
+        if($row != false) {
+          $user = new UserVO();
+          $user->setEnssatPrimaryKey($row["enssatPrimaryKey"]);
+          $user->setUr1Identifier($row["ur1identifier"]);
+          $user->setUsername($row["username"]);
+          $user->setName($row["name"]);
+          $user->setSurname($row["surname"]);
+          $user->setPhone($row["phone"]);
+          $user->setStatus($row["status"]);
+          $user->setEmail($row["email"]);
+        }
 
         return $user;
     }
@@ -135,8 +137,6 @@ class implementationUserDAO_MYSQL extends implementationDAO_MYSQL implements int
         $stmt->bindParam(':email', $email);
 
         $stmt->execute();
-
-        var_dump($stmt);
 
         echo '<br><br>';
     }
