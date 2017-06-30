@@ -75,7 +75,12 @@ class implementationDoorDAO_Session implements interfaceDoorDAO
 
 	public function addDoor($door) {
 		$doors = $this->getDoors();
-		$lastId = end($doors)->getId();
+
+
+		$lastId = 0;
+		if(count($doors) != 0){
+			$lastId = end($doors)->getId();
+		}
 
 		$door->setId($lastId+1);
 

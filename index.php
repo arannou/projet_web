@@ -10,7 +10,7 @@ require_once 'Model/Factory/FactoryProvider.php';
 
 // Recupère la factory correspond au mode de persistance
 function getDAOFactory(){
-    $provider = new FactoryProvider(FactoryProvider::$FACTORY_MYSQL);
+    $provider = new FactoryProvider(FactoryProvider::$FACTORY_SESSION);
     $factory = $provider->getFactory();
     return $factory;
 }
